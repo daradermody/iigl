@@ -12,4 +12,10 @@ export class TeamlistComponent implements OnInit {
   ngOnInit() {
   }
 
+  addTeam(name: string, mail: string, comment: string) {
+    alert("Name: " + name +
+      "\nEmail: " + mail +
+      "\nComment: " + comment)
+  }
+
 }
