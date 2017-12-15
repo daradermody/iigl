@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Team} from '../team';
+import {TeamService} from '../team.service';
 
 @Component({
   selector: 'app-teamlist',
@@ -6,16 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teamlist.component.css']
 })
 export class TeamlistComponent implements OnInit {
+  team = new Team('', '', '', '');
+  teams: Team[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private teamService: TeamService) {
   }
 
-  addTeam(name: string, mail: string, comment: string) {
-    alert("Name: " + name +
-      "\nEmail: " + mail +
-      "\nComment: " + comment)
+  ngOnInit(): void {
+    this.updateTeams();
   }
 
+  createNewTeam = function (newTeam) {
+    // TODO: Handle error better
+    this.teamService.createNewTeam(newTeam).subscribe(
+      null,
+      (response) => alert('Error! ' + response.error.message)
+    );
+    this.updateTeams();
+  };
+
+  updateTeams = function () {
+    this.teamService.getTeams().subscribe(
+      (teams: Team[]) => this.teams = teams
+    );
+  };
 }

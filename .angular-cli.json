@@ -40,6 +40,10 @@
   ],
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {},
+    "serve": {
+      "proxyConfig": "proxy.config.json",
+      "ssl": true
+    }
   }
 }

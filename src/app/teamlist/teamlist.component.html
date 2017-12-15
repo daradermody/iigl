@@ -2,21 +2,35 @@
 
   <div class="w3-padding-64 w3-content" id="contact">
 
-    <h2 class="w3-text-light-grey">Teams</h2>
+    <h2 class="w3-text-light-grey">Team sign-up</h2>
     <hr style="width:200px" class="w3-opacity">
 
-    <p>HEY EVERYONE!! GET IN HERE!</p><br>
-    <img src="https://image.ibb.co/hWg4nw/grim_patron.png" alt="grim_patron"border="0"><br><br>
-
-    <form action="mailto:irishinterfirmsgaming@gmail.com" method="post" enctype="text/plain">
-      Name:<br>
-      <input type="text" name="name" #name><br>
-      E-mail:<br>
-      <input type="text" name="mail" #mail><br>
-      Comment:<br>
-      <input type="text" name="comment" size="50" #comment><br><br>
-      <input type="button" value="Send" (click)="addTeam(name.value, mail.value, comment.value)">
+    <form method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Name" [(ngModel)]="team.contactName">
+      <input type="text" name="email" placeholder="Email" [(ngModel)]="team.contactEmail"><br>
+      <input type="text" name="email" placeholder="Company" [(ngModel)]="team.company">
+      <input type="text" name="teamName" placeholder="Team name" [(ngModel)]="team.name"><br>
+      <input type="submit" value="Send" (click)="createNewTeam(team)">
       <input type="reset" value="Reset">
     </form>
+  </div>
+  
+  <div>
+    <h2 class="w3-text-light-grey">Teams signed up</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <table style="width:100%" class="rwd-table">
+      <tr>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Email</th>
+      </tr>
+      <tr *ngFor="let team of teams">
+        <td>{{team.name}}</td>
+        <td>{{team.company}}</td>
+        <td>{{team.contactName}}</td>
+        <td>{{team.contactEmail}}</td>
+      </tr>
+    </table>
   </div>
 </div>
