@@ -1,0 +1,27 @@
+<div class="w3-padding-large" id="main">
+  <div class="w3-padding-64 w3-content" id="contact">
+    <h2 class="w3-text-light-grey">Login</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <form [formGroup]="form">
+      <fieldset>
+        <legend>Login</legend>
+        <div class="form-field w3-container w3-cell">
+          <label>Email: </label>
+          <input name="email" autocomplete="usename" formControlName="email">
+        </div>
+        <div class="form-field w3-container w3-cell">
+          <label>Password: </label>
+          <input name="password" autocomplete="current-password" formControlName="password" type="password">
+        </div>
+        <div class="w3-container w3-cell">
+          <button class="button button-primary" (click)="login()">Login</button>
+        </div>
+      </fieldset>
+
+      <div *ngIf="error" class="w3-container w3-cell w3-red">
+        <label>{{error}}</label>
+      </div>
+    </form>
+  </div>
+</div>

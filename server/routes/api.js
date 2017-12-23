@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('../database/storage')
+const fs = require("fs");
 
 
 router.post('/teams', (req, res) => {
@@ -27,5 +28,32 @@ router.get('/teams/:name', (req, res) => {
     })
   }
 });
+
+const RSA_PRIVATE_KEY = 'thisIsAKey?'; // fs.readFileSync('./demos/private.key');
+
+
+router.post('/login', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+
+  if (!validateEmailAndPassword(email, password)) {
+    res.sendStatus(401);
+  } else {
+    const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
+      algorithm: 'RS256',
+      expiresIn: 120,
+      subject: email
+    });
+
+    res.json(jwtBearerToken)
+  }
+});
+
+function validateEmailAndPassword(email, password) {
+  return true;
+}
+
+
 
 module.exports = router;
