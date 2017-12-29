@@ -27,8 +27,8 @@
         <td>{{team.name}}</td>
         <td>{{team.company}}</td>
         <td>{{team.contactEmail}}</td>
-        <td *ngIf="isLoggedIn() && team.members.indexOf(getEmail())"><button (click)="joinTeam(team.name)">Join</button></td>
-        <td *ngIf="isLoggedIn() && !team.members.indexOf(getEmail())"><button (click)="leaveTeam(team.name)">Leave</button></td>
+        <td *ngIf="isLoggedIn() && team.members.indexOf(getEmail()) == -1"><button (click)="joinTeam(team.name)">Join</button></td>
+        <td *ngIf="isLoggedIn() && team.members.indexOf(getEmail()) != -1"><button (click)="leaveTeam(team.name)">Leave</button></td>
       </tr>
     </table>
   </div>

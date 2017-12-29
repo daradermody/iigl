@@ -20,5 +20,11 @@
     "members": [
       "test1@b.com"
     ]
+  },
+  {
+    "name": "sexpests",
+    "company": "Ericsson ",
+    "contactEmail": "laura.phelan@ericsson.com",
+    "members": []
   }
 ]

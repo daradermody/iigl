@@ -10,5 +10,11 @@
     "name": "asdf",
     "company": "fds",
     "password": "$2a$10$29xl5zeDHp/yRObiUTpF9u9YUfnl0cl.VtQgSv.DngOCC97LWX.6G"
+  },
+  {
+    "email": "laura.phelan@ericsson.com",
+    "name": "jujumushu",
+    "company": "Ericsson ",
+    "password": "$2a$10$0lzVzUMofOrAxsCaLHuq9O3xFmoOK/PWUHNWrfNC0nYKuuh5f8y2m"
   }
 ]
