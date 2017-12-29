@@ -6,6 +6,7 @@ import {ContactComponent} from './contact/contact.component';
 import {LoginComponent} from './login/login.component';
 import {Register} from 'ts-node/dist';
 import {RegisterComponent} from './register/register.component';
+import {RegistrationConfirmationComponent} from "./registration-confirmation/registration-confirmation.component";
 
 const ROUTES: Routes = [
   {
@@ -32,6 +33,10 @@ const ROUTES: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'registrationConfirmationUrl',
+    component: RegistrationConfirmationComponent
   }
 ];
 

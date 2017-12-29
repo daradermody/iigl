@@ -4,20 +4,17 @@
     <hr style="width:200px" class="w3-opacity">
 
     <form [formGroup]="form">
-      <fieldset>
-        <legend>Login</legend>
-        <div class="form-field w3-container w3-cell">
-          <label>Email: </label>
-          <input name="email" autocomplete="usename" formControlName="email">
+      <div class="w3-col">
+        <div class="w3-col m6">
+          <label>Email: </label><br>
+          <input name="email" autocomplete="username" formControlName="email">
         </div>
-        <div class="form-field w3-container w3-cell">
-          <label>Password: </label>
+        <div class="w3-col m6">
+          <label>Password: </label><br>
           <input name="password" autocomplete="current-password" formControlName="password" type="password">
         </div>
-        <div class="w3-container w3-cell">
-          <button class="button button-primary" (click)="login()">Login</button>
-        </div>
-      </fieldset>
+          <button class="button button-primary" style="margin-top: 10px" (click)="login()">Login</button>
+      </div>
 
       <div *ngIf="error" class="w3-container w3-cell w3-red">
         <label>{{error}}</label>

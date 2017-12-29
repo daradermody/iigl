@@ -1,13 +1,18 @@
 const express = require('express');
-const router = express.Router();
-const storage = require('../database/storage')
-const fs = require("fs");
+const storage = require('../database/storage');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const users = require("../database/storage/users");
 
+
+const router = express.Router();
 
 router.post('/teams', (req, res) => {
   try {
-    storage.addTeam(req.body);
-  } catch(err) {
+    team = req.body;
+    team.company = users.getUser(team.contactEmail).company;
+    storage.teams.addTeam(req.body);
+  } catch (err) {
     res.status(400).json({
       message: err
     })
@@ -16,44 +21,28 @@ router.post('/teams', (req, res) => {
 });
 
 router.get('/teams', (req, res) => {
-  res.json(storage.getTeams())
+  res.json(storage.teams.getTeams());
 });
 
 router.get('/teams/:name', (req, res) => {
   try {
-    res.json(storage.getTeam(req.params.name))
-  } catch(err) {
+    res.json(storage.teams.getTeam(req.params.name));
+  } catch (err) {
     res.status(400).json({
       message: err
-    })
-  }
-});
-
-const RSA_PRIVATE_KEY = 'thisIsAKey?'; // fs.readFileSync('./demos/private.key');
-
-
-router.post('/login', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-
-  if (!validateEmailAndPassword(email, password)) {
-    res.sendStatus(401);
-  } else {
-    const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
-      algorithm: 'RS256',
-      expiresIn: 120,
-      subject: email
     });
-
-    res.json(jwtBearerToken)
   }
 });
 
-function validateEmailAndPassword(email, password) {
-  return true;
-}
+router.get('/join/:name', (req, res) => {
+  const token = (req.body.token || req.query.token || req.headers.authorization).replace('Bearer ', '');
+  res.json(storage.teams.addUserToTeam(jwt.decode(token).sub, req.params.name));
+});
 
+router.get('/leave/:name', (req, res) => {
+  const token = (req.body.token || req.query.token || req.headers.authorization).replace('Bearer ', '');
+  res.json(storage.teams.removeUserFromTeam(jwt.decode(token).sub, req.params.name));
+});
 
 
 module.exports = router;

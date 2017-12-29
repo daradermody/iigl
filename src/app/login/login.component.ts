@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {HttpErrorResponse} from "@angular/common/http";
+import {Globals} from "../globals";
 
 @Component({
   selector: 'app-login',
@@ -11,11 +13,11 @@ import {AuthService} from '../auth.service';
 export class LoginComponent {
 
   form: FormGroup;
-  error: string;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private globals: Globals) {
 
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -30,14 +32,17 @@ export class LoginComponent {
       this.authService.login(val.email, val.password)
         .subscribe(
           () => {
-            console.log('User is logged in');
             this.router.navigateByUrl('/');
+            this.globals.emitError('Logged in');
           },
-          (error) => {
-            this.error = error;
+          (error: HttpErrorResponse) => {
+            if (error.status == 401) {
+              this.globals.emitError("Username or password is invalid");
+            } else {
+              this.globals.emitError(error.message);
+            }
           }
         );
     }
   }
-
 }

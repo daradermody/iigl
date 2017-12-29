@@ -8,10 +8,13 @@ import {TeamlistComponent} from './teamlist/teamlist.component';
 import {ContactComponent} from './contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TeamService} from './team.service';
-import {HttpClientModule} from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 import {AuthService} from './auth.service';
+import {AuthInterceptor} from "./auth-interceptor";
+import {Globals} from "./globals";
+import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import {AuthService} from './auth.service';
     TeamlistComponent,
     ContactComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegistrationConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +35,14 @@ import {AuthService} from './auth.service';
     HttpClientModule
   ],
   providers: [
+    Globals,
     TeamService,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

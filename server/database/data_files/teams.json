@@ -2,7 +2,23 @@
   {
     "name": "team1",
     "company": "company1",
-    "contactName": "name1",
-    "contactEmail": "email@ericsson.com"
+    "contactEmail": "email@ericsson.com",
+    "members": []
+  },
+  {
+    "name": "testing",
+    "company": "b",
+    "contactEmail": "test1@b.com",
+    "members": [
+      "test1@b.com"
+    ]
+  },
+  {
+    "name": "Laura's team :D",
+    "company": "b",
+    "contactEmail": "test1@b.com",
+    "members": [
+      "test1@b.com"
+    ]
   }
 ]
