@@ -3,6 +3,10 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main/main.component';
 import {TeamlistComponent} from './teamlist/teamlist.component';
 import {ContactComponent} from './contact/contact.component';
+import {LoginComponent} from './login/login.component';
+import {Register} from 'ts-node/dist';
+import {RegisterComponent} from './register/register.component';
+import {RegistrationConfirmationComponent} from "./registration-confirmation/registration-confirmation.component";
 
 const ROUTES: Routes = [
   {
@@ -21,6 +25,18 @@ const ROUTES: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'registrationConfirmationUrl',
+    component: RegistrationConfirmationComponent
   }
 ];
 

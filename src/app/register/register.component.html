@@ -1,0 +1,26 @@
+<div class="w3-padding-large" id="main">
+  <div class="w3-padding-64 w3-content" id="contact">
+    <h2 class="w3-text-light-grey">Login</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <form [formGroup]="form">
+      <label>Email</label>
+      <input class="w3-input" #email required name="email" autocomplete="username" formControlName="email"
+             [style.box-shadow]="getBoxShadow('email')">
+
+      <label>Name</label>
+      <input class="w3-input" #name name="name" required formControlName="name"
+             [style.box-shadow]="getBoxShadow('name')">
+
+      <label>Company</label>
+      <input class="w3-input" #company name="company" required formControlName="company"
+             [style.box-shadow]="getBoxShadow('company')">
+
+      <label>Password</label>
+      <input class="w3-input" #password name="password" required autocomplete="current-password"
+             formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')">
+
+      <button class="button button-primary" (click)="register()">Register</button>
+    </form>
+  </div>
+</div>

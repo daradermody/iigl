@@ -1,12 +1,18 @@
 const express = require('express');
-const router = express.Router();
-const storage = require('../database/storage')
+const storage = require('../database/storage');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const users = require("../database/storage/users");
 
+
+const router = express.Router();
 
 router.post('/teams', (req, res) => {
   try {
-    storage.addTeam(req.body);
-  } catch(err) {
+    team = req.body;
+    team.company = users.getUser(team.contactEmail).company;
+    storage.teams.addTeam(req.body);
+  } catch (err) {
     res.status(400).json({
       message: err
     })
@@ -15,17 +21,28 @@ router.post('/teams', (req, res) => {
 });
 
 router.get('/teams', (req, res) => {
-  res.json(storage.getTeams())
+  res.json(storage.teams.getTeams());
 });
 
 router.get('/teams/:name', (req, res) => {
   try {
-    res.json(storage.getTeam(req.params.name))
-  } catch(err) {
+    res.json(storage.teams.getTeam(req.params.name));
+  } catch (err) {
     res.status(400).json({
       message: err
-    })
+    });
   }
 });
+
+router.get('/join/:name', (req, res) => {
+  const token = (req.body.token || req.query.token || req.headers.authorization).replace('Bearer ', '');
+  res.json(storage.teams.addUserToTeam(jwt.decode(token).sub, req.params.name));
+});
+
+router.get('/leave/:name', (req, res) => {
+  const token = (req.body.token || req.query.token || req.headers.authorization).replace('Bearer ', '');
+  res.json(storage.teams.removeUserFromTeam(jwt.decode(token).sub, req.params.name));
+});
+
 
 module.exports = router;

@@ -6,9 +6,15 @@ import {AppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {TeamlistComponent} from './teamlist/teamlist.component';
 import {ContactComponent} from './contact/contact.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TeamService} from './team.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {AuthService} from './auth.service';
+import {AuthInterceptor} from "./auth-interceptor";
+import {Globals} from "./globals";
+import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
 
 
 @NgModule({
@@ -16,16 +22,27 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     MainComponent,
     TeamlistComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent,
+    RegisterComponent,
+    RegistrationConfirmationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [
-    TeamService
+    Globals,
+    TeamService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
