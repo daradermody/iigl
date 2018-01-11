@@ -15,6 +15,7 @@ import {AuthService} from './auth.service';
 import {AuthInterceptor} from './auth-interceptor';
 import {Globals} from './globals';
 import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
+import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {RegistrationConfirmationComponent} from './registration-confirmation/reg
     ContactComponent,
     LoginComponent,
     RegisterComponent,
-    RegistrationConfirmationComponent
+    RegistrationConfirmationComponent,
+    WallOfFameComponent
   ],
   imports: [
     BrowserModule,

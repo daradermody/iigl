@@ -6,11 +6,14 @@ const https = require('https');
 const http = require('http');
 const auth = require('./server/routes/auth');
 const api = require('./server/routes/api');
+const morgan = require('morgan');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(morgan('dev'));
+
 app.use('/api', api, auth);
 
 app.use(express.static(path.join(__dirname, 'dist')));

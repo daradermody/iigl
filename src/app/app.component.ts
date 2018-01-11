@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from './auth.service';
 import {Globals} from './globals';
+import 'w3-css/w3.css';
 
 @Component({
   selector: 'app-root',
