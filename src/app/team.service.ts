@@ -15,10 +15,10 @@ export class TeamService {
   }
 
   joinTeam(teamName: string) {
-    return this.http.get('/api/join/' + teamName)
+    return this.http.get('/api/join/' + teamName);
   }
 
   leaveTeam(teamName: string) {
-    return this.http.get('/api/leave/' + teamName)
+    return this.http.get('/api/leave/' + teamName);
   }
 }

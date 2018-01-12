@@ -12,10 +12,6 @@ export class User {
   }
 
   isValid(): boolean {
-    if (this.email && this.name && this.company && this.password) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!(this.email && this.name && this.company && this.password);
   }
 }

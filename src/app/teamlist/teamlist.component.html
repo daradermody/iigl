@@ -24,9 +24,9 @@
         <th>Contact</th>
       </tr>
       <tr *ngFor="let team of teams">
-        <td>{{team.name}}</td>
-        <td>{{team.company}}</td>
-        <td>{{team.contactEmail}}</td>
+        <td>{{ team.name }}</td>
+        <td>{{ team.company }}</td>
+        <td>{{ team.contactEmail }}</td>
         <td *ngIf="isLoggedIn() && team.members.indexOf(getEmail()) == -1"><button (click)="joinTeam(team.name)">Join</button></td>
         <td *ngIf="isLoggedIn() && team.members.indexOf(getEmail()) != -1"><button (click)="leaveTeam(team.name)">Leave</button></td>
       </tr>

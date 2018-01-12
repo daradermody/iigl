@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Team} from '../team';
 import {TeamService} from '../team.service';
-import {AuthService} from "../auth.service";
-import {Globals} from "../globals";
+import {AuthService} from '../auth.service';
+import {Globals} from '../globals';
 
 @Component({
   selector: 'app-teamlist',
@@ -14,7 +14,6 @@ export class TeamlistComponent implements OnInit {
   teams: Team[];
 
   constructor(private teamService: TeamService,
-              private authService: AuthService,
               public globals: Globals) {
   }
 
@@ -29,16 +28,16 @@ export class TeamlistComponent implements OnInit {
       (response) => alert('Error! ' + response.error.message)
     );
     this.updateTeams();
-  };
+  }
 
   updateTeams() {
     this.teamService.getTeams().subscribe(
       (teams: Team[]) => this.teams = teams
     );
-  };
+  }
 
   isLoggedIn() {
-    return this.authService.isLoggedIn()
+    return AuthService.isLoggedIn();
   }
 
   joinTeam(teamName: string) {
@@ -55,7 +54,7 @@ export class TeamlistComponent implements OnInit {
   }
 
   getEmail() {
-    return this.authService.getEmail()
+    return AuthService.getEmail();
   }
 
   leaveTeam(teamName: string) {

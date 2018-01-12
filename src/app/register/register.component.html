@@ -6,19 +6,19 @@
     <form [formGroup]="form">
       <label>Email</label>
       <input class="w3-input" #email required name="email" autocomplete="username" formControlName="email"
-             [style.box-shadow]="getBoxShadow('email')">
+             [style.box-shadow]="getBoxShadow('email')" title="email">
 
       <label>Name</label>
       <input class="w3-input" #name name="name" required formControlName="name"
-             [style.box-shadow]="getBoxShadow('name')">
+             [style.box-shadow]="getBoxShadow('name')" title="name">
 
       <label>Company</label>
       <input class="w3-input" #company name="company" required formControlName="company"
-             [style.box-shadow]="getBoxShadow('company')">
+             [style.box-shadow]="getBoxShadow('company')" title="company">
 
       <label>Password</label>
       <input class="w3-input" #password name="password" required autocomplete="current-password"
-             formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')">
+             formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')" title="password">
 
       <button class="button button-primary" (click)="register()">Register</button>
     </form>

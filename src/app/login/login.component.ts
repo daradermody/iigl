@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
-import {HttpErrorResponse} from "@angular/common/http";
-import {Globals} from "../globals";
+import {HttpErrorResponse} from '@angular/common/http';
+import {Globals} from '../globals';
 
 @Component({
   selector: 'app-login',
@@ -32,12 +32,13 @@ export class LoginComponent {
       this.authService.login(val.email, val.password)
         .subscribe(
           () => {
-            this.router.navigateByUrl('/');
-            this.globals.emitError('Logged in');
+            this.router.navigateByUrl('/').then(() => {
+              this.globals.emitError('Logged in');
+            });
           },
           (error: HttpErrorResponse) => {
-            if (error.status == 401) {
-              this.globals.emitError("Username or password is invalid");
+            if (error.status === 401) {
+              this.globals.emitError('Username or password is invalid');
             } else {
               this.globals.emitError(error.message);
             }

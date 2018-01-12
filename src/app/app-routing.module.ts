@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main/main.component';
 import {TeamlistComponent} from './teamlist/teamlist.component';
 import {ContactComponent} from './contact/contact.component';
 import {LoginComponent} from './login/login.component';
-import {Register} from 'ts-node/dist';
 import {RegisterComponent} from './register/register.component';
-import {RegistrationConfirmationComponent} from "./registration-confirmation/registration-confirmation.component";
+import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
 
 const ROUTES: Routes = [
   {

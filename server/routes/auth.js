@@ -4,8 +4,7 @@ const fs = require("fs");
 const emailer = require("../emailing/emailer");
 const crypto = require('crypto');
 const storage = require("../database/storage");
-var bcrypt = require('bcrypt');
-const expressJwt = require('express-jwt');
+const bcrypt = require('bcrypt');
 
 
 const RSA_PRIVATE_KEY = fs.readFileSync('ssl/jwt_key.pem');
@@ -45,6 +44,7 @@ router.post('/user', (req, res) => {
       const token = buffer.toString('hex');
       confirmationUrl = req.protocol + '://' + req.get('host') + '/registrationConfirmationUrl?token=' + token;
       usersToBeRegistered[token] = user;
+      // TODO: Disabled until ready for production
       // emailer.sendRegistrationMail(req.body.email, confirmationUrl);
       res.status(201).json({
         redirect: '/registrationConfirmationUrl?token=' + token

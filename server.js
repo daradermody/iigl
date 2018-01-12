@@ -22,6 +22,7 @@ const port = process.env.PORT || '4000';
 app.set('port', port);
 
 const server = https.createServer({
+  // TODO: Remove keys when deplying site to production
   key: fs.readFileSync('ssl/key.pem'),
   cert: fs.readFileSync('ssl/cert.pem'),
   passphrase: "shroot"
@@ -29,7 +30,7 @@ const server = https.createServer({
 
 server.listen(port, () => console.log(`Running on localhost:${port}`));
 
-if (port == 443) {
+if (parseInt(port) === 443) {
   http.createServer(function (req, res) {
     res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
     res.end();

@@ -12,8 +12,12 @@
   },
   "main": "server.js",
   "nodemonConfig": {
-    "ignore": ["server/database/data_files/"],
-    "watch": ["server"]
+    "ignore": [
+      "server/database/data_files/"
+    ],
+    "watch": [
+      "server"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -31,7 +35,6 @@
     "body-parser": "latest",
     "core-js": "^2.4.1",
     "express": "latest",
-    "express-jwt": "^5.3.0",
     "jsonwebtoken": "^8.1.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.20.1",
@@ -43,9 +46,12 @@
     "@angular/cli": "^1.6.4",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
+    "@types/bcrypt": "^1.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
+    "@types/jsonwebtoken": "^7.2.5",
     "@types/node": "^6.0.95",
+    "@types/nodemailer": "^4.3.1",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",

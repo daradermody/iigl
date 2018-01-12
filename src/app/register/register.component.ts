@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../auth.service";
-import {Globals} from "../globals";
-import {User} from "../user";
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../auth.service';
+import {Globals} from '../globals';
+import {User} from '../user';
 
 @Component({
   selector: 'app-register',
@@ -41,13 +41,13 @@ export class RegisterComponent {
       this.authService.register(user)
         .subscribe(
           (r) => {
-            // TODO: Remove automatic registration
-            this.router.navigateByUrl(r['redirect']);
-            this.globals.emitError("Registration email has been sent");
+            this.router.navigateByUrl(r['redirect']).then(() => {
+              this.globals.emitError('Registration email has been sent');
+            });
           },
           (error: HttpErrorResponse) => {
             console.dir(error);
-            if (error.status == 500) {
+            if (error.status === 500) {
               this.globals.emitError(error.message);
             } else {
               this.globals.emitError(error.error);

@@ -28,13 +28,13 @@ function getAuthInformation() {
   if (!fs.existsSync(email_auth_file)) {
     fs.writeFileSync(email_auth_file, JSON.stringify({
       user: "irishinterfirmsgaming@gmail.com",
-      pass: "<password>"
+      pass: "[password]"
     }, null, 2));
   }
 
   const authInformation = require(email_auth_file);
 
-  if (authInformation.pass === "<password>") {
+  if (authInformation.pass === "[password]") {
     throw "Update the password here: './email_auth.json'";
   }
 

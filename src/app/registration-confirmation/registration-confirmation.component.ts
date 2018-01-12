@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {AuthService} from "../auth.service";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-registration-confirmation',
@@ -15,6 +14,7 @@ export class RegistrationConfirmationComponent implements OnInit {
               private http: HttpClient) {}
 
   ngOnInit() {
+    // TODO: Move to service
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.http.get('/api/registrationConfirmationUrl', {
         params: new HttpParams().set('token', params['token'])
@@ -26,7 +26,7 @@ export class RegistrationConfirmationComponent implements OnInit {
           console.dir(error);
           this.message = 'Error: ' + error.message;
         }
-      )
+      );
 
     });
   }

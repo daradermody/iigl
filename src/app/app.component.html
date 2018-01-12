@@ -48,6 +48,6 @@
 
 <div *ngIf="globals.error | async" class="w3-panel w3-red" style="position: fixed; left: 0; width: 50%; right: 0; margin: 10px auto; text-align: center">
   <span (click)="globals.emitError('')" class="w3-button w3-panel w3-red w3-display-topright">&times;</span>
-  <p>{{globals.error | async}}</p>
+  <p>{{ globals.error | async }}</p>
 </div>
 <router-outlet></router-outlet>

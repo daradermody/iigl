@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {AuthService} from "./auth.service";
-import {Globals} from "./globals";
+import {AuthService} from './auth.service';
+import {Globals} from './globals';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,15 @@ import {Globals} from "./globals";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authService: AuthService,
-              public globals: Globals) {
+  constructor(public globals: Globals) {
   }
 
   isLoggedIn() {
-    return this.authService.isLoggedIn();
+    return AuthService.isLoggedIn();
   }
 
   logout() {
-    this.authService.logout();
-    this.globals.emitError('Logged out')
+    AuthService.logout();
+    this.globals.emitError('Logged out');
   }
 }

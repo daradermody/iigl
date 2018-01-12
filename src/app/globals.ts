@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import { Injectable } from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class Globals {
@@ -9,6 +9,6 @@ export class Globals {
   emitError(error) {
     this.error.next(error);
     clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {this.error.next('')}, 3000)
+    this.timeout = setTimeout(() => {this.error.next(''); }, 3000);
   }
 }
