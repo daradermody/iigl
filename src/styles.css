@@ -15,6 +15,10 @@ body, h1,h2,h3,h4,h5,h6 {
   background: #222;
 }
 
+.w3-content {
+  max-width: 1400px;
+}
+
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {
   margin-left: 120px
