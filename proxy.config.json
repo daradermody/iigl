@@ -1,6 +1,7 @@
 {
-  "/api/*": {
-    "target": "https://localhost:4000",
-    "secure": false
+  "/api/*":{
+    "target":"https://localhost:4000",
+    "secure":false,
+    "logLevel":"debug"
   }
 }

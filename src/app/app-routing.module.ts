@@ -6,7 +6,6 @@ import {ContactComponent} from './contact/contact.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
-import {WallOfFameComponent} from './wall-of-fame/wall-of-fame.component';
 
 const ROUTES: Routes = [
   {
@@ -21,10 +20,6 @@ const ROUTES: Routes = [
   {
     path: 'teamlist',
     component: TeamlistComponent
-  },
-  {
-    path: 'wallOfFame',
-    component: WallOfFameComponent
   },
   {
     path: 'contact',
