@@ -23,14 +23,16 @@ exports.sendRegistrationMail = (userEmail, confirmationUrl) => {
 };
 
 function getAuthInformation() {
-  if (!fs.exists("./email_auth.json")) {
-    fs.writeFileSync('./email_auth.json', {
+  const email_auth_file = __dirname + '/email_auth.json';
+
+  if (!fs.existsSync(email_auth_file)) {
+    fs.writeFileSync(email_auth_file, JSON.stringify({
       user: "irishinterfirmsgaming@gmail.com",
       pass: "<password>"
-    });
+    }, null, 2));
   }
 
-  const authInformation = require('./email_auth');
+  const authInformation = require(email_auth_file);
 
   if (authInformation.pass === "<password>") {
     throw "Update the password here: './email_auth.json'";
@@ -40,7 +42,7 @@ function getAuthInformation() {
 }
 
 function getRegistrationConfirmationSender() {
-  const registrationEmailTemplate = fs.readFileSync('server/emailing/registration_email_template.html');
+  const registrationEmailTemplate = fs.readFileSync(__dirname + '/registration_email_template.html');
 
   return transporter.templateSender({
     subject: 'IIGL Registration Confirmation',
