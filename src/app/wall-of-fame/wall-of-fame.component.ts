@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {WallOfFameGame} from '../wall-of-fame-game';
 
 @Component({
   selector: 'app-wall-of-fame',
@@ -7,24 +8,11 @@ import {Component} from '@angular/core';
 })
 export class WallOfFameComponent {
   games = [
-    {
-      name: 'Rocket League',
-      clicked: true,
-      wallOfFameImage: 'assets/img/rocket_league_wall.png'
-    }, {
-      name: 'League of Legends',
-      clicked: false,
-      wallOfFameImage: 'assets/img/lol_wall.png'
-    }, {
-      name: 'Overwatch',
-      clicked: false,
-      wallOfFameImage: 'assets/img/overwatch_wall.png'
-    }, {
-      name: 'Hearthstone',
-      clicked: false,
-      wallOfFameImage: 'assets/img/hearthstone_wall.png'
-    }
+    new WallOfFameGame('Rocket League', 'assets/img/rocket_league_wall.png'),
+    new WallOfFameGame('League of Legends', 'assets/img/lol_wall.png'),
+    new WallOfFameGame('Overwatch', 'assets/img/overwatch_wall.png'),
+    new WallOfFameGame('Hearthstone', 'assets/img/hearthstone_wall.png')
   ];
 
-  selectedGame = {};
+  selectedGame: WallOfFameGame;
 }

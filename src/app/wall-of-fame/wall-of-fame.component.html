@@ -8,13 +8,13 @@
         <h3 class="w3-margin-left">Games</h3>
 
           <button class="w3-bar-item" *ngFor="let game of games;"
-                  [ngClass]="{'w3-green': game.name == selectedGame.name, 'w3-button': game.name != selectedGame.name}"
+                  [ngClass]="{'w3-green': game == selectedGame, 'w3-button': game != selectedGame}"
                   (click)="selectedGame = game">{{ game.name }}
           </button>
       </nav>
 
       <div class="w3-col m9 wall-of-fame">
-        <img src="{{selectedGame.wallOfFameImage}}" alt="Wall of fame for game"  *ngIf="(selectedGame | json) != ({} | json); else blah">
+        <img src="{{selectedGame.imageLink}}" alt="Wall of fame for game"  *ngIf="selectedGame; else blah">
         <ng-template #blah>
           Select a game to see its wall of fame!
         </ng-template>
