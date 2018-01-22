@@ -1,38 +1,38 @@
 'use strict';
 
-const fs = require("fs");
-const bcrypt = require("bcrypt");
+const fs = require('fs');
+const bcrypt = require('bcrypt');
 
 
 const USERS_FILE = 'server/database/data_files/users.json';
 
-exports.addUser = function (user) {
+exports.addUser = function(user) {
   const users = exports.getUsers();
   if (getUserFromUsers(user.email, users)) {
-    throw "User already exists";
+    throw new Error('User already exists');
   }
 
   users.push(user);
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), 'utf-8');
 };
 
-exports.getUsers = function () {
+exports.getUsers = function() {
   return JSON.parse(fs.readFileSync(USERS_FILE, 'utf-8'));
 };
 
-exports.getUser = function (email) {
+exports.getUser = function(email) {
   const user = getUserFromUsers(email, exports.getUsers());
   if (!user) {
-    throw "User does not exist";
+    throw new Error('User does not exist');
   }
   return user;
 };
 
-exports.userExists = function (email) {
+exports.userExists = function(email) {
   return getUserFromUsers(email, exports.getUsers()) != null;
 };
 
-exports.verifyEmailAndPassword = function (email, password) {
+exports.verifyEmailAndPassword = function(email, password) {
   const user = getUserFromUsers(email, exports.getUsers());
   return user != null && bcrypt.compareSync(password, user.password);
 };
@@ -40,7 +40,7 @@ exports.verifyEmailAndPassword = function (email, password) {
 
 function getUserFromUsers(email, users) {
   for (const user of users) {
-    if (user.hasOwnProperty("email") && user.email === email) {
+    if (user.hasOwnProperty('email') && user.email === email) {
       return user;
     }
   }

@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer');
-const fs = require("fs");
+const fs = require('fs');
 
 const authInfo = getAuthInformation();
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
-  auth: authInfo
+  auth: authInfo,
 });
 
 const registrationConfirmationSender = getRegistrationConfirmationSender();
 
 exports.sendRegistrationMail = (userEmail, confirmationUrl) => {
   registrationConfirmationSender({
-    to: userEmail
+    to: userEmail,
   }, {
-    accountConfirmationUrl: confirmationUrl
-  }, function (err) {
+    accountConfirmationUrl: confirmationUrl,
+  }, function(err) {
     if (err) {
       console.error('Error sending registration confirmation mail');
     }
@@ -23,19 +23,19 @@ exports.sendRegistrationMail = (userEmail, confirmationUrl) => {
 };
 
 function getAuthInformation() {
-  const email_auth_file = __dirname + '/email_auth.json';
+  const emailAuthFile = __dirname + '/email_auth.json';
 
-  if (!fs.existsSync(email_auth_file)) {
-    fs.writeFileSync(email_auth_file, JSON.stringify({
-      user: "irishinterfirmsgaming@gmail.com",
-      pass: "[password]"
+  if (!fs.existsSync(emailAuthFile)) {
+    fs.writeFileSync(emailAuthFile, JSON.stringify({
+      user: 'irishinterfirmsgaming@gmail.com',
+      pass: '[password]',
     }, null, 2));
   }
 
-  const authInformation = require(email_auth_file);
+  const authInformation = require(emailAuthFile);
 
-  if (authInformation.pass === "[password]") {
-    throw "Update the password here: './email_auth.json'";
+  if (authInformation.pass === '[password]') {
+    throw new Error('Update the password here: "./email_auth.json"');
   }
 
   return authInformation;
@@ -47,7 +47,7 @@ function getRegistrationConfirmationSender() {
   return transporter.templateSender({
     subject: 'IIGL Registration Confirmation',
     text: 'What is text???',
-    html: registrationEmailTemplate
+    html: registrationEmailTemplate,
   }, {
     from: 'iigl@gmail.com',
   });

@@ -1,15 +1,15 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const fs = require("fs");
-const emailer = require("../emailing/emailer");
+const fs = require('fs');
+const emailer = require('../emailing/emailer'); // eslint-disable-line no-unused-vars
 const crypto = require('crypto');
-const storage = require("../database/storage");
+const storage = require('../database/storage');
 const bcrypt = require('bcrypt');
 
 
 const RSA_PRIVATE_KEY = fs.readFileSync('ssl/jwt_key.pem');
 
-const router = express.Router();
+const router = new express.Router();
 
 router.post('/login', (req, res) => {
   const email = req.body.email;
@@ -21,33 +21,33 @@ router.post('/login', (req, res) => {
     const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
       algorithm: 'RS256',
       expiresIn: 3600,
-      subject: email
+      subject: email,
     });
 
     res.status(200).json({
       idToken: jwtBearerToken,
-      expiresIn: 3600
+      expiresIn: 3600,
     });
   }
 });
 
 const usersToBeRegistered = {};
 router.post('/user', (req, res) => {
-  let confirmationUrl;
+  let confirmationUrl; // eslint-disable-line no-unused-vars
   let user = req.body;
   if (storage.users.userExists(user.email)) {
-    res.status(409).send('Email ' + user.email +   ' already registered!');
+    res.status(409).send('Email ' + user.email + ' already registered!');
   } else {
     user.password = bcrypt.hashSync(user.password, 10);
 
-    crypto.randomBytes(48, function (err, buffer) {
+    crypto.randomBytes(48, function(err, buffer) {
       const token = buffer.toString('hex');
       confirmationUrl = req.protocol + '://' + req.get('host') + '/registrationConfirmationUrl?token=' + token;
       usersToBeRegistered[token] = user;
       // TODO: Disabled until ready for production
       // emailer.sendRegistrationMail(req.body.email, confirmationUrl);
       res.status(201).json({
-        redirect: '/registrationConfirmationUrl?token=' + token
+        redirect: '/registrationConfirmationUrl?token=' + token,
       });
     });
   }
