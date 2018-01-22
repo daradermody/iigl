@@ -4,10 +4,8 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
-import {TeamlistComponent} from './teamlist/teamlist.component';
 import {ContactComponent} from './contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TeamService} from './team.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
@@ -22,7 +20,6 @@ import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
   declarations: [
     AppComponent,
     MainComponent,
-    TeamlistComponent,
     ContactComponent,
     LoginComponent,
     RegisterComponent,
@@ -38,7 +35,6 @@ import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
   ],
   providers: [
     Globals,
-    TeamService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

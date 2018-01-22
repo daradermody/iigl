@@ -19,14 +19,6 @@ export class AuthService {
     return moment().isBefore(AuthService.getExpiration());
   }
 
-  static getEmail(): string {
-    const token = localStorage.getItem('id_token');
-    if (token) {
-      return jwt.decode(token)['sub'];
-    }
-  }
-
-
   static logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
