@@ -1,0 +1,25 @@
+<div class="w3-padding-large" id="main">
+  <div class="w3-padding-64 w3-content">
+    <h2 class="w3-text-light-grey">Wall of Fame</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-row">
+      <nav class="w3-bar-block w3-col m3 w3-light-gray w3-margin-bottom">
+        <h3 class="w3-margin-left">Games</h3>
+
+          <button class="w3-bar-item" *ngFor="let game of games;"
+                  [ngClass]="{'w3-green': game == selectedGame, 'w3-button': game != selectedGame}"
+                  (click)="selectedGame = game">{{ game.name }}
+          </button>
+      </nav>
+
+      <div class="w3-col m9 wall-of-fame">
+        <img src="{{selectedGame.imageLink}}" alt="Wall of fame for game"  *ngIf="selectedGame; else blah">
+        <ng-template #blah>
+          Select a game to see its wall of fame!
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+</div>
