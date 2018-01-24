@@ -6,26 +6,26 @@
     <img src="https://image.ibb.co/jpOrV6/logo.png" alt="logo" class="w3-bar-item w3-padding-large">
   </a>
   <a routerLink="wallOfFame" class="w3-bar-item w3-button w3-padding-large w3-hover-black" routerLinkActive="w3-black">
-    <i class="fa fa-trophy" style="font-size:48px"></i>
+    <i class="fas fa-trophy fa-3x"></i>
     <p>WALL OF FAME</p>
   </a>
   <a routerLink="contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black" routerLinkActive="w3-black">
-    <i class="fa fa-envelope w3-xxlarge"></i>
+    <i class="fas fa-envelope fa-3x"></i>
     <p>CONTACT</p>
   </a>
   <a routerLink="login" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
      routerLinkActive="w3-black">
-    <i class="fa fa-user-circle w3-xxlarge"></i>
+    <i class="fas fa-user-circle fa-3x"></i>
     <p>LOGIN</p>
   </a>
   <a routerLink="register" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
      routerLinkActive="w3-black">
-    <i class="fa fa-user-plus w3-xxlarge"></i>
+    <i class="fas fa-user-plus fa-3x"></i>
     <p>REGISTER</p>
   </a>
   <a routerLink="home" *ngIf="isLoggedIn()" (click)="logout()"
      class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user-plus w3-xxlarge"></i>
+    <i class="fas fa-user-plus fa-3x"></i>
     <p>LOGOUT</p>
   </a>
 </nav>
