@@ -1,33 +1,92 @@
-<div class="w3-padding-large" id="main">
-  <header class="w3-padding-32 w3-center w3-black" id="home">
-    <img src="https://image.ibb.co/nnKFq6/Cover_Photo2.png" class="w3-hide-small" alt="Cover_Photo2" border="0">
-    <img src="https://image.ibb.co/iAgium/cover_photo_small.png" class="w3-hide-medium w3-hide-large" alt="Cover_Photo2"
-         border="0">
-  </header>
+<div id="main">
+  <div class="frontpage-screen">
+    <div class="w3-container w3-center w3-white w3-round-xlarge frontpage-canvas responsive-content">
 
-  <div class="w3-content w3-justify w3-text-grey" id="about">
-    <h2 class="w3-text-light-grey">What is the IIGL?</h2>
-    <hr style="width: 200px" class="w3-opacity">
-    <p>
-      The IIGL is the eSports equivalent of inter-firms GAA or any
-      other inter-firms sport; and just like other inter-firms sports leagues, the IIGL is run voluntarily by passionate
-      individuals who work regular day jobs. The goal of the IIGL is fairly simple: to promote gaming. We use Battlefy
-      as the tournament platform because it is free, automated and awesome!
-    </p>
-    <h3 class="w3-text-light-grey">So why participate?</h3>
-    <p>
-      Same reason anyone does anything competitively... to win! Here at the IIGL we've substituted the traditional
-      wooden shield with our walls of fame. Walls plural? Yup, we have a wall for every game and there's nothing
-      stopping you getting your name on all of them! Save for maybe the competition! Also, since we're just getting
-      started we're looking at YOU to become part of the foundations!
-    </p>
-    <h3 class="w3-text-light-grey">Games</h3>
-    <div class="w3-center">
-      <img class="w3-panel" src="https://image.ibb.co/gYe4LG/League_of_Legends_logo.png" alt="League_of_Legends_logo" border="0">
-      <img class="w3-panel" src="https://image.ibb.co/hMFpnw/overwatch_logo.png" alt="overwatch_logo" border="0">
-      <img class="w3-panel" src="https://image.ibb.co/ckYg0G/Rocket_League_Logo.png" alt="Rocket_League_Logo" border="0">
-      <img class="w3-panel" src="https://image.ibb.co/g6mZLG/hearthstone_logo.png" alt="hearthstone_logo" border="0">
+      <div class="icon"></div>
+      <div class="frontpage-content">
+        <div>
+          <h1>IIGL</h1>
+          <i>(Irish Inter-firms Gaming League)</i>
+        </div>
+
+        <div id="description">
+          <p id="tagline" class="dark-green-text w3-xlarge">Like inter-company GAA, but with 16GB RAM</p>
+          <p class="w3-medium">The IIGL (think <em>iggle</em>) is an Irish video gaming league where companies compete
+            against each other for the prestige of... a name on a wall.</p>
+          <p>And charities. That's important too.</p>
+        </div>
+      </div>
+
+      <div class="w3-padding-large">
+        <button routerLink="/wallOfFame" class="w3-button w3-xlarge dark-green w3-text-white w3-round-large">Wall of
+          Fame
+        </button>
+        <button class="w3-button w3-disabled w3-tooltip w3-xlarge dark-green w3-text-white w3-round-large">Tournaments
+        </button>
+        <button routerLink="/register" class="w3-button w3-xlarge dark-green w3-text-white w3-round-large">Register
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="more-info-section" class="responsive-content w3-row">
+    <div class="w3-col l4">
+      <img
+        src="https://img.etimg.com/thumb/msid-50985358,width-300,imgsize-78505,resizemode-4/esports-indian-gaming-league-looks-to-take-off-in-the-country.jpg">
+    </div>
+    <div class="w3-col l8">
+      <p>
+        The IIGL is the eSports equivalent of inter-firms GAA or any other inter-firms sport; and just like other
+        inter-firms sports leagues, the IIGL is run voluntarily by passionate individuals who work regular day jobs. The
+        goal of the IIGL is fairly simple: to promote gaming. We use Battlefy as the tournament platform because it's
+        free, automated and awesome!
+      </p>
+      <p>
+        If you work for a company, and think you're the bees knees at online video games, round up some people together
+        and submit a team. Why? Same reason anyone does anything competitively... to win! Here at the IIGL we've
+        substituted the traditional wooden shield with our <a routerLink="/wallOfFame">walls of fame</a>. Walls plural?
+        Yup, we have a wall for every game and there's nothing stopping you getting your name on all of them! Save for
+        maybe the competition! Also, since we're just getting started we're looking at YOU to become part of the
+        foundations!
+      </p>
     </div>
   </div>
 
+  <!--TODO: Use proper images with consistent sizes so the transforming and crap is no longer needed-->
+  <div class="w3-center w3-row w3-black w3-padding-top w3-padding-bottom">
+    <div class="w3-col l3 m6">
+      <img class="w3-panel" width="250px" src="https://image.ibb.co/gYe4LG/League_of_Legends_logo.png">
+    </div>
+    <div class="w3-col l3 m6">
+      <img class="w3-panel" width="250px" src="https://image.ibb.co/hMFpnw/overwatch_logo.png">
+    </div>
+    <div class="w3-col l3 m6">
+      <img class="w3-panel" width="250px" src="https://image.ibb.co/ckYg0G/Rocket_League_Logo.png">
+    </div>
+    <div class="w3-col l3 m6">
+      <img class="w3-panel" width="250px" src="https://image.ibb.co/g6mZLG/hearthstone_logo.png">
+    </div>
+  </div>
+
+  <div class="w3-row w3-container w3-padding-top footer">
+    <div class="w3-col l7">
+      <img height="60px" style="display: inline-block; margin: 10px" src="https://image.ibb.co/jpOrV6/logo.png">
+      <div style="display: inline-block; position: absolute; top: 47px; transform: translateY(-22px)">
+        <p style="margin-top: 0">
+          © 2018 Irish Inter-Firms Gaming League. All rights reserved.<br>
+          <a href="javascript:void(0)">Privacy Policy</a> | <a href="javascript:void(0)">Terms of Use</a> | <a
+          href="javascript:void(0)">Leadership</a>
+        </p>
+      </div>
+    </div>
+    <div id="other-media" class="w3-col l5">
+      <i class="fab fa-discord fa-fw fa-3x"></i>
+      <i class="fab fa-facebook-f fa-fw fa-3x"></i>
+      <i class="fab fa-twitter fa-fw fa-3x"></i>
+      <i class="fab fa-twitch fa-fw fa-3x"></i>
+      <i class="fab fa-youtube fa-fw fa-3x"></i>
+    </div>
+  </div>
 </div>
