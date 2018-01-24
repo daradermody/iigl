@@ -1,9 +1,147 @@
-h3 {
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
+#main {
+  background-color: #006938; /*#008848;*/
+}
+
+h1 {
+  font-size: 10em;
+  font-family: Raleway, "Open Sans", sans-serif;
+  font-weight: 500;
+  line-height: 80%;
+}
+
+i {
+  font-size: 20px;
+  font-family: "Open Sans Light", Raleway, sans-serif;
+}
+
+.frontpage-screen {
+  background: url("https://www.javascript.com/images/pages/home/img-hero.svg") no-repeat center bottom;
+  background-size: cover;
+  padding-top: 130px;
+  padding-bottom: 50px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#description {
+  margin: 50px 0;
+}
+
+#tagline {
+  font-family: Raleway, sans-serif;
+}
+
+.icon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-image: url("http://s.lolstatic.com/site/2016-season-update/771027dc9533e4950f1dee80b9e00ceb8d4dbcca/img/icons/LordDominiksRegards.png");
+  background-size: cover;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border: 7px solid white;
+  border-radius: 50%;
+  transform: translateY(-105px);
+}
+
+.frontpage-content {
   margin-top: 50px;
 }
 
-img {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  max-width:100%;
+.dark-green-text {
+  color: #008848;
+}
+
+.dark-green {
+  background-color: #008848;
+}
+
+button {
+  width: 100%;
+  margin: 10px;
+}
+
+.frontpage-canvas {
+  position: relative;
+}
+
+.responsive-content {
+  margin: 0 auto;
+  width: 350px;
+  padding: 32px;
+}
+
+@media screen and (min-width: 601px) {
+  .responsive-content {
+    width: 400px
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .responsive-content {
+    width: 600px
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .responsive-content {
+    width: 800px;
+  }
+
+  button {
+    width: auto;
+  }
+
+  #more-info-section p {
+    margin: 0 0 10px 20px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  .responsive-content {
+    width: 950px
+  }
+}
+
+
+#more-info-section {
+  padding: 32px 20px;
+}
+
+#more-info-section img {
+  width: 100%;
+}
+
+.img-holder img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-holder {
+  width: 250px;
+  height: 100px;
+  display: inline-block;
+}
+
+a {
+  color: #00f09d;
+}
+
+@media screen and (max-width: 991px) {
+  #other-media {
+    margin-top: 20px;
+  }
+
+  #other-media img {
+    width: 18.9%;
+  }
+}
+
+.footer {
+  background: #222222;
+  position: relative;
+  border-left: 1px solid black;
 }
