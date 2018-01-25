@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
 
 #main {
-  background-color: #006938; /*#008848;*/
+  background-color: #006938;
 }
 
 h1 {
@@ -75,13 +75,13 @@ button {
 
 @media screen and (min-width: 601px) {
   .responsive-content {
-    width: 400px
+    width: 400px;
   }
 }
 
 @media screen and (min-width: 768px) {
   .responsive-content {
-    width: 600px
+    width: 600px;
   }
 }
 
@@ -97,12 +97,11 @@ button {
   #more-info-section p {
     margin: 0 0 10px 20px;
   }
-
 }
 
 @media screen and (min-width: 1200px) {
   .responsive-content {
-    width: 950px
+    width: 950px;
   }
 }
 
@@ -112,17 +111,6 @@ button {
 
 #more-info-section img {
   width: 100%;
-}
-
-.img-holder img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.image-holder {
-  width: 250px;
-  height: 100px;
-  display: inline-block;
 }
 
 a {
@@ -135,7 +123,7 @@ a {
 }
 
 .footer {
-  background: #222222;
+  background: #222;
   position: relative;
   border-left: 1px solid black;
 }
