@@ -42,7 +42,7 @@ export class RegisterComponent {
         .subscribe(
           (r) => {
             this.router.navigateByUrl(r['redirect']).then(() => {
-              this.globals.emitError('Registration email has been sent');
+              this.globals.emitMessage('Registration email has been sent');
             });
           },
           (error: HttpErrorResponse) => {

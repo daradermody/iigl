@@ -33,7 +33,7 @@ export class LoginComponent {
         .subscribe(
           () => {
             this.router.navigateByUrl('/').then(() => {
-              this.globals.emitError('Logged in');
+              this.globals.emitMessage('Logged in');
             });
           },
           (error: HttpErrorResponse) => {

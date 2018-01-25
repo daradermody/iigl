@@ -3,36 +3,48 @@
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-top">
   <!-- Avatar image in top left corner -->
   <a routerLink="home">
-    <img src="https://image.ibb.co/jpOrV6/logo.png" alt="logo" class="w3-bar-item w3-padding-large">
+    <img src="https://image.ibb.co/jpOrV6/logo.png" alt="logo" class="w3-bar-item">
   </a>
-  <a routerLink="wallOfFame" class="w3-bar-item w3-button w3-padding-large w3-hover-black" routerLinkActive="w3-black">
+  <a routerLink="wallOfFame" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
+     routerLinkActive="w3-black">
     <i class="fas fa-trophy fa-3x"></i>
     <p>WALL OF FAME</p>
   </a>
-  <a routerLink="contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black" routerLinkActive="w3-black">
+  <a routerLink="contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
+     routerLinkActive="w3-black">
     <i class="fas fa-envelope fa-3x"></i>
     <p>CONTACT</p>
   </a>
-  <a routerLink="login" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+  <a routerLink="login" *ngIf="!isLoggedIn()"
+     class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
      routerLinkActive="w3-black">
-    <i class="fas fa-user-circle fa-3x"></i>
+    <i class="fas fa-sign-in-alt fa-3x"></i>
     <p>LOGIN</p>
   </a>
-  <a routerLink="register" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+  <a routerLink="register" *ngIf="!isLoggedIn()"
+     class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
      routerLinkActive="w3-black">
     <i class="fas fa-user-plus fa-3x"></i>
     <p>REGISTER</p>
   </a>
-  <a routerLink="home" *ngIf="isLoggedIn()" (click)="logout()"
-     class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fas fa-user-plus fa-3x"></i>
-    <p>LOGOUT</p>
-  </a>
+
+  <div class="w3-dropdown-hover w3-hover-black w3-animate-left" *ngIf="isLoggedIn()">
+    <div class="w3-padding-large">
+      <i class="fas fa-user-circle fa-3x"></i>
+      <p>PROFILE</p>
+    </div>
+    <div class="w3-dropdown-content w3-animate-left">
+      <a routerLink="home" (click)="logout()" class="w3-button w3-padding-large w3-hover-black w3-center">
+        <i data-fa-transform="flip-h" class="fas fa-sign-out-alt fa-3x"></i>
+        <p>LOGOUT</p>
+      </a>
+    </div>
+  </div>
 </nav>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+<div class="w3-top w3-hide-large w3-hide-medium">
+  <div class="w3-bar w3-black w3-center w3-small">
     <a routerLink="home" href="" class="w3-bar-item w3-button bar-item" style="width:17% !important;">HOME</a>
     <a routerLink="wallOfFame" class="w3-bar-item w3-button bar-item" style="width:20% !important;">WINNERS</a>
     <a routerLink="contact" class="w3-bar-item w3-button bar-item" style="width:20% !important;">CONTACT</a>
@@ -42,8 +54,10 @@
   </div>
 </div>
 
-<div *ngIf="globals.error | async" class="w3-panel w3-red error-panel">
-  <span (click)="globals.emitError('')" class="w3-button w3-red w3-display-topright no-vertical-space-small">&times;</span>
-  <p class="no-vertical-space-small">{{ globals.error | async }}</p>
+<div *ngIf="globals.message | async" class="message-panel w3-animate-top"
+     [class.w3-red]="(globals.message | async).constructor.name === 'ErrorMessage'">
+  <span (click)="globals.clearMessage()" class="message-clear-button">&times;</span>
+  <p class="w3-margin-0 w3-padding-small">{{ (globals.message | async).message }}</p>
 </div>
+
 <router-outlet></router-outlet>

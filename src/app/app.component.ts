@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from './auth.service';
 import {Globals} from './globals';
 
@@ -17,6 +17,6 @@ export class AppComponent {
 
   logout() {
     AuthService.logout();
-    this.globals.emitError('Logged out');
+    this.globals.emitMessage('Logged out');
   }
 }

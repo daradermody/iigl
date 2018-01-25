@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {ErrorMessage, InfoMessage} from './info-message';
 
 @Injectable()
 export class Globals {
-  error: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  message = new BehaviorSubject<InfoMessage>(null);
   timeout: any;
 
-  emitError(error) {
-    this.error.next(error);
+  emitError(error: string) {
+    this.emitMessageObject(new ErrorMessage(error));
+  }
+
+  emitMessage(message: string) {
+    this.emitMessageObject(new InfoMessage(message));
+  }
+
+  clearMessage() {
+    this.message.next(null);
+  }
+
+  private emitMessageObject(message: InfoMessage) {
     clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {this.error.next(''); }, 3000);
+    this.message.next(message);
+    this.timeout = setTimeout(() => {this.message.next(null); }, 3000);
   }
 }
