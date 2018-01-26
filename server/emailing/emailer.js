@@ -17,7 +17,8 @@ exports.sendRegistrationMail = (userEmail, confirmationUrl) => {
     accountConfirmationUrl: confirmationUrl,
   }, function(err) {
     if (err) {
-      console.error('Error sending registration confirmation mail');
+      console.error('Error sending registration confirmation mail: ' + err);
+      throw err;
     }
   });
 };

@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
 import {User} from './user';
-import * as jwt from 'jsonwebtoken';
+import 'rxjs/add/operator/map';
 
 
 @Injectable()
@@ -33,11 +33,11 @@ export class AuthService {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('id_token', authResult['idToken']);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()) );
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     console.log('localStorage set');
   }
 
-  register(user: User): Observable<HttpResponse<Object>>  {
+  register(user: User): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>('/api/user', user);
   }
 
@@ -48,5 +48,9 @@ export class AuthService {
     })
       .do(AuthService.setSession)
       .shareReplay();
+  }
+
+  getBattlefyAccountInfo(username: string): Observable<Object> {
+    return this.http.get('http://api.battlefy.com/profile/' + encodeURIComponent(username.toLowerCase()));
   }
 }

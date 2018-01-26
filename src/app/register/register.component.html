@@ -1,26 +1,47 @@
 <div class="w3-padding-large" id="main">
   <div class="w3-padding-64 w3-content" id="contact">
-    <h2 class="w3-text-light-grey">Register</h2>
-    <hr style="width:200px;" class="w3-opacity">
+    <h2 class="w3-text-light-grey mb-4">Register</h2>
+
+    <p>
+      We use your Battlefy account to run tournaments. Don't have one?
+      <a href="https://battlefy.com/?register" target="_blank">Let's fix that!</a> Give us your company email address
+      so we know what company you're in and then you can prepare to dominate at some <a routerLink="/tournaments">tournaments</a>!
+    </p>
 
     <form [formGroup]="form">
-      <label>Email</label>
-      <input class="w3-input" #email required name="email" autocomplete="username" formControlName="email"
+      <!--<label>Company email</label>-->
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Company Email" #email required name="email" autocomplete="username" formControlName="email"
              [style.box-shadow]="getBoxShadow('email')" title="email">
 
-      <label>Name</label>
-      <input class="w3-input" #name name="name" required formControlName="name"
-             [style.box-shadow]="getBoxShadow('name')" title="name">
+      <!--TODO: Use http://api.battlefy.com/profile/<username> to verify user-->
+      <!--<label>Battlefy account</label>-->
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Battlefy Username" #battlefy required name="battlefy" autocomplete="username" formControlName="battlefy"
+             [style.box-shadow]="getBoxShadow('battlefy')" title="battlefy" id="battlefy" (blur)="verifyBattlefyUsername(battlefy.value)">
 
-      <label>Company</label>
-      <input class="w3-input" #company name="company" required formControlName="company"
-             [style.box-shadow]="getBoxShadow('company')" title="company">
-
-      <label>Password</label>
-      <input class="w3-input" #password name="password" required autocomplete="current-password"
+      <!--<label>Password</label>-->
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Password" #password name="password" required autocomplete="current-password"
              formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')" title="password">
 
-      <button class="button button-primary" (click)="register()">Register</button>
+      <p class="mt-5 mb-0">
+        You can also tell us what games you like. We'll help you find people in your company that you can team up with.
+        Remember, the perfect teammate lasts forever!
+      </p>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-xl-2 p-3" *ngFor="let game of games">
+          <div class="card w3-black text-center border border-dark w3-hover-dark-gray p-1" style="height: 100%" (click)="game.selected = !game.selected">
+            <img class="card-img-top" style="max-height: 100px; object-fit: contain" [style.opacity]="game.selected ? 0.5 : 1" src="{{game.imageUri}}">
+            <div class="card-img-overlay m-auto rounded" style="background-color: rgba(255,255,255, 0.3);" [style.visibility]="game.selected ? 'visible' : 'hidden'">
+              <i class="fas fa-check-circle fa-4x"></i>
+            </div>
+            <div class="card-body p-0"></div>
+            <div class="card-footer p-0">
+              <h5 class="text-light">{{game.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-lg btn-success mt-5 col col-sm-5 col-md-4 col-lg-2" (click)="register()">Register</button>
     </form>
   </div>
 </div>

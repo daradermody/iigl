@@ -1,5 +1,18 @@
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
+body {
+  background: black;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Raleway, "Open Sans", sans-serif;
+}
+
+a {
+  /* Undoing Bootstraps overriding */
+  text-decoration: underline;
 }
 
 /* Set the width of the sidebar to 120px */
