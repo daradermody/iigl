@@ -17,8 +17,8 @@ i {
 }
 
 .frontpage-screen {
-  background: url("https://www.javascript.com/images/pages/home/img-hero.svg") no-repeat center bottom;
-  background-size: cover;
+  background-image: url("/assets/img/background.png");
+  background-size: 25%;
   padding-top: 130px;
   padding-bottom: 50px;
   font-family: "Open Sans", sans-serif;
@@ -123,7 +123,6 @@ a {
 }
 
 .footer {
-  background: #222;
+  background: #0c0c0c;
   position: relative;
-  border-left: 1px solid black;
 }
