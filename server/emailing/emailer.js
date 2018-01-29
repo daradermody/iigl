@@ -47,7 +47,6 @@ function getRegistrationConfirmationSender() {
 
   return transporter.templateSender({
     subject: 'IIGL Registration Confirmation',
-    text: 'What is text???',
     html: registrationEmailTemplate,
   }, {
     from: 'iigl@gmail.com',

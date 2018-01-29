@@ -45,13 +45,19 @@ export class RegisterComponent {
     });
   }
 
-  private cachedBattlefyUsername: string;
-  private battlefyUsernameIsValid: boolean;
-
-  register() {
+  async register() {
     const val = this.form.value;
 
-    if (!this.form.valid || !this.battlefyUsernameIsValid) {
+    try {
+      await this.authService.getBattlefyAccountInfo(val.battlefy).toPromise();
+      document.getElementById('battlefy').style.boxShadow = 'none';
+    } catch (err) {
+      this.globals.emitError(`"${val.battlefy}" does not exist in Battlefy`);
+      document.getElementById('battlefy').style.boxShadow = '0px 0px 10px 5px #CC0000';
+      return;
+    }
+
+    if (!this.form.valid) {
       this.globals.emitError('The form is not complete');
       return;
     }
@@ -83,24 +89,6 @@ export class RegisterComponent {
   getBoxShadow(controlName) {
     if (this.form.get(controlName).value && this.form.get(controlName).touched && this.form.get(controlName).errors) {
       return '0px 0px 10px 5px #CC0000';
-    }
-  }
-
-  verifyBattlefyUsername(username: string) {
-    if (username && username !== this.cachedBattlefyUsername) {
-      console.log('Sending Battlefy verification query: ' + username);
-      this.cachedBattlefyUsername = username;
-      this.authService.getBattlefyAccountInfo(username).subscribe(
-        () => {
-          this.globals.emitMessage(`"${username}" exists on Battlefy! :D`);
-          document.getElementById('battlefy').style.boxShadow = 'none';
-          this.battlefyUsernameIsValid = true;
-        },
-        () => {
-          this.globals.emitError(`"${username}" does not exist in Battlefy`);
-          document.getElementById('battlefy').style.boxShadow = '0px 0px 10px 5px #CC0000';
-          this.battlefyUsernameIsValid = false;
-        });
     }
   }
 }

@@ -45,13 +45,13 @@ router.post('/user', (req, res) => {
       confirmationUrl = req.protocol + '://' + req.get('host') + '/registrationConfirmationUrl?token=' + token;
       usersToBeRegistered[token] = user;
       // TODO: Disabled until ready for production
-      emailer.sendRegistrationMail(req.body.email, confirmationUrl);
-      res.status(201).json({
-        redirect: '/',
-      });
+      // emailer.sendRegistrationMail(req.body.email, confirmationUrl);
       // res.status(201).json({
-      //   redirect: '/registrationConfirmationUrl?token=' + token,
+      //   redirect: '/',
       // });
+      res.status(201).json({
+        redirect: '/registrationConfirmationUrl?token=' + token,
+      });
     });
   }
 });
