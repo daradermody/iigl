@@ -1,23 +1,5 @@
 [
   {
-    "email": "test1@b.com",
-    "name": "a",
-    "company": "b",
-    "password": "$2a$10$JMHPG.xSAVH4S.rO3sD5jeKyi2KqekwO1FUbSYi.og6ch.4eZIBku"
-  },
-  {
-    "email": "test2@b.com",
-    "name": "asdf",
-    "company": "fds",
-    "password": "$2a$10$29xl5zeDHp/yRObiUTpF9u9YUfnl0cl.VtQgSv.DngOCC97LWX.6G"
-  },
-  {
-    "email": "laura.phelan@ericsson.com",
-    "name": "jujumushu",
-    "company": "Ericsson ",
-    "password": "$2a$10$0lzVzUMofOrAxsCaLHuq9O3xFmoOK/PWUHNWrfNC0nYKuuh5f8y2m"
-  },
-  {
     "email": "test@test.com",
     "name": "test",
     "company": "Test",

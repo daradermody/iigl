@@ -34,7 +34,7 @@ server.listen(port, () => console.log(`Running on localhost:${port}`));
 
 if (parseInt(port) === 443) {
   http.createServer(function(req, res) {
-    res.writeHead(301, {'Location': 'https://' + req.headers['host'] + req.url});
+    res.writeHead(301, {'Location': 'https://' + req.headers['host'] + req.imageUri});
     res.end();
   }).listen(80, () => console.log(`Redirecting on localhost:80`));
 }

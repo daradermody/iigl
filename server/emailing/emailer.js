@@ -17,7 +17,8 @@ exports.sendRegistrationMail = (userEmail, confirmationUrl) => {
     accountConfirmationUrl: confirmationUrl,
   }, function(err) {
     if (err) {
-      console.error('Error sending registration confirmation mail');
+      console.error('Error sending registration confirmation mail: ' + err);
+      throw err;
     }
   });
 };
@@ -46,7 +47,6 @@ function getRegistrationConfirmationSender() {
 
   return transporter.templateSender({
     subject: 'IIGL Registration Confirmation',
-    text: 'What is text???',
     html: registrationEmailTemplate,
   }, {
     from: 'iigl@gmail.com',

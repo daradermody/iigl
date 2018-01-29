@@ -46,6 +46,9 @@ router.post('/user', (req, res) => {
       usersToBeRegistered[token] = user;
       // TODO: Disabled until ready for production
       // emailer.sendRegistrationMail(req.body.email, confirmationUrl);
+      // res.status(201).json({
+      //   redirect: '/',
+      // });
       res.status(201).json({
         redirect: '/registrationConfirmationUrl?token=' + token,
       });

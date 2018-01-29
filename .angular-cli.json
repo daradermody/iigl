@@ -19,6 +19,7 @@
       "prefix": "app",
       "styles": [
         "assets/css/w3.css",
+        "assets/css/bootstrap.css",
         "styles.css"
       ],
       "scripts": [],

@@ -46,8 +46,18 @@
     }
 
     a {
+      background-color: #18a55d;
+      border: 1px solid #0e5d35;
+      border-radius: 4px;
+      color: white;
+      display: inline-block;
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
       text-decoration: none;
-      color: #222;
+      width: 200px;
+      -webkit-text-size-adjust: none;
+      mso-hide: all; /* stylelint-disable-line property-no-unknown */
     }
   </style>
 </head>
@@ -57,11 +67,14 @@
 <div class="main-content">
   <h1>Your Irish Inter-Firms Gaming League account is almost ready!</h1>
   <p>Click to confirm your registration:</p>
-  <button>
-    <a href="{{accountConfirmationUrl}}">
-      Confirm Registration
-    </a>
-  </button>
+
+  <!--[if mso]>
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:40px;v-text-anchor:middle;width:200px;" arcsize="10%" strokecolor="#0e5d35" fillcolor="#18a55d">
+      <w:anchorlock/>
+      <center style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:bold;">Confirm Registration</center>
+    </v:roundrect>
+  <![endif]-->
+  <a href="{{accountConfirmationUrl}}">Confirm Registration</a>
 
   <p>
     Thank you,<br>
