@@ -51,6 +51,6 @@ export class AuthService {
   }
 
   getBattlefyAccountInfo(username: string): Observable<Object> {
-    return this.http.get('http://api.battlefy.com/profile/' + encodeURIComponent(username.toLowerCase()));
+    return this.http.get('https://api.battlefy.com/profile/' + encodeURIComponent(username.toLowerCase()));
   }
 }

@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use('/api', auth);
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.get('', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
@@ -34,7 +34,7 @@ server.listen(port, () => console.log(`Running on localhost:${port}`));
 
 if (parseInt(port) === 443) {
   http.createServer(function(req, res) {
-    res.writeHead(301, {'Location': 'https://' + req.headers['host'] + req.imageUri});
+    res.writeHead(301, {'Location': 'https://' + req.headers['host'] + req.url});
     res.end();
   }).listen(80, () => console.log(`Redirecting on localhost:80`));
 }
