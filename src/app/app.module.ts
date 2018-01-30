@@ -14,6 +14,8 @@ import {AuthInterceptor} from './auth-interceptor';
 import {Globals} from './globals';
 import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
 import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
+import { TournamentsComponent } from './tournaments/tournaments.component';
+import { TournamentComponent } from './tournament/tournament.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
     LoginComponent,
     RegisterComponent,
     RegistrationConfirmationComponent,
-    WallOfFameComponent
+    WallOfFameComponent,
+    TournamentsComponent,
+    TournamentComponent
   ],
   imports: [
     BrowserModule,
