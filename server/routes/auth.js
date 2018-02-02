@@ -42,7 +42,7 @@ router.post('/user', (req, res) => {
 
     crypto.randomBytes(48, function(err, buffer) {
       const token = buffer.toString('hex');
-      confirmationUrl = req.protocol + '://' + req.get('host') + '/registrationConfirmationUrl?token=' + token;
+      confirmationUrl = req.protocol + '://' + req.get('host') + '/login?token=' + token;
       usersToBeRegistered[token] = user;
       // TODO: Disabled until ready for production
       // emailer.sendRegistrationMail(req.body.email, confirmationUrl);
@@ -50,17 +50,17 @@ router.post('/user', (req, res) => {
       //   redirect: '/',
       // });
       res.status(201).json({
-        redirect: '/registrationConfirmationUrl?token=' + token,
+        redirect: '/login?token=' + token,
       });
     });
   }
 });
 
-router.get('/registrationConfirmationUrl', (req, res) => {
+router.get('/confirmRegistration', (req, res) => {
   const token = req.query.token;
 
   console.log(token);
-  if (!usersToBeRegistered.hasOwnProperty(token)) {
+  if (!(token in usersToBeRegistered)) {
     res.status(401).send('Token has expired');
   } else {
     let user = usersToBeRegistered[token];

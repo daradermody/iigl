@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {HttpResponse} from '@angular/common/http/src/response';
 import * as moment from 'moment';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
-import {User} from './user';
+import {User} from '../data_types/user';
 import 'rxjs/add/operator/map';
 
 
@@ -39,6 +39,12 @@ export class AuthService {
 
   register(user: User): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>('/api/user', user);
+  }
+
+  confirmAccountCreationToken(token) {
+    return this.http.get('/api/confirmRegistration', {
+      params: new HttpParams().set('token', token)
+    });
   }
 
   login(email: string, password: string): Observable<HttpResponse<Object>> {

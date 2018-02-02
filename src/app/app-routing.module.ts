@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './main/main.component';
-import {ContactComponent} from './contact/contact.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
-import {WallOfFameComponent} from './wall-of-fame/wall-of-fame.component';
-import {TournamentsComponent} from './tournaments/tournaments.component';
+import {HomeComponent} from './components/home/home.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
+import {TournamentsComponent} from './components/tournaments/tournaments.component';
 
 const ROUTES: Routes = [
   {
@@ -15,7 +14,7 @@ const ROUTES: Routes = [
     pathMatch: 'full',
   }, {
     path: 'home',
-    component: MainComponent,
+    component: HomeComponent,
   }, {
     path: 'wallOfFame',
     component: WallOfFameComponent
@@ -28,9 +27,6 @@ const ROUTES: Routes = [
   }, {
     path: 'register',
     component: RegisterComponent
-  }, {
-    path: 'registrationConfirmationUrl',
-    component: RegistrationConfirmationComponent
   }, {
     path: 'tournaments',
     component: TournamentsComponent

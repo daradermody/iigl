@@ -40,7 +40,7 @@ exports.verifyEmailAndPassword = function(email, password) {
 
 function getUserFromUsers(email, users) {
   for (const user of users) {
-    if (user.hasOwnProperty('email') && user.email === email) {
+    if ('email' in user && user.email === email) {
       return user;
     }
   }

@@ -1,27 +1,24 @@
-# Iigl
+# IIGL
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+This project produces the website for the Irish Inter-Firms Gaming League (IIGL). 
 
-## Development server
+The IIGL (pronounced _iggle_) is an Irish video gaming league where companies compete against each other for charities. It's the eSports equivalent of inter-firms GAA; and just like other inter-firms sports leagues, the IIGL is run voluntarily by passionate individuals who work regular day jobs.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The goal of the IIGL is fairly simple: to promote gaming. We use [Battlefy](https://battlefy.com/) as the tournament platform because it's free, automated and awesome! Since we're just getting started we're looking at YOU to become part of the foundations, whether it's to help with the website, moderating the tournaments, or admin.
 
-## Code scaffolding
+This website was made with all these sexy technologies:
+* [Node](https://github.com/nodejs/node)
+* [Angular](https://github.com/angular/angular)
+* [Express](https://github.com/expressjs/express).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Install
 
-## Build
+Clone the repo and run `npm install`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Start a server
 
-## Running unit tests
+Run the handy little bash script `start_server.sh` and the website should open. Add the `--prod` flag to start the server in production mode, building and packing the application for speedier surfing of the site.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contact
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Email [me](mailto:daradermody@gmail.com) or [Jay](mailto:jaybopper@hotmail.com) for any information.

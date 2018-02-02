@@ -2,30 +2,28 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
-import {AppComponent} from './app.component';
-import {MainComponent} from './main/main.component';
-import {ContactComponent} from './contact/contact.component';
+import {AppComponent} from './components/app.component';
+import {HomeComponent} from './components/home/home.component';
+import {ContactComponent} from './components/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {AuthService} from './auth.service';
-import {AuthInterceptor} from './auth-interceptor';
-import {Globals} from './globals';
-import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
-import {WallOfFameComponent} from './wall-of-fame/wall-of-fame.component';
-import {TournamentsComponent} from './tournaments/tournaments.component';
-import {TournamentService} from './tournament.service';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {AuthService} from './services/auth.service';
+import {AuthInterceptor} from './services/auth-interceptor';
+import {NotificationService} from './services/notification.service';
+import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
+import {TournamentsComponent} from './components/tournaments/tournaments.component';
+import {TournamentService} from './services/tournament.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
+    HomeComponent,
     ContactComponent,
     LoginComponent,
     RegisterComponent,
-    RegistrationConfirmationComponent,
     WallOfFameComponent,
     TournamentsComponent,
   ],
@@ -37,7 +35,7 @@ import {TournamentService} from './tournament.service';
     HttpClientModule
   ],
   providers: [
-    Globals,
+    NotificationService,
     AuthService,
     TournamentService,
     {

@@ -58,10 +58,10 @@
 </table>
 
 
-<div *ngIf="globals.message | async" class="message-panel w3-animate-top"
-     [class.w3-red]="(globals.message | async).constructor.name === 'ErrorMessage'">
-  <span (click)="globals.clearMessage()" class="message-clear-button">&times;</span>
-  <p class="w3-margin-0 w3-padding-small">{{ (globals.message | async).message }}</p>
+<div *ngIf="notifier.message | async" class="message-panel w3-animate-top"
+     [class.w3-red]="(notifier.message | async).constructor.name === 'ErrorMessage'">
+  <span (click)="notifier.clearMessage()" class="message-clear-button">&times;</span>
+  <p class="w3-margin-0 w3-padding-small">{{ (notifier.message | async).message }}</p>
 </div>
 
 <router-outlet></router-outlet>

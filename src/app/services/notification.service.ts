@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {ErrorMessage, InfoMessage} from './info-message';
+import {ErrorMessage, InfoMessage} from '../data_types/info-message';
 
 @Injectable()
-export class Globals {
+export class NotificationService {
   message = new BehaviorSubject<InfoMessage>(null);
   timeout: any;
 

@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {Globals} from '../globals';
-import {User} from '../user';
+import {AuthService} from '../../services/auth.service';
+import {NotificationService} from '../../services/notification.service';
+import {User} from '../../data_types/user';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -36,7 +36,7 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private globals: Globals) {
+              private notifier: NotificationService) {
 
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -52,13 +52,13 @@ export class RegisterComponent {
       await this.authService.getBattlefyAccountInfo(val.battlefy).toPromise();
       document.getElementById('battlefy').style.boxShadow = 'none';
     } catch (err) {
-      this.globals.emitError(`"${val.battlefy}" does not exist in Battlefy`);
+      this.notifier.emitError(`"${val.battlefy}" does not exist in Battlefy`);
       document.getElementById('battlefy').style.boxShadow = '0px 0px 10px 5px #CC0000';
       return;
     }
 
     if (!this.form.valid) {
-      this.globals.emitError('The form is not complete');
+      this.notifier.emitError('The form is not complete');
       return;
     }
 
@@ -71,15 +71,15 @@ export class RegisterComponent {
         .subscribe(
           (r) => {
             this.router.navigateByUrl(r['redirect']).then(() => {
-              this.globals.emitMessage('Registration email has been sent');
+              this.notifier.emitMessage('Registration email has been sent');
             });
           },
           (error: HttpErrorResponse) => {
             console.dir(error);
             if (error.status === 500) {
-              this.globals.emitError(error.message);
+              this.notifier.emitError(error.message);
             } else {
-              this.globals.emitError(error.error);
+              this.notifier.emitError(error.error);
             }
           }
         );

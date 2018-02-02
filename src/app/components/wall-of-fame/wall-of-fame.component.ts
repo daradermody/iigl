@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {WallOfFameGame} from '../wall-of-fame-game';
+import {WallOfFameGame} from '../../data_types/wall-of-fame-game';
 
 @Component({
   selector: 'app-wall-of-fame',

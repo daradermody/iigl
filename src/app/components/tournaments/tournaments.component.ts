@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TournamentService} from '../tournament.service';
-import {Globals} from '../globals';
-import {Tournament} from '../tournament';
+import {TournamentService} from '../../services/tournament.service';
+import {NotificationService} from '../../services/notification.service';
+import {Tournament} from '../../data_types/tournament';
 
 @Component({
   selector: 'app-tournaments',
@@ -11,13 +11,13 @@ import {Tournament} from '../tournament';
 export class TournamentsComponent implements OnInit {
   tournaments: Array<Tournament>;
 
-  constructor(private globals: Globals,
+  constructor(private notifier: NotificationService,
               private tournamentService: TournamentService) {}
 
   ngOnInit(): void {
     this.tournamentService.getTournamenets().subscribe(
       (data) => this.tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start)),
-      (error) => this.globals.emitError(error)
+      (error) => this.notifier.emitError(error)
     );
   }
 

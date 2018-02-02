@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {AuthService} from './auth.service';
-import {Globals} from './globals';
+import {AuthService} from '../services/auth.service';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {Globals} from './globals';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public globals: Globals) {
+  constructor(public notifier: NotificationService) {
   }
 
   isLoggedIn() {
@@ -17,6 +17,6 @@ export class AppComponent {
 
   logout() {
     AuthService.logout();
-    this.globals.emitMessage('Logged out');
+    this.notifier.emitMessage('Logged out');
   }
 }
