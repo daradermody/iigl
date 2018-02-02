@@ -9,18 +9,14 @@
     </p>
 
     <form [formGroup]="form">
-      <!--<label>Company email</label>-->
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Company Email" #email
              required name="email" autocomplete="username" formControlName="email"
              [style.box-shadow]="getBoxShadow('email')" title="email">
 
-      <!--TODO: Use http://api.battlefy.com/profile/<username> to verify user-->
-      <!--<label>Battlefy account</label>-->
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Battlefy Username" #battlefy
              required name="battlefy" autocomplete="username" formControlName="battlefy"
              [style.box-shadow]="getBoxShadow('battlefy')" title="battlefy" id="battlefy">
 
-      <!--<label>Password</label>-->
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Password" #password
              name="password" required autocomplete="current-password"
              formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')" title="password">

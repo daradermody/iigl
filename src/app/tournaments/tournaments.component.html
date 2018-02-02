@@ -1,0 +1,41 @@
+<div class="w3-padding-large" id="main">
+  <div class="w3-padding-64 w3-content" id="contact">
+    <h2 class="w3-text-light-grey mb-4">Tournaments</h2>
+
+    <ng-template style="width: 100%;" #loading>
+      <div class="text-center">
+        <i class="fas fa-cog fa-5x fa-spin"></i>
+      </div>
+    </ng-template>
+
+    <table class="table table-dark table-hover" *ngIf="tournaments; else loading">
+      <thead>
+      <tr>
+        <th scope="col">Game</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col" class="d-none d-lg-table-cell">Type</th>
+        <th scope="col" class="d-none d-lg-table-cell">Participants</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let tournament of tournaments" (click)="open(tournament.url)">
+        <td>
+          <img src="{{tournament.game.iconUrl}}">
+          <span class="d-none d-md-inline">{{ tournament.game.name }}</span>
+        </td>
+        <td>{{ tournament.name }}</td>
+        <td>
+          <span class="d-none d-lg-inline">{{ tournament.start.format('Do MMMM') }}</span>
+          <span class="d-inline d-lg-none">{{ tournament.start.format('Do MMM') }}</span>
+        </td>
+        <td class="d-none d-lg-table-cell">{{ tournament.type }}</td>
+        <td class="d-none d-lg-table-cell">{{ tournament.teamsCount }}</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+</div>

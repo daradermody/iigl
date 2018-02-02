@@ -1,9 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-top">
-  <!-- Avatar image in top left corner -->
   <a routerLink="home">
     <img src="https://image.ibb.co/jpOrV6/logo.png" alt="logo" class="w3-bar-item">
+  </a>
+  <a routerLink="tournaments" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
+     routerLinkActive="w3-black">
+    <i data-fa-transform="rotate-90 shrink-4" class="fas fa-sitemap fa-4x"></i>
+    <p>TOURNAMENTS</p>
   </a>
   <a routerLink="wallOfFame" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
      routerLinkActive="w3-black">
@@ -42,17 +45,18 @@
   </div>
 </nav>
 
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium">
-  <div class="w3-bar w3-black w3-center w3-small">
-    <a routerLink="home" href="" class="w3-bar-item w3-button bar-item" style="width:17% !important;">HOME</a>
-    <a routerLink="wallOfFame" class="w3-bar-item w3-button bar-item" style="width:20% !important;">WINNERS</a>
-    <a routerLink="contact" class="w3-bar-item w3-button bar-item" style="width:20% !important;">CONTACT</a>
-    <a routerLink="login" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button bar-item" style="width:20% !important;">LOGIN</a>
-    <a routerLink="register" *ngIf="!isLoggedIn()" class="w3-bar-item w3-button bar-item" style="width:23% !important;">REGISTER</a>
-    <a *ngIf="isLoggedIn()" (click)="logout()" class="w3-bar-item w3-button bar-item" style="width:23% !important;">LOGOUT</a>
-  </div>
-</div>
+<table class="table w3-top w3-hide-large w3-hide-medium table-dark mobilenav">
+  <tr>
+    <td routerLink="home" routerLinkActive="bg-secondary">HOME</td>
+    <td routerLink="tournaments" routerLinkActive="bg-secondary">TOURNAMENTS</td>
+    <td routerLink="wallOfFame" routerLinkActive="bg-secondary">WINNERS</td>
+    <td routerLink="contact" routerLinkActive="bg-secondary">CONTACT</td>
+    <td routerLink="login" routerLinkActive="bg-secondary" *ngIf="!isLoggedIn()">LOGIN</td>
+    <td routerLink="register" routerLinkActive="bg-secondary" *ngIf="!isLoggedIn()">REGISTER</td>
+    <td *ngIf="isLoggedIn()" (click)="logout()">LOGOUT</td>
+  </tr>
+</table>
+
 
 <div *ngIf="globals.message | async" class="message-panel w3-animate-top"
      [class.w3-red]="(globals.message | async).constructor.name === 'ErrorMessage'">
