@@ -13,9 +13,9 @@ import {AuthService} from './auth.service';
 import {AuthInterceptor} from './auth-interceptor';
 import {Globals} from './globals';
 import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
-import { WallOfFameComponent } from './wall-of-fame/wall-of-fame.component';
-import { TournamentsComponent } from './tournaments/tournaments.component';
-import { TournamentComponent } from './tournament/tournament.component';
+import {WallOfFameComponent} from './wall-of-fame/wall-of-fame.component';
+import {TournamentsComponent} from './tournaments/tournaments.component';
+import {TournamentService} from './tournament.service';
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { TournamentComponent } from './tournament/tournament.component';
     RegistrationConfirmationComponent,
     WallOfFameComponent,
     TournamentsComponent,
-    TournamentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +39,7 @@ import { TournamentComponent } from './tournament/tournament.component';
   providers: [
     Globals,
     AuthService,
+    TournamentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
