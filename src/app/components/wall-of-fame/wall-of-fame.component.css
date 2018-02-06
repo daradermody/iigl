@@ -1,13 +1,21 @@
 img {
   max-width: 100%;
+  border-radius: 0.25rem;
 }
 
-.wall-of-fame {
-  padding-left: 20px;
+.nav {
+  background-color: var(--iigl-grey);
+  border-radius: 0.25rem;
+  margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 600px) {
-  .wall-of-fame {
-    padding-left: 0;
-  }
+.nav-pills .nav-link {
+  border-radius: inherit;
+  padding: 1rem;
+  cursor: pointer;
 }
+
+.nav-pills .active {
+  background-color: var(--iigl-green);
+}
+

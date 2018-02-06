@@ -1,5 +1,5 @@
 #main {
-  background-color: #006938;
+  background-color: var(--iigl-green);
 }
 
 h1 {
@@ -25,8 +25,9 @@ i {
   margin: 50px 0;
 }
 
-#tagline {
+.tagline {
   font-family: Raleway, sans-serif;
+  color: var(--iigl-green);
 }
 
 .icon {
@@ -47,17 +48,10 @@ i {
   margin-top: 50px;
 }
 
-.dark-green-text {
-  color: #008848;
-}
-
-.dark-green {
-  background-color: #008848;
-}
-
 button {
   width: 100%;
   margin: 10px;
+  background-color: var(--iigl-green);
 }
 
 .frontpage-canvas {
@@ -111,7 +105,7 @@ button {
 }
 
 a {
-  color: #00f09d;
+  color: inherit;
 }
 
 #other-media {

@@ -1,0 +1,24 @@
+.card {
+  max-width: 250px;
+  background-color: black;
+  border: var(--iigl-grey) solid 1px;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  background-color: var(--iigl-grey);
+  transition: background-color 0.25s;
+}
+
+.card-img-top {
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+h1 {
+  text-align: center;
+}

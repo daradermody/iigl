@@ -1,21 +1,15 @@
 <div class="w3-padding-large" id="main">
-  <div class="w3-padding-64 w3-content" id="contact">
-    <h2 class="w3-text-light-grey">Login</h2>
-    <hr style="width:200px;" class="w3-opacity">
+  <div class="w3-padding-64 w3-content">
+    <h2 class="page-heading">Login</h2>
 
     <form [formGroup]="form">
-      <div class="w3-col">
-        <div class="w3-col m6">
-          <label>Email: </label><br>
-          <input name="email" autocomplete="username" formControlName="email" title="email">
-        </div>
-        <div class="w3-col m6">
-          <label>Password: </label><br>
-          <input name="password" autocomplete="current-password" formControlName="password" type="password"
-                 title="password">
-        </div>
-        <button class="button button-primary" style="margin-top: 10px;" (click)="login()">Login</button>
-      </div>
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" formControlName="email"
+             placeholder="Company Email" required
+             autocomplete="username">
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" formControlName="password"
+             placeholder="Password" required
+             autocomplete="current-password" type="password">
+      <button class="button button-primary" style="margin-top: 10px;" (click)="login()">Login</button>
     </form>
   </div>
 </div>

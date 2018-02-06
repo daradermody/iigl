@@ -6,3 +6,27 @@ img {
   max-height: 100px;
   object-fit: contain;
 }
+
+button {
+  background-color: var(--iigl-green);
+  color: white;
+}
+
+.card {
+  height: 100%;
+  background-color: black;
+  border: 1px solid var(--iigl-grey);
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.card:hover {
+  background-color: var(--iigl-grey);
+  transition: background-color 0.25s;
+}
+
+.card-img-overlay {
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: auto;
+  border-radius: inherit;
+}

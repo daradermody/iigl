@@ -1,6 +1,6 @@
 <div class="w3-padding-large" id="main">
-  <div class="w3-padding-64 w3-content" id="contact">
-    <h2 class="w3-text-light-grey mb-4">Tournaments</h2>
+  <div class="w3-padding-64 w3-content">
+    <h2 class="page-heading">Tournaments</h2>
 
     <ng-template style="width: 100%;" #loading>
       <div class="text-center">
@@ -8,7 +8,7 @@
       </div>
     </ng-template>
 
-    <table class="table table-dark table-hover" *ngIf="tournaments; else loading">
+    <table class="table" *ngIf="tournaments; else loading">
       <thead>
       <tr>
         <th scope="col">Game</th>

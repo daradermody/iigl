@@ -1,6 +1,11 @@
+:root {
+  --iigl-green: #008848;
+  --iigl-grey: #222;
+}
+
 body {
-  background: black;
-  color: #fff;
+  background-color: black;
+  color: white;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -33,4 +38,9 @@ a {
   #main {
     margin-left: 0;
   }
+}
+
+.page-heading {
+  margin-bottom: 1.5rem;
+  color: #f1f1f1;
 }
