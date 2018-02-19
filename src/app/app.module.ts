@@ -15,6 +15,7 @@ import {NotificationService} from './services/notification.service';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
 import {TournamentService} from './services/tournament.service';
+import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
 
 
 @NgModule({
@@ -32,12 +33,14 @@ import {TournamentService} from './services/tournament.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
   ],
   providers: [
     NotificationService,
     AuthService,
     TournamentService,
+    ClipboardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

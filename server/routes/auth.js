@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 
 
 const RSA_PRIVATE_KEY = fs.readFileSync('ssl/jwt_key.pem');
+const RSA_PUBLIC_KEY = fs.readFileSync('ssl/jwt.pem');
 
 const router = new express.Router();
 
@@ -70,5 +71,21 @@ router.get('/confirmRegistration', (req, res) => {
   }
 });
 
+router.verifyUser = function(req, res, next) {
+  if (!req.headers['authorization'] || !req.headers['authorization'].startsWith('Bearer')) {
+    res.status(403).json({message: 'You must login first!'});
+  } else {
+    const token = req.headers['authorization'].replace('Bearer ', '');
+    jwt.verify(token, RSA_PUBLIC_KEY, (err, decoded) => {
+      if (err) {
+        res.status(403).json({message: 'You must login first!'});
+      } else {
+        req.authInfo = decoded;
+        req.email = decoded.sub;
+        next();
+      }
+    });
+  }
+};
 
 module.exports = router;

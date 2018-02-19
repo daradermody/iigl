@@ -44,3 +44,7 @@ a {
   margin-bottom: 1.5rem;
   color: #f1f1f1;
 }
+
+.monospaced {
+  font-family: monospace;
+}

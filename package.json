@@ -35,7 +35,6 @@
     "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
     "body-parser": "latest",
-    "cheerio": "^1.0.0-rc.2",
     "clipboard": "^1.7.1",
     "core-js": "^2.4.1",
     "express": "latest",
@@ -43,6 +42,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.20.1",
     "morgan": "^1.9.0",
+    "ngx-clipboard": "^10.0.0",
     "nodemailer": "^2.7.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.14"

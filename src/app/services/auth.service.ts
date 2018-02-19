@@ -34,7 +34,6 @@ export class AuthService {
 
     localStorage.setItem('id_token', authResult['idToken']);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    console.log('localStorage set');
   }
 
   register(user: User): Observable<HttpResponse<Object>> {
