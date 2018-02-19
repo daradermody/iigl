@@ -59,7 +59,7 @@
 
 
 <div *ngIf="notifier.message | async" class="message-panel w3-animate-top"
-     [class.w3-red]="(notifier.message | async).constructor.name === 'ErrorMessage'">
+     [class.w3-red]="isError((notifier.message | async))">
   <span (click)="notifier.clearMessage()" class="message-clear-button">&times;</span>
   <p class="w3-margin-0 w3-padding-small">{{ (notifier.message | async).message }}</p>
 </div>

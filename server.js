@@ -1,3 +1,5 @@
+// TODO: Convert everything to Typescript
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -5,6 +7,7 @@ const fs = require('fs');
 const https = require('https');
 const http = require('http');
 const auth = require('./server/routes/auth');
+const tournaments = require('./server/routes/tournaments');
 const morgan = require('morgan');
 
 const app = express();
@@ -13,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
-app.use('/api', auth);
+app.use('/api', auth, tournaments);
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
