@@ -25,7 +25,10 @@ export class TournamentsComponent implements OnInit {
   ngOnInit(): void {
     this.tournamentService.getTournamenets().subscribe(
       (data) => this.tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start)),
-      (error) => this.notifier.emitError(error)
+      (error) => {
+        this.notifier.emitError('Could not get tournaments: ' + error.message);
+        this.tournaments = [];
+      }
     );
   }
 

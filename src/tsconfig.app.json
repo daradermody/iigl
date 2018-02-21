@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
+    "outDir": "../dist",
     "baseUrl": "./",
     "module": "es2015",
+    "target": "es5",
     "types": [
       "node",
       "jwt-decode"
