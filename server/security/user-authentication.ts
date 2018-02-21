@@ -41,11 +41,8 @@ export class UserAuthentication {
 
 }
 
-// TODO: Verify structure of decoded token
 interface DecodedJwt {
-  exp: string;
-  nbf: string;
-  aud: string;
+  iat: number;
+  exp: number;
   sub: string;
-  iss: string;
 }
