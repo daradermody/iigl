@@ -2,6 +2,16 @@
   background-color: var(--iigl-grey);
 }
 
+a {
+  position: relative;
+  z-index: 1;
+}
+
+a object {
+  position: relative;
+  z-index: -1;
+}
+
 .message-panel {
   position: fixed;
   top: 15px;
@@ -35,6 +45,10 @@
     border: 1px solid black;
     border-radius: 4px;
   }
+}
+
+.mobilenav {
+  z-index: 1000;
 }
 
 .mobilenav td {

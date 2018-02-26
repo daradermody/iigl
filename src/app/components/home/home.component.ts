@@ -6,4 +6,12 @@ import {Component} from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  gameIcons = [
+    '/assets/img/game_logos/league_of_legends_100.webp',
+    '/assets/img/game_logos/overwatch_100.webp',
+    '/assets/img/game_logos/rocket_league_100.webp',
+    '/assets/img/game_logos/hearthstone_100.webp',
+    '/assets/img/game_logos/dota_100.webp',
+    '/assets/img/game_logos/starcraft_100.webp'
+  ];
 }

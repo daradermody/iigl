@@ -1,51 +1,60 @@
-#main {
-  background-color: var(--iigl-green);
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
+
+.row {
+  margin: 0;
+}
+
+object {
+  height: 200px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 10em;
+  font-size: 2.3em;
   font-weight: 500;
   line-height: 80%;
-}
-
-i {
-  font-size: 20px;
-  font-family: "Open Sans Light", Raleway, sans-serif;
+  font-family: "Russo One", sans-serif;
+  padding-top: 50px;
 }
 
 .frontpage-screen {
-  background-image: url("/assets/img/background.png");
+  position: relative;
+  display: block;
+  background-color: var(--iigl-dark-grey);
   background-size: 25%;
-  padding-top: 130px;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   font-family: "Open Sans", sans-serif;
+  z-index: 0;
 }
 
-#description {
-  margin: 50px 0;
+.frontpage-screen::after {
+  content: "";
+  background: url('/assets/img/main_page/background_transparent.png');
+  background-size: 25%;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.frontpage-canvas {
+  padding-top: 120px;
+  background-color: var(--iigl-dark-grey);
+  border-radius: 50%;
+  box-shadow: 0 0 100px 200px var(--iigl-dark-grey);
+  margin-bottom: 50px;
+}
+
+.description {
+  margin: 30px 0;
 }
 
 .tagline {
   font-family: Raleway, sans-serif;
   color: var(--iigl-green);
-}
-
-.icon {
-  position: absolute;
-  left: 0;
-  right: 0;
-  background-image: url("http://s.lolstatic.com/site/2016-season-update/771027dc9533e4950f1dee80b9e00ceb8d4dbcca/img/icons/LordDominiksRegards.png");
-  background-size: cover;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-  border: 7px solid white;
-  border-radius: 50%;
-  transform: translateY(-105px);
-}
-
-.frontpage-content {
-  margin-top: 50px;
 }
 
 button {
@@ -54,23 +63,69 @@ button {
   background-color: var(--iigl-green);
 }
 
-.frontpage-canvas {
-  position: relative;
+.responsive-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
-.responsive-content {
-  margin: 0 auto;
-  width: 350px;
+.more-info-section {
+  position: relative;
+  padding: 32px 20px;
+  z-index: 100;
+  background-color: var(--iigl-black);
+}
+
+.more-info-section img {
+  width: 100%;
+  margin-top: 6px;
+}
+
+a {
+  color: inherit;
+}
+
+.games-list {
+  background-color: var(--iigl-dark-grey);
   padding: 32px;
+  text-align: center;
+}
+
+.games-list img {
+  margin: 16px 0;
+}
+
+.other-media {
+  text-align: center;
+  color: var(--iigl-green);
+}
+
+.footer {
+  position: relative;
+  padding-top: 16px;
+}
+
+.copyright {
+  text-align: center;
 }
 
 @media screen and (min-width: 601px) {
   .responsive-content {
     width: 400px;
   }
+
+  h1 {
+    font-size: 2.8em;
+  }
 }
 
 @media screen and (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+
   .responsive-content {
     width: 600px;
   }
@@ -85,8 +140,16 @@ button {
     width: auto;
   }
 
-  #more-info-section p {
+  .more-info-section p {
     margin: 0 0 10px 20px;
+  }
+
+  .other-media {
+    text-align: right;
+  }
+
+  .copyright {
+    text-align: left;
   }
 }
 
@@ -94,26 +157,8 @@ button {
   .responsive-content {
     width: 950px;
   }
-}
 
-#more-info-section {
-  padding: 32px 20px;
-}
-
-#more-info-section img {
-  width: 100%;
-}
-
-a {
-  color: inherit;
-}
-
-#other-media {
-  padding: 20px;
-  text-align: center;
-}
-
-.footer {
-  background: #0c0c0c;
-  position: relative;
+  h1 {
+    font-size: 3.5em;
+  }
 }

@@ -12,6 +12,7 @@ class Tournaments {
 
   private static battlefyRequestConfig = {
     headers: {
+      // TODO: Dynamically generate the JWT token
       'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2JhdHRsZWZ5LmF1dGgwLmNvbS8iLCJ' +
       'zdWIiOiJhdXRoMHw1YTgzMDViNjRlYTcxOTI4NWY4NTQ3YmUiLCJhdWQiOiJHQkd5WGxIVWg1T2hxYmRTR2s1SUdqYVR4aDdSMnh5SCIsImlhdCI' +
       '6MTUxODYxNTUxNCwiZXhwIjoxNTE5ODI1MTE0fQ.FalpPErzt7oboDIDrKMBcEdUokC4sXGAOTvqrj--HGg',

@@ -14,7 +14,7 @@ button {
 
 .card {
   height: 100%;
-  background-color: black;
+  background-color: inherit;
   border: 1px solid var(--iigl-grey);
   padding: 0.25rem;
   text-align: center;

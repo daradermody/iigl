@@ -1,6 +1,6 @@
 .card {
   max-width: 250px;
-  background-color: black;
+  background-color: inherit;
   border: var(--iigl-grey) solid 1px;
   border-radius: 0.5rem;
 }

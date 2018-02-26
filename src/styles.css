@@ -1,10 +1,12 @@
 :root {
-  --iigl-green: #008848;
+  --iigl-green: #3d7915;
   --iigl-grey: #222;
+  --iigl-dark-grey: #141414;
+  --iigl-black: #020202;
 }
 
 body {
-  background-color: black;
+  background-color: var(--iigl-black);
   color: white;
   font-family: "Open Sans", sans-serif;
 }
