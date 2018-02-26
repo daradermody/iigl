@@ -5,7 +5,7 @@ import {ErrorMessage, InfoMessage} from '../data_types/info-message';
 @Injectable()
 export class NotificationService {
   message = new BehaviorSubject<InfoMessage>(null);
-  timeout: number;
+  timeout: any;
 
   emitError(error: string) {
     this.emitMessageObject(new ErrorMessage(error));
