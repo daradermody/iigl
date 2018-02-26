@@ -14,15 +14,21 @@ require('clipboard');
 })
 export class TournamentsComponent implements OnInit {
   tournaments: Array<Tournament>;
-  update = new EventEmitter<string>();
 
   constructor(private notifier: NotificationService,
               private tournamentService: TournamentService,
               private clipboard: ClipboardService) {
-    this.update.subscribe();
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        if (!this.tournaments) {
+          this.notifier.emitError('Could not get tournaments for some unknown reason. :(');
+          this.tournaments = [];
+        }
+      }, 10000
+    );
+
     this.tournamentService.getTournamenets().subscribe(
       (data) => this.tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start)),
       (error) => {
@@ -47,7 +53,7 @@ export class TournamentsComponent implements OnInit {
         tournament.joinCode = data['code'];
         this.notifier.emitMessage('Click the code to copy to clipboard');
       },
-        (error) => this.notifier.emitError(error.error.message)
+      (error) => this.notifier.emitError(error.error.message)
     );
   }
 
