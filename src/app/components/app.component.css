@@ -68,13 +68,16 @@ nav img {
   padding: 16px;
 }
 
-.copyright {
+.footer a {
+  color: var(--iigl-green);
+}
+
+.footer .copyright {
   text-align: center;
 }
 
-.other-media {
+.footer .other-media {
   text-align: center;
-  color: var(--iigl-green);
 }
 
 @media only screen and (min-width: 599px) {
@@ -93,11 +96,11 @@ nav img {
 }
 
 @media screen and (min-width: 992px) {
-  .other-media {
+  .footer .other-media {
     text-align: right;
   }
 
-  .copyright {
+  .footer .copyright {
     text-align: left;
   }
 }
