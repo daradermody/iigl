@@ -1,7 +1,8 @@
 import * as express from 'express';
 import axios from 'axios';
 import storage from '../database/storage';
-import {UserAuthentication, Request} from '../security/user-authentication';
+import {Request, UserAuthentication} from '../security/user-authentication';
+import * as fs from 'fs';
 
 class Tournaments {
   public router = express.Router();
@@ -12,10 +13,7 @@ class Tournaments {
 
   private static battlefyRequestConfig = {
     headers: {
-      // TODO: Dynamically generate the JWT token
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2JhdHRsZWZ5LmF1dGgwLmNvbS8iLCJ' +
-      'zdWIiOiJhdXRoMHw1YTgzMDViNjRlYTcxOTI4NWY4NTQ3YmUiLCJhdWQiOiJHQkd5WGxIVWg1T2hxYmRTR2s1SUdqYVR4aDdSMnh5SCIsImlhdCI' +
-      '6MTUxODYxNTUxNCwiZXhwIjoxNTE5ODI1MTE0fQ.FalpPErzt7oboDIDrKMBcEdUokC4sXGAOTvqrj--HGg',
+      'Authorization': 'Bearer ' + Tournaments.getBattlefyJwtToken(),
     },
   };
 
@@ -41,6 +39,16 @@ class Tournaments {
         console.error(error.response.data);
         res.status(error.response.status).json({message: error.response.data});
       });
+  }
+
+  // TODO: Dynamically generate the JWT token
+  private static getBattlefyJwtToken(): string {
+    const battlefyJwtFile = __dirname + '/battlefy_jwt.txt';
+    if (!fs.existsSync(battlefyJwtFile)) {
+      throw new Error(`Battlefy JWT token missing from ${battlefyJwtFile}. Contact the project owner for it.`);
+    } else {
+      return (<string>fs.readFileSync(battlefyJwtFile, 'utf-8')).trim();
+    }
   }
 }
 

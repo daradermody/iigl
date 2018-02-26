@@ -1,6 +1,6 @@
 {
   "name": "iigl",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build": "ng build",
@@ -12,6 +12,7 @@
     "watch": [
       "server"
     ],
+    "ext": "ts",
     "ignore": [
       "server/database/data_files/"
     ]
@@ -23,15 +24,15 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.5",
-    "@angular/common": "^5.2.5",
-    "@angular/compiler": "^5.2.5",
-    "@angular/core": "^5.2.5",
-    "@angular/forms": "^5.2.5",
-    "@angular/http": "^5.2.5",
-    "@angular/platform-browser": "^5.2.5",
-    "@angular/platform-browser-dynamic": "^5.2.5",
-    "@angular/router": "^5.2.5",
+    "@angular/animations": "^5.2.6",
+    "@angular/common": "^5.2.6",
+    "@angular/compiler": "^5.2.6",
+    "@angular/core": "^5.2.6",
+    "@angular/forms": "^5.2.6",
+    "@angular/http": "^5.2.6",
+    "@angular/platform-browser": "^5.2.6",
+    "@angular/platform-browser-dynamic": "^5.2.6",
+    "@angular/router": "^5.2.6",
     "@types/jwt-decode": "^2.2.1",
     "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
@@ -46,14 +47,14 @@
     "ngx-clipboard": "^10.0.0",
     "node": "^9.5.0",
     "nodemailer": "^2.7.2",
-    "npm": "^5.6.0",
+    "npm": "^5.7.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.0",
-    "@angular/compiler-cli": "^5.2.5",
-    "@angular/language-service": "^5.2.5",
+    "@angular/cli": "^1.7.1",
+    "@angular/compiler-cli": "^5.2.6",
+    "@angular/language-service": "^5.2.6",
     "@types/bcrypt": "^1.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",

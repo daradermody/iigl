@@ -1,4 +1,6 @@
 # IIGL
+[![dependencies Status](https://david-dm.org/daradermody/iigl/status.svg)](https://david-dm.org/daradermody/iigl)
+[![devDependencies Status](https://david-dm.org/daradermody/iigl/dev-status.svg)](https://david-dm.org/daradermody/iigl?type=dev)
 
 This project produces the website for the Irish Inter-Firms Gaming League (IIGL). 
 
