@@ -20,26 +20,18 @@ a {
   text-decoration: underline;
 }
 
-/* Set the width of the sidebar to 120px */
 .w3-sidebar {
   width: 120px;
-  background: #222;
+  background: var(--iigl-grey);
 }
 
 .w3-content {
   max-width: 1400px;
 }
 
-/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {
-  margin-left: 120px;
-}
-
-/* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {
-  #main {
-    margin-left: 0;
-  }
+  margin-left: 0;
+  min-height: calc(100vh - 160px);
 }
 
 .page-heading {
@@ -47,6 +39,14 @@ a {
   color: #f1f1f1;
 }
 
-.monospaced {
-  font-family: monospace;
+@media only screen and (min-width: 599px) {
+  #main {
+    margin-left: 120px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #main {
+    min-height: calc(100vh - 91px);
+  }
 }

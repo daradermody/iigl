@@ -46,8 +46,8 @@ button {
   border: 1px solid transparent;
 }
 
-.btn-disabled {
-  background-color: grey;
+.monospaced {
+  font-family: monospace;
 }
 
 @media only screen and (min-width: 768px) {

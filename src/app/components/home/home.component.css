@@ -97,20 +97,6 @@ a {
   margin: 16px 0;
 }
 
-.other-media {
-  text-align: center;
-  color: var(--iigl-green);
-}
-
-.footer {
-  position: relative;
-  padding-top: 16px;
-}
-
-.copyright {
-  text-align: center;
-}
-
 @media screen and (min-width: 601px) {
   .responsive-content {
     width: 400px;
@@ -142,14 +128,6 @@ a {
 
   .more-info-section p {
     margin: 0 0 10px 20px;
-  }
-
-  .other-media {
-    text-align: right;
-  }
-
-  .copyright {
-    text-align: left;
   }
 }
 
