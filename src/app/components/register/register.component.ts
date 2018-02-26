@@ -5,6 +5,7 @@ import {AuthService} from '../../services/auth.service';
 import {NotificationService} from '../../services/notification.service';
 import {User} from '../../data_types/user';
 import {HttpErrorResponse} from '@angular/common/http';
+import {PasswordValidation} from './password-validation';
 
 @Component({
   selector: 'app-register',
@@ -16,19 +17,27 @@ export class RegisterComponent {
   games: any = [
     {
       name: 'League of Legends',
-      imageUri: 'https://image.ibb.co/gYe4LG/League_of_Legends_logo.png',
+      imageUri: '/assets/img/game_logos/league_of_legends_100.webp',
       selected: false
     }, {
       name: 'Overwatch',
-      imageUri: 'https://image.ibb.co/hMFpnw/overwatch_logo.png',
+      imageUri: '/assets/img/game_logos/overwatch_100.webp',
       selected: false
     }, {
       name: 'Rocket League',
-      imageUri: 'https://image.ibb.co/ckYg0G/Rocket_League_Logo.png',
+      imageUri: '/assets/img/game_logos/rocket_league_100.webp',
       selected: false
     }, {
-      name: 'Heathstone',
-      imageUri: 'https://image.ibb.co/g6mZLG/hearthstone_logo.png',
+      name: 'Hearthstone',
+      imageUri: '/assets/img/game_logos/hearthstone_100.webp',
+      selected: false
+    }, {
+      name: 'Dota 2',
+      imageUri: '/assets/img/game_logos/dota_100.webp',
+      selected: false
+    }, {
+      name: 'StarCraft II',
+      imageUri: '/assets/img/game_logos/starcraft_100.webp',
       selected: false
     }
   ];
@@ -41,7 +50,10 @@ export class RegisterComponent {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       battlefy: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(3)]]
+      password: ['', [Validators.required, Validators.minLength(3)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(3)]]
+    }, {
+      validator: PasswordValidation.MatchPassword
     });
   }
 

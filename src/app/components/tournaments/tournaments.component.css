@@ -50,6 +50,10 @@ button {
   font-family: monospace;
 }
 
+.btn-disabled {
+  background-color: grey;
+}
+
 @media only screen and (min-width: 768px) {
   table img {
     height: 40px;
