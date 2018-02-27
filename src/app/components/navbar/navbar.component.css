@@ -1,0 +1,136 @@
+.horizontal-navbar {
+  position: fixed;
+  width: 100%;
+  background-color: var(--iigl-grey);
+  z-index: 100000;
+  height: 45px;
+}
+
+.horizontal-navbar button {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 2.2em;
+  height: 80%;
+  margin: 4px;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") no-repeat center center;
+  background-size: 90%;
+}
+
+a {
+  position: relative;
+  z-index: 1;
+}
+
+.horizontal-navbar a {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.horizontal-navbar span {
+  height: 100%;
+  vertical-align: top;
+}
+
+.horizontal-navbar object {
+  height: 100%;
+  padding: 5px 10px;
+}
+
+.mobile-nav {
+  background-color: var(--iigl-grey);
+  z-index: 1000;
+  width: auto;
+}
+
+.mobile-nav span {
+  margin-left: 5px;
+}
+
+.mobile-nav a {
+  text-align: left;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+.mobile-nav > div {
+  text-align: left;
+}
+
+.vertical-navbar {
+  position: fixed;
+  height: 100%;
+  width: 120px;
+  background-color: var(--iigl-grey);
+  z-index: 1;
+  overflow: auto;
+  font-size: 12px;
+}
+
+.vertical-navbar object {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+}
+
+.nav-item {
+  width: 100%;
+  display: block;
+  padding: 12px 0;
+  text-align: center;
+  background-color: inherit;
+  color: inherit;
+  position: relative;
+  animation: animateleft 0.2s;
+}
+
+@keyframes animateleft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.logo span {
+  display: inline-block;
+}
+
+a.nav-item {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  padding: 12px 24px;
+}
+
+.black {
+  color: #fff;
+  background-color: #000;
+}
+
+.black-hover:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.dropdown-container:hover .dropdown-content {
+  display: block;
+}
+

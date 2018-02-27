@@ -1,82 +1,10 @@
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-top">
-  <a routerLink="home" class="w3-bar-item w3-padding-large">
-    <span><object routerLink="home" data="/assets/img/logo.svg" class="w3-bar-item" style="padding: 15px 0;"></object></span>
-  </a>
-  <a routerLink="tournaments" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
-     routerLinkActive="w3-black">
-    <i data-fa-transform="rotate-90 shrink-4" class="fas fa-sitemap fa-4x"></i>
-    <p>TOURNAMENTS</p>
-  </a>
-  <a routerLink="wallOfFame" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
-     routerLinkActive="w3-black">
-    <i class="fas fa-trophy fa-3x"></i>
-    <p>WALL OF FAME</p>
-  </a>
-  <a routerLink="contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
-     routerLinkActive="w3-black">
-    <i class="fas fa-envelope fa-3x"></i>
-    <p>CONTACT</p>
-  </a>
-  <a routerLink="login" *ngIf="!isLoggedIn()"
-     class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
-     routerLinkActive="w3-black">
-    <i class="fas fa-sign-in-alt fa-3x"></i>
-    <p>LOGIN</p>
-  </a>
-  <a routerLink="register" *ngIf="!isLoggedIn()"
-     class="w3-bar-item w3-button w3-padding-large w3-hover-black w3-animate-left"
-     routerLinkActive="w3-black">
-    <i class="fas fa-user-plus fa-3x"></i>
-    <p>REGISTER</p>
-  </a>
+<app-navbar></app-navbar>
 
-  <div class="w3-dropdown-hover w3-hover-black w3-animate-left" *ngIf="isLoggedIn()">
-    <div class="w3-padding-large">
-      <i class="fas fa-user-circle fa-3x"></i>
-      <p>PROFILE</p>
-    </div>
-    <div class="w3-dropdown-content w3-animate-left">
-      <a routerLink="home" (click)="logout()" class="w3-button w3-padding-large w3-hover-black w3-center">
-        <i data-fa-transform="flip-h" class="fas fa-sign-out-alt fa-3x"></i>
-        <p>LOGOUT</p>
-      </a>
-    </div>
-  </div>
-</nav>
-
-<table class="table w3-top w3-hide-large w3-hide-medium table-dark mobile-nav">
-  <tr>
-    <td routerLink="home" routerLinkActive="bg-secondary">HOME</td>
-    <td routerLink="tournaments" routerLinkActive="bg-secondary">TOURNAMENTS</td>
-    <td routerLink="wallOfFame" routerLinkActive="bg-secondary">WINNERS</td>
-    <td routerLink="contact" routerLinkActive="bg-secondary">CONTACT</td>
-    <td routerLink="login" routerLinkActive="bg-secondary" *ngIf="!isLoggedIn()">LOGIN</td>
-    <td routerLink="register" routerLinkActive="bg-secondary" *ngIf="!isLoggedIn()">REGISTER</td>
-    <td *ngIf="isLoggedIn()" (click)="logout()">LOGOUT</td>
-  </tr>
-</table>
-
-
-<div *ngIf="notifier.message | async" class="message-panel w3-animate-top"
-     [class.w3-red]="isError((notifier.message | async))">
+<div *ngIf="notifier.message | async" class="message-panel" [class.red]="isError((notifier.message | async))">
   <span (click)="notifier.clearMessage()" class="message-clear-button">&times;</span>
-  <p class="w3-margin-0 w3-padding-small">{{ (notifier.message | async).message }}</p>
+  <p>{{ (notifier.message | async).message }}</p>
 </div>
 
 <router-outlet></router-outlet>
 
-<div class="w3-row w3-container footer">
-  <p class="w3-col l7 copyright">
-    © 2018 Irish Inter-Firms Gaming League. All rights reserved.<br>
-    <a href="javascript:void(0)">Privacy Policy</a> | <a href="javascript:void(0)">Terms of Use</a> | <a
-    href="javascript:void(0)">The gang</a>
-  </p>
-  <div class="w3-col l5 other-media">
-    <a target="_blank" href="https://discord.gg/dhYgfwC"><i class="fab fa-discord fa-fw fa-3x"></i></a>
-    <a target="_blank" href="https://www.facebook.com/irishinterfirmsgaming/"><i class="fab fa-facebook-f fa-fw fa-3x"></i></a>
-    <a target="_blank" href="https://twitter.com/iiGamingLeague"><i class="fab fa-twitter fa-fw fa-3x"></i></a>
-    <a target="_blank" href="https://www.youtube.com/channel/UCjTMwJZcxL33a6n_bake5fA"><i class="fab fa-youtube fa-fw fa-3x"></i></a>
-    <a target="_blank" href="https://www.twitch.tv/irishinterfirmsgaming"><i class="fab fa-twitch fa-fw fa-3x"></i></a>
-  </div>
-</div>
+<app-footer></app-footer>

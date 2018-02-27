@@ -1,0 +1,33 @@
+.footer {
+  position: relative;
+  padding: 16px;
+}
+
+a {
+  color: var(--iigl-green);
+}
+
+.copyright {
+  text-align: center;
+}
+
+.other-media {
+  text-align: center;
+}
+
+@media only screen and (min-width: 599px) {
+  .footer {
+    margin-left: 120px;
+    width: calc(100% - 120px);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .other-media {
+    text-align: right;
+  }
+
+  .copyright {
+    text-align: left;
+  }
+}

@@ -16,6 +16,8 @@ import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.compon
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
 import {TournamentService} from './services/tournament.service';
 import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
     RegisterComponent,
     WallOfFameComponent,
     TournamentsComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
