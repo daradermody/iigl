@@ -1,9 +1,9 @@
 import {Request, Response, Router} from 'express';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
-import storage from '../database/storage';
+import {Users} from '../database/storage';
 import {UserAuthentication} from '../security';
-import confirmationEmailer from '../emailing/confirmationEmailer';
+import {Emailer} from '../emailing';
 
 class Auth {
   router = Router();
@@ -33,7 +33,7 @@ class Auth {
 
   static registerUser(req: Request, res: Response) {
     const user = req.body;
-    if (storage.users.userExists(user.email)) {
+    if (Users.userExists(user.email)) {
       res.status(409).send('Email ' + user.email + ' already registered!');
       return;
     }
@@ -41,8 +41,10 @@ class Auth {
     user.password = bcrypt.hashSync(user.password, 10);
 
     const token = crypto.randomBytes(48).toString('hex');
-    const confirmationUrl = req.protocol + '://' + req.get('host') + '/login?token=' + token;
-    confirmationEmailer.sendMail(user.email, confirmationUrl);
+    const templateData = {
+      accountConfirmationUrl: req.protocol + '://' + req.get('host') + '/login?token=' + token
+    };
+    Emailer.sendMail(user.email, 'registration_email', templateData);
     Auth.usersToBeRegistered[token] = user;
 
     res.status(201).json({redirect: '/'});
@@ -53,13 +55,13 @@ class Auth {
 
     if (!(token in Auth.usersToBeRegistered)) {
       // TODO: Make error messages more consistent by using error classes
-      res.status(401).send('Token has expired');
+      res.status(401).json({message: 'Token has expired'});
       return;
     }
 
     const user = Auth.usersToBeRegistered[token];
     delete Auth.usersToBeRegistered[token];
-    storage.users.addUser(user);
+    Users.addUser(user);
     res.status(200).json();
   }
 }

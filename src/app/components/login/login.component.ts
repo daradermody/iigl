@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       if ('token' in params) {
         this.authService.confirmAccountCreationToken(params['token']).subscribe(
           () => this.notifier.emitMessage('Registration complete! Please login'),
-          (error) => this.notifier.emitError('Error: ' + error.message)
+          (error) => this.notifier.emitError('Error: ' + error.error.message)
         );
       }
     });

@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 import * as express from 'express';
-import storage from '../database/storage/index';
+import {Users} from '../database/storage';
 
 export interface Request extends express.Request {
   userEmail: string;
@@ -28,7 +28,7 @@ export class UserAuthentication {
   }
 
   static isUserValid(email: string, password: string): boolean {
-    return storage.users.isEmailAndPasswordValid(email, password);
+    return Users.isEmailAndPasswordValid(email, password);
   }
 
   static generateJsonWebToken(email: string): string {

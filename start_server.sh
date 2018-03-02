@@ -32,9 +32,9 @@ function start_prod_server() {
 
   if command_exists sudo; then
     echo -e "\nUsing system port requires sudo privileges"
-    sudo PORT=443 node dist/server
+    sudo NODE_ENV=production PORT=443 node dist/server
   else
-    PORT=443 node dist/server
+    NODE_ENV=production PORT=443 node dist/server
   fi
 }
 

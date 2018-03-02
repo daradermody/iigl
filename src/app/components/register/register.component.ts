@@ -42,6 +42,8 @@ export class RegisterComponent {
     }
   ];
 
+  processing = false;
+
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
@@ -57,8 +59,22 @@ export class RegisterComponent {
     });
   }
 
+  async registerWithLoadingBar() {
+    this.processing = true;
+    try {
+      await this.register();
+    } finally {
+      this.processing = false;
+    }
+  }
+
   async register() {
     const val = this.form.value;
+
+    if (!this.form.valid) {
+      this.notifier.emitError('The form is not complete');
+      return;
+    }
 
     try {
       await this.authService.getBattlefyAccountInfo(val.battlefy).toPromise();
@@ -69,21 +85,15 @@ export class RegisterComponent {
       return;
     }
 
-    if (!this.form.valid) {
-      this.notifier.emitError('The form is not complete');
-      return;
-    }
-
     const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
     const user = new User(val.email, val.battlefy, val.password, selectedGames);
 
     if (user.isValid()) {
-      // console.dir(user);
       this.authService.register(user)
         .subscribe(
           (r) => {
             this.router.navigateByUrl(r['redirect']).then(() => {
-              this.notifier.emitMessage('Registration email has been sent');
+              this.notifier.emitMessage('Registration user has been sent');
             });
           },
           (error: HttpErrorResponse) => {

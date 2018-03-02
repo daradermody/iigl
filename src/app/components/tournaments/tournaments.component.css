@@ -46,12 +46,12 @@ button {
   border: 1px solid transparent;
 }
 
-.monospaced {
-  font-family: monospace;
+button:disabled {
+  background-color: grey;
 }
 
-.btn-disabled {
-  background-color: grey;
+.monospaced {
+  font-family: monospace;
 }
 
 @media only screen and (min-width: 768px) {

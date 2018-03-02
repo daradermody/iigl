@@ -1,20 +1,38 @@
 import * as nodemailer from 'nodemailer';
 import * as fs from 'fs';
+const Email = require('email-templates');
 
-class RegistrationEmailer {
-  private sender = RegistrationEmailer.getSender();
+export class Emailer {
+  private static authInfo = Emailer.getAuthInformation();
+  private static transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: Emailer.authInfo,
+  });
 
-  sendMail(userEmail, confirmationUrl) {
-    this.sender({
-      to: userEmail,
-    }, {
-      accountConfirmationUrl: confirmationUrl,
-    }, function(err) {
-      if (err) {
-        console.error('Error sending registration confirmation mail: ' + err);
-        throw err;
+  static sendMail(destinationEmail: string, template: string, variables: any) {
+    const email = new Email({
+      message: {
+        from: `IIGL <${Emailer.authInfo.user}>`
+      },
+      transport: Emailer.transporter,
+      views: {
+        options: {
+          extension: 'mustache'
+        },
+        root: __dirname + '/templates'
       }
     });
+
+    email
+      .send({
+        template: template,
+        message: {
+          to: destinationEmail
+        },
+        locals: variables
+      })
+      .then(console.log)
+      .catch(console.error);
   }
 
   private static getAuthInformation(): AuthInfo {
@@ -33,20 +51,6 @@ class RegistrationEmailer {
 
     return authInformation;
   }
-
-  private static getSender() {
-    const transporter: any = nodemailer.createTransport({
-      service: 'gmail',
-      auth: RegistrationEmailer.getAuthInformation(),
-    });
-
-    return transporter.templateSender({
-      subject: 'IIGL Registration Confirmation',
-      html: fs.readFileSync(__dirname + '/registration_email_template.html'),
-    }, {
-      from: 'iigl@gmail.com',
-    });
-  }
 }
 
 class AuthInfo {
@@ -58,5 +62,3 @@ class AuthInfo {
     this.pass = password;
   }
 }
-
-export default new RegistrationEmailer();

@@ -44,7 +44,12 @@
         </div>
       </div>
 
-      <button class="btn btn-lg mt-5 col col-sm-5 col-md-4 col-lg-2" (click)="register()">Register</button>
+      <button class="col col-sm-5 col-md-4 col-lg-2" [disabled]="processing" (click)="registerWithLoadingBar()">
+        <span *ngIf="!processing; else loading">Register</span>
+        <ng-template #loading>
+          <div><i class="fas fa-cog fa-spin" data-fa-transform="grow-10"></i></div>
+        </ng-template>
+      </button>
     </form>
   </div>
 </div>

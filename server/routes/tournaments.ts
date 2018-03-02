@@ -1,6 +1,6 @@
 import * as express from 'express';
 import axios from 'axios';
-import storage from '../database/storage';
+import {TournamentCodes} from '../database/storage';
 import {Request, UserAuthentication} from '../security/user-authentication';
 import * as fs from 'fs';
 
@@ -22,7 +22,7 @@ class Tournaments {
   }
 
   getTournamentCode(req: Request, res: express.Response) {
-    const code = storage.tournamentCodes.getCode(req.params['tournamentId'], req.userEmail);
+    const code = TournamentCodes.getCode(req.params['tournamentId'], req.userEmail);
     if (code) {
       res.status(201).json({code: code});
       return;
@@ -31,7 +31,7 @@ class Tournaments {
     const data = {'numberOfCodes': 1};
     axios.post(`https://api.battlefy.com/tournaments/${req.params['tournamentId']}/join-codes`, data, Tournaments.battlefyRequestConfig)
       .then((response) => {
-        storage.tournamentCodes.cacheCode(req.params['tournamentId'], req.userEmail, response.data[0]['code']);
+        TournamentCodes.cacheCode(req.params['tournamentId'], req.userEmail, response.data[0]['code']);
         res.status(201).json({code: response.data[0]['code']});
       })
       .catch((error) => {
