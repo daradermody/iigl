@@ -1,11 +1,9 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TournamentService} from '../../services/tournament.service';
 import {NotificationService} from '../../services/notification.service';
 import {Tournament} from '../../data_types/tournament';
 import {ClipboardService} from 'ngx-clipboard';
 import {AuthService} from '../../services/auth.service';
-
-require('clipboard');
 
 @Component({
   selector: 'app-tournaments',
