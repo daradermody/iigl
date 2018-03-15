@@ -1,14 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit|Libre+Franklin|Mina|Monda|Noto+Sans|Open+Sans|Oxygen|Play|Titillium+Web|Varela+Round|Yantramanav');
+
 :root {
   --iigl-green: #3d7915;
   --iigl-grey: #222;
   --iigl-dark-grey: #141414;
+  --iigl-light-black: #0e0e0e;
   --iigl-black: #020202;
 }
 
 body {
-  background-color: var(--iigl-black);
+  background-color: var(--iigl-light-black);
   color: white;
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  /*font-family: "Kanit";*/
+  /*font-family: "Libre Franklin";*/
+  /*font-family: "Mina";*/
+  /*font-family: "Monda";*/
+  /*font-family: "Noto+Sans";*/
+  /*font-family: "Open+Sans";*/
+  /*font-family: "Oxygen";*/
+  font-family: "Play";
+  /*font-family: "Titillium Web";*/
+  /*font-family: "Varela+Round";*/
+  /*font-family: "Yantramanav";*/
 }
 
 h1, h2, h3, h4, h5, h6 {

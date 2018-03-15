@@ -1,6 +1,7 @@
 .footer {
   position: relative;
   padding: 16px;
+  background-color: var(--iigl-black);
 }
 
 a {
