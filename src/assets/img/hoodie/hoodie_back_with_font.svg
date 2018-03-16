@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="490.01227mm"
+   height="57.239624mm"
+   viewBox="0 0 490.01229 57.239626"
+   version="1.1"
+   id="svg927"
+   inkscape:version="0.92.2 (unknown)"
+   sodipodi:docname="hoodie_back.svg">
+  <defs
+     id="defs921" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="653.57321"
+     inkscape:cy="158.7463"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="mm"
+     inkscape:pagecheckerboard="true"
+     inkscape:snap-page="true"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:object-paths="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:window-width="1859"
+     inkscape:window-height="1176"
+     inkscape:window-x="1981"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1511"
+       units="mm"
+       spacingx="1"
+       spacingy="1"
+       originx="-130.00395"
+       originy="-202.76047" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata924">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-64.868325,-153.365)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.38710356px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.15967761"
+       x="63.948582"
+       y="175.13225"
+       id="text969"><tspan
+         sodipodi:role="line"
+         id="tspan967"
+         x="63.948582"
+         y="175.13225"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.65810204px;font-family:sans-serif, 'Russo One';-inkscape-font-specification:'sans-serif, Russo One';fill:#ffffff;fill-opacity:1;stroke-width:0.15967761">Irish Interfirms Gaming League</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.89781618px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#3d7915;fill-opacity:1;stroke:none;stroke-width:0.1224454"
+       x="144.51593"
+       y="205.43253"
+       id="text969-3"><tspan
+         sodipodi:role="line"
+         id="tspan967-6"
+         x="144.51593"
+         y="205.43253"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:23.50952148px;font-family:Play;-inkscape-font-specification:'Play Bold';fill:#3d7915;fill-opacity:1;stroke-width:0.1224454">www.irishinterfirmsgaming.ie</tspan></text>
+  </g>
+</svg>

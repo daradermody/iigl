@@ -7,11 +7,11 @@ import {Component} from '@angular/core';
 })
 export class HomeComponent {
   gameIcons = [
-    '/assets/img/game_logos/league_of_legends_100.webp',
-    '/assets/img/game_logos/overwatch_100.webp',
-    '/assets/img/game_logos/rocket_league_100.webp',
-    '/assets/img/game_logos/hearthstone_100.webp',
-    '/assets/img/game_logos/dota_100.webp',
-    '/assets/img/game_logos/starcraft_100.webp'
+    '/assets/img/game_logos/league_of_legends.webp',
+    '/assets/img/game_logos/overwatch.webp',
+    '/assets/img/game_logos/rocket_league.webp',
+    '/assets/img/game_logos/hearthstone.webp',
+    '/assets/img/game_logos/dota.webp',
+    '/assets/img/game_logos/starcraft.webp'
   ];
 }
