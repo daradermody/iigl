@@ -13,6 +13,7 @@ import {PasswordValidation} from './password-validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  errorBoxShadow = '0px 0px 10px 5px #CC0000';
   form: FormGroup;
   games: any = [
     {

@@ -21,9 +21,11 @@
              name="password" required autocomplete="current-password"
              formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')" title="password">
 
-      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Confirm password" #confirmPassword
-             name="confirmPassword" required autocomplete="current-password"
-             formControlName="confirmPassword" type="password" [style.box-shadow]="getBoxShadow('confirmPassword')" title="confirmPassword">
+      <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Confirm password"
+             #confirmPassword name="confirmPassword" required autocomplete="current-password"
+             formControlName="confirmPassword" type="password"
+             [style.box-shadow]="confirmPassword.value != password.value ? this.errorBoxShadow : ''"
+             title="confirmPassword">
 
       <p class="mt-5 mb-0">
         You can also tell us what games you like. We'll help you find people in your company that you can team up with.
