@@ -17,27 +17,27 @@ export class RegisterComponent {
   games: any = [
     {
       name: 'League of Legends',
-      imageUri: '/assets/img/game_logos/league_of_legends_100.webp',
+      imageUri: '/assets/img/game_logos/league_of_legends.webp',
       selected: false
     }, {
       name: 'Overwatch',
-      imageUri: '/assets/img/game_logos/overwatch_100.webp',
+      imageUri: '/assets/img/game_logos/overwatch.webp',
       selected: false
     }, {
       name: 'Rocket League',
-      imageUri: '/assets/img/game_logos/rocket_league_100.webp',
+      imageUri: '/assets/img/game_logos/rocket_league.webp',
       selected: false
     }, {
       name: 'Hearthstone',
-      imageUri: '/assets/img/game_logos/hearthstone_100.webp',
+      imageUri: '/assets/img/game_logos/hearthstone.webp',
       selected: false
     }, {
       name: 'Dota 2',
-      imageUri: '/assets/img/game_logos/dota_100.webp',
+      imageUri: '/assets/img/game_logos/dota.webp',
       selected: false
     }, {
       name: 'StarCraft II',
-      imageUri: '/assets/img/game_logos/starcraft_100.webp',
+      imageUri: '/assets/img/game_logos/starcraft.webp',
       selected: false
     }
   ];
