@@ -30,6 +30,7 @@ button:disabled {
   border: 1px solid var(--iigl-grey);
   padding: 0.25rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .card:hover {

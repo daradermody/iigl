@@ -24,7 +24,7 @@
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Confirm password"
              #confirmPassword name="confirmPassword" required autocomplete="current-password"
              formControlName="confirmPassword" type="password"
-             [style.box-shadow]="confirmPassword.value != password.value ? this.errorBoxShadow : ''"
+             [style.box-shadow]="confirmPassword.value != password.value && this.form.get('confirmPassword').touched ? this.errorBoxShadow : ''"
              title="confirmPassword">
 
       <p class="mt-5 mb-0">
