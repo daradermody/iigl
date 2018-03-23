@@ -46,7 +46,7 @@ button {
   border: 1px solid transparent;
 }
 
-button:disabled {
+button.disabled {
   background-color: grey;
 }
 
