@@ -22,32 +22,16 @@ function start_prod_server() {
     exit 1
   fi
 
-  # Build front-end
-  $(npm bin)/ng build --prod --aot
-
-  # Compile server-side
-  $(npm bin)/tsc --project server/tsconfig.server.json
-
-  copy_resources_to_dist
+  ./build.sh
 
   if command_exists sudo; then
     echo -e "\nUsing system port requires sudo privileges"
-    sudo NODE_ENV=production PORT=443 node dist/server
+    sudo NODE_ENV=production node dist/server
   else
-    NODE_ENV=production PORT=443 node dist/server
+    NODE_ENV=production node dist/server
   fi
 }
 
-function copy_resources_to_dist() {
-  # Copy server resource files (i.e. non-Typescript files)
-  for file in $(find server -type f ! -name "*.ts"); do
-    target_dir="dist/$(dirname ${file})"
-    test -d ${target_dir} || mkdir -p ${target_dir}
-    cp ${file} ${target_dir}
-  done
-
-  cp -r ssl dist/ssl
-}
 function cygwin_run_as_administrator() {
   id --groups | grep --quiet --extended-regexp '\<(114|544)\>'
 }
