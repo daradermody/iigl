@@ -7,6 +7,7 @@ import * as fs from 'fs';
 import * as morgan from 'morgan';
 import tournaments from './routes/tournaments';
 import auth from './routes/auth';
+import monitoring from './monitoring';
 
 
 class App {
@@ -46,6 +47,7 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({extended: false}));
     this.app.use(morgan('dev'));
+    this.app.use(monitoring);
   }
 
   private setupApi() {
