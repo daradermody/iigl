@@ -22,6 +22,6 @@ export class NotificationService {
   private emitMessageObject(message: InfoMessage) {
     clearTimeout(this.timeout);
     this.message.next(message);
-    this.timeout = setTimeout(() => {this.message.next(null); }, 3000);
+    this.timeout = setTimeout(() => {this.message.next(null); }, 5000);
   }
 }

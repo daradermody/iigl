@@ -10,8 +10,4 @@ export class User {
     this.password = password;
     this.games = games;
   }
-
-  isValid(): boolean {
-    return !!(this.email && this.battlefy && this.password);
-  }
 }
