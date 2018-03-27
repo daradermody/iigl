@@ -4,6 +4,7 @@ import * as crypto from 'crypto';
 import {Users} from '../database/storage';
 import {UserAuthentication} from '../security';
 import {Emailer} from '../emailing';
+import {User} from '../../src/app/data_types/user';
 
 class Auth {
   router = Router();
@@ -12,7 +13,8 @@ class Auth {
     this.setupRoutes();
   }
 
-  private static usersToBeRegistered = {};
+  // TODO: Does not work with HA solutions (i.e. clustered-mode)
+  private static usersToBeRegistered: {[token: string]: User} = {};
 
   setupRoutes() {
     this.router.post('/login', Auth.login);
@@ -32,9 +34,9 @@ class Auth {
   }
 
   static registerUser(req: Request, res: Response) {
-    const user = req.body;
+    const user: User = req.body;
     if (Users.userExists(user.email)) {
-      res.status(409).send('Email ' + user.email + ' already registered!');
+      res.status(409).json({message: `Email ${user.email} already registered!`});
       return;
     }
 
@@ -44,15 +46,22 @@ class Auth {
     const templateData = {
       accountConfirmationUrl: req.protocol + '://' + req.get('host') + '/login?token=' + token
     };
-    Emailer.sendMail(user.email, 'registration_email', templateData);
-    Auth.usersToBeRegistered[token] = user;
-
-    res.status(201).json({redirect: '/'});
+    Emailer.sendMail(user.email, 'registration_email', templateData)
+      .then(() => {
+        console.log(`Adding ${user.email} with token ${token}`);
+        Auth.usersToBeRegistered[token] = user;
+        console.dir(Auth.usersToBeRegistered);
+        res.status(201).json({redirect: '/'});
+      })
+      .catch(() => {
+        res.status(500).json({message: 'Server error sending registration email'});
+      });
   }
 
   static confirmAccount(req: Request, res: Response) {
-    const token = req.query.token;
-
+    const token: string = req.query.token;
+    console.log('Looking for token:' + token);
+    console.dir(Auth.usersToBeRegistered);
     if (!(token in Auth.usersToBeRegistered)) {
       // TODO: Make error messages more consistent by using error classes
       res.status(401).json({message: 'Token has expired'});
@@ -60,8 +69,9 @@ class Auth {
     }
 
     const user = Auth.usersToBeRegistered[token];
-    delete Auth.usersToBeRegistered[token];
+    console.log('Registering user ' + user.email);
     Users.addUser(user);
+    delete Auth.usersToBeRegistered[token];
     res.status(200).json();
   }
 }

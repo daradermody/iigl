@@ -1,20 +1,17 @@
 module.exports = {
-  /**
-   * Application configuration section
-   * http://pm2.keymetrics.io/docs/usage/application-declaration/
-   */
   apps: [
     {
       name: 'iigl',
-      script: __dirname + '/dist/server',
-      instances: 0,
+      script: 'dist/server',
+      instances: 1,
       exec_mode: 'cluster',
+      cwd: __dirname,
       env: {
         NODE_ENV: 'production',
       },
       log_date_format: 'YYYY-MM-DD HH:mm',
-      out_file: __dirname + '/dist/logs/server.log',
-      error_file: __dirname + '/dist/logs/error.log',
+      out_file: 'dist/logs/server.log',
+      error_file: 'dist/logs/error.log',
       combine_logs: true,
     },
   ],

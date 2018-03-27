@@ -43,7 +43,7 @@ class Tournaments {
 
   // TODO: Dynamically generate the JWT token
   private static getBattlefyJwtToken(): string {
-    const battlefyJwtFile = __dirname + '/battlefy_jwt.txt';
+    const battlefyJwtFile = 'server/routes/battlefy_jwt.txt';
     if (!fs.existsSync(battlefyJwtFile)) {
       throw new Error(`Battlefy JWT token missing from ${battlefyJwtFile}. Contact the project owner for it.`);
     } else {

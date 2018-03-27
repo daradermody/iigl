@@ -74,7 +74,8 @@ export class RegisterComponent {
   register(): Promise<void> {
     return this.verifyForm(this.form)
       .then((formValues) => this.registerUser(formValues))
-      .then(() => this.notifier.emitMessage('Registration email has been sent'));
+      .then(() => this.notifier.emitMessage('Registration email has been sent'))
+      .catch((e) => this.notifier.emitError(e));
   }
 
   verifyForm(form: FormGroup): Promise<any> {
@@ -114,7 +115,7 @@ export class RegisterComponent {
       this.authService.register(user)
         .subscribe(
           (res: HttpResponse<any>) => this.router.navigateByUrl(res['redirect']).then(() => resolve()),
-          (error: HttpErrorResponse) => reject((error.status === 500) ? error.message : error.error)
+          (error: HttpErrorResponse) => reject(error.error.message)
         );
     });
   }

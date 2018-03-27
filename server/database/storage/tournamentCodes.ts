@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import {Tournament} from '../../../src/app/data_types/tournament';
 
 export class TournamentCodes {
-  private static tournamentFile = __dirname + '/../data_files/tournamentCodes.json';
+  private static tournamentFile = 'server/database/data_files/tournamentCodes.json';
 
   static getCode(tournamentId: string, email: string): string {
     return TournamentCodes.getCodeFromTournamentCodes(this.getTournamentCodes(), tournamentId, email);

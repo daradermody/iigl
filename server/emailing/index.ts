@@ -1,5 +1,6 @@
 import * as nodemailer from 'nodemailer';
 import * as fs from 'fs';
+
 const Email = require('email-templates');
 
 class AuthInfo {
@@ -14,39 +15,39 @@ class AuthInfo {
 
 export class Emailer {
   private static authInfo = Emailer.getAuthInformation();
-  private static transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: Emailer.authInfo,
-  });
-
-  static sendMail(destinationEmail: string, template: string, variables: any) {
-    const email = new Email({
-      message: {
-        from: `IIGL <${Emailer.authInfo.user}>`
+  private static email_config = {
+    message: {
+      from: `IIGL <${Emailer.authInfo.user}>`
+    },
+    transport: nodemailer.createTransport({
+      service: 'gmail',
+      auth: Emailer.authInfo,
+    }),
+    views: {
+      options: {
+        extension: 'mustache'
       },
-      transport: Emailer.transporter,
-      views: {
-        options: {
-          extension: 'mustache'
-        },
-        root: __dirname + '/templates'
-      }
-    });
+      root: 'server/emailing/templates'
+    }
+  };
 
-    email
-      .send({
+  static sendMail(destinationEmail: string, template: string, variables: { [a: string]: string }): Promise<void> {
+    return new Promise((resolve, reject) => {
+      new Email(this.email_config).send({
         template: template,
-        message: {
-          to: destinationEmail
-        },
+        message: {to: destinationEmail},
         locals: variables
-      })
-      .then(console.log)
-      .catch(console.error);
+      }).then(console.log)
+        .then(resolve)
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        });
+    });
   }
 
   private static getAuthInformation(): AuthInfo {
-    const emailAuthFile = __dirname + '/email_auth.json';
+    const emailAuthFile = 'server/emailing/email_auth.json';
 
     if (!fs.existsSync(emailAuthFile)) {
       const authInfo = new AuthInfo('irishinterfirmsgaming@gmail.com', '[password]');

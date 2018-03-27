@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import {User} from '../../../src/app/data_types/user';
 
 export class Users {
-  private static usersFile = __dirname + '/../data_files/users.json';
+  private static usersFile = 'server/database/data_files/users.json';
 
   static addUser(user: User) {
     const users = Users.getUsers();

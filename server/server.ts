@@ -19,8 +19,8 @@ class App {
     this.setupApi();
   }
 
-  private static private_key = __dirname + '/../ssl/key.pem';
-  private static public_cert = __dirname + '/../ssl/cert.pem';
+  private static private_key = 'ssl/key.pem';
+  private static public_cert = 'ssl/cert.pem';
 
   public startServer(port) {
     this.app.set('port', port);

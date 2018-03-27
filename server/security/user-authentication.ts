@@ -8,8 +8,8 @@ export interface Request extends express.Request {
 }
 
 export class UserAuthentication {
-  private static rsa_public_key = fs.readFileSync(__dirname + '/jwt_certs/jwt.pem');
-  private static rsa_private_key = fs.readFileSync(__dirname + '/jwt_certs/jwt_key.pem');
+  private static rsa_public_key = fs.readFileSync('server/security/jwt_certs/jwt.pem');
+  private static rsa_private_key = fs.readFileSync('server/security/jwt_certs/jwt_key.pem');
 
   static authenticateUserRequest(req: Request, res: express.Response, next: express.NextFunction) {
     if (!req.headers['authorization'] || !(<string>req.headers['authorization']).startsWith('Bearer')) {
