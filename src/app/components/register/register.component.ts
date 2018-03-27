@@ -80,9 +80,10 @@ export class RegisterComponent {
 
   verifyForm(form: FormGroup): Promise<any> {
     return new Promise((resolve, reject) => {
-      RegisterComponent.verifyNoFieldsEmpty(form);
-
-      (<any>Object).values(this.form.controls).forEach(control => control.markAsTouched());
+      (<any>Object).values(this.form.controls).forEach(control => {
+        control.markAsTouched();
+        control.markAsDirty();
+      });
       if (!this.form.valid) {
         throw new Error('The form still has errors');
       }
@@ -97,14 +98,6 @@ export class RegisterComponent {
           reject('The form still has errors');
         });
     });
-  }
-
-  static verifyNoFieldsEmpty(form) {
-    for (const key of Object.keys(form.value)) {
-      if (!form.value[key]) {
-        throw new Error('Some fields are empty');
-      }
-    }
   }
 
   registerUser(formValues): Promise<void> {
