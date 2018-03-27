@@ -2,6 +2,16 @@ import * as nodemailer from 'nodemailer';
 import * as fs from 'fs';
 const Email = require('email-templates');
 
+class AuthInfo {
+  user: string;
+  pass: string;
+
+  constructor(username, password) {
+    this.user = username;
+    this.pass = password;
+  }
+}
+
 export class Emailer {
   private static authInfo = Emailer.getAuthInformation();
   private static transporter = nodemailer.createTransport({
@@ -50,15 +60,5 @@ export class Emailer {
     }
 
     return authInformation;
-  }
-}
-
-class AuthInfo {
-  user: string;
-  pass: string;
-
-  constructor(username, password) {
-    this.user = username;
-    this.pass = password;
   }
 }
