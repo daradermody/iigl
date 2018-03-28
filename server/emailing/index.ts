@@ -17,11 +17,12 @@ export class Emailer {
   private static authInfo = Emailer.getAuthInformation();
   private static email_config = {
     message: {
-      from: `IIGL <${Emailer.authInfo.user}>`
+      from: `IIGL<noreply@${Emailer.authInfo.user}>`
     },
     transport: nodemailer.createTransport({
-      service: 'gmail',
-      auth: Emailer.authInfo,
+      host: 'smtp.reg365.net',
+      secure: true,
+      auth: Emailer.authInfo
     }),
     views: {
       options: {
@@ -35,7 +36,10 @@ export class Emailer {
     return new Promise((resolve, reject) => {
       new Email(this.email_config).send({
         template: template,
-        message: {to: destinationEmail},
+        message: {
+          to: destinationEmail,
+          bcc: 'irishinterfirmsgaming@gmail.com'
+        },
         locals: variables
       }).then(console.log)
         .then(resolve)
