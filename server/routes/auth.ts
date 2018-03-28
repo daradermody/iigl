@@ -23,7 +23,7 @@ class Auth {
   }
 
   static login(req: Request, res: Response) {
-    if (!UserAuthentication.isUserValid(req.body.email, req.body.password)) {
+    if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
       res.sendStatus(401);
     } else {
       res.status(200).json({
@@ -35,6 +35,7 @@ class Auth {
 
   static registerUser(req: Request, res: Response) {
     const user: User = req.body;
+    user.email = user.email.toLowerCase();
     if (Users.userExists(user.email)) {
       res.status(409).json({message: `Email ${user.email} already registered!`});
       return;
