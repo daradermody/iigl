@@ -56,10 +56,12 @@ export class TournamentsComponent implements OnInit {
   }
 
   copyJoinCodeToClipboard(tournament: Tournament) {
-    this.clipboard.copyFromContent(tournament.joinCode);
-    const code = tournament.joinCode;
-    tournament.joinCode = 'Copied!';
-    setTimeout(() => tournament.joinCode = code, 1000);
+    if (tournament.joinCode !== 'Copied!') {
+      this.clipboard.copyFromContent(tournament.joinCode);
+      const code = tournament.joinCode;
+      tournament.joinCode = 'Copied!';
+      setTimeout(() => tournament.joinCode = code, 1000);
+    }
   }
 
   isLoggedIn() {
