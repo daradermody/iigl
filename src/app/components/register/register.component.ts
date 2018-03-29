@@ -17,27 +17,27 @@ export class RegisterComponent {
   games: any = [
     {
       name: 'League of Legends',
-      imageUri: '/assets/img/game_logos/league_of_legends.webp',
+      imageUri: '/assets/img/game_logos/league_of_legends.png',
       selected: false
     }, {
       name: 'Overwatch',
-      imageUri: '/assets/img/game_logos/overwatch.webp',
+      imageUri: '/assets/img/game_logos/overwatch.png',
       selected: false
     }, {
       name: 'Rocket League',
-      imageUri: '/assets/img/game_logos/rocket_league.webp',
+      imageUri: '/assets/img/game_logos/rocket_league.png',
       selected: false
     }, {
       name: 'Hearthstone',
-      imageUri: '/assets/img/game_logos/hearthstone.webp',
+      imageUri: '/assets/img/game_logos/hearthstone.png',
       selected: false
     }, {
       name: 'Dota 2',
-      imageUri: '/assets/img/game_logos/dota.webp',
+      imageUri: '/assets/img/game_logos/dota.png',
       selected: false
     }, {
       name: 'StarCraft II',
-      imageUri: '/assets/img/game_logos/starcraft.webp',
+      imageUri: '/assets/img/game_logos/starcraft.png',
       selected: false
     }
   ];
@@ -74,7 +74,7 @@ export class RegisterComponent {
   register(): Promise<void> {
     return this.verifyForm(this.form)
       .then((formValues) => this.registerUser(formValues))
-      .then(() => this.notifier.emitMessage('Registration email has been sent'))
+      .then(() => this.notifier.emitMessage('Registration email has been sent (also check Junk)'))
       .catch((e) => this.notifier.emitError(e));
   }
 
