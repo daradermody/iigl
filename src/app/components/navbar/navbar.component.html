@@ -25,20 +25,10 @@
     <i class="fas fa-user-plus fa-3x"></i>
     <p>REGISTER</p>
   </a>
-
-  <div class="dropdown-container" *ngIf="isLoggedIn()">
-    <div class="nav-item black-hover">
-      <i class="fas fa-user-circle fa-3x"></i>
-      <p>PROFILE</p>
-    </div>
-
-    <div class="dropdown-content">
-      <a routerLink="home" (click)="logout()" class="nav-item black-hover">
-        <i data-fa-transform="flip-h" class="fas fa-sign-out-alt fa-3x"></i>
-        <p>LOGOUT</p>
-      </a>
-    </div>
-  </div>
+  <a routerLink="home" *ngIf="isLoggedIn()" (click)="logout()" class="nav-item black-hover">
+    <i data-fa-transform="flip-h" class="fas fa-sign-out-alt fa-3x"></i>
+    <p>LOGOUT</p>
+  </a>
 </nav>
 
 <nav class="horizontal-navbar d-block d-sm-none">
@@ -74,19 +64,9 @@
       <span>REGISTER</span>
     </a>
 
-    <div class="dropdown-container" *ngIf="isLoggedIn()">
-      <a class="nav-item black-hover" style="text-align: left;">
-        <i class="fas fa-user-circle"></i>
-        <span>PROFILE</span>
-      </a>
-
-      <div class="dropdown-content">
-        <a routerLink="home" (click)="showNav = false; logout()" class="nav-item black-hover">
-          <i data-fa-transform="flip-h" class="fas fa-sign-out-alt"></i>
-          <span>LOGOUT</span>
-        </a>
-      </div>
-    </div>
-
+    <a routerLink="home" *ngIf="isLoggedIn()" (click)="showNav = false; logout()" class="nav-item">
+      <i data-fa-transform="flip-h" class="fas fa-sign-out-alt"></i>
+      <span>LOGOUT</span>
+    </a>
   </div>
 </nav>
