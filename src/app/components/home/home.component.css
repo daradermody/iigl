@@ -76,7 +76,6 @@ button {
 .more-info-section {
   position: relative;
   padding: 32px 20px;
-  z-index: 100;
   background-color: var(--iigl-black);
   text-align: justify;
 }
