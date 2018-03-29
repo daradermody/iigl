@@ -58,6 +58,18 @@ button.disabled {
   font-family: monospace;
 }
 
+h4 {
+  margin-top: 3rem;
+  color: #f1f1f1;
+}
+
+.join-code-gif {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid var(--iigl-green);
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 768px) {
   table img {
     height: 40px;
