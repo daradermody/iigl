@@ -20,6 +20,7 @@ table th:nth-child(1) {
 
 table td:last-child {
   width: 1%;
+  cursor: auto;
 }
 
 tbody tr {
@@ -40,7 +41,7 @@ table img {
 button {
   width: 75px;
   white-space: nowrap;
-  cursor: auto;
+  cursor: pointer;
   background-color: var(--iigl-green);
   color: white;
   vertical-align: middle;
