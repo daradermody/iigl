@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One|Play');
+
 :root {
   --iigl-green: #3d7915;
   --iigl-grey: #222;
@@ -12,7 +14,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Raleway, "Open Sans", sans-serif;
+  font-family: Play, "Open Sans", sans-serif;
 }
 
 a {

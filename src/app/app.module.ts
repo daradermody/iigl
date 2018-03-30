@@ -18,6 +18,8 @@ import {TournamentService} from './services/tournament.service';
 import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LegalDocumentsComponent } from './components/legal-documents/legal-documents.component';
+import {DocumentService} from './services/document.service';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     TournamentsComponent,
     NavbarComponent,
     FooterComponent,
+    LegalDocumentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AuthService,
     TournamentService,
     ClipboardService,
+    DocumentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

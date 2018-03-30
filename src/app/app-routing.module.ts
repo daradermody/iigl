@@ -6,6 +6,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
+import {LegalDocumentsComponent} from './components/legal-documents/legal-documents.component';
 
 const ROUTES: Routes = [
   {
@@ -30,6 +31,9 @@ const ROUTES: Routes = [
   }, {
     path: 'tournaments',
     component: TournamentsComponent
+  }, {
+    path: 'legalDocuments/:docName',
+    component: LegalDocumentsComponent
   }
 ];
 

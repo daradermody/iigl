@@ -1,0 +1,25 @@
+<div class="w3-padding-large" id="main">
+  <div class="w3-padding-64 w3-content">
+    <h2 class="page-heading">Legal Documents</h2>
+
+    <div class="row">
+
+      <div class="col-md-4 col-lg-3 col-xl-2">
+        <nav class="nav flex-column nav-pills">
+          <a class="nav-link" *ngFor="let doc of docs" [ngClass]="{'active': selectedDoc && doc.name === selectedDoc.name}"
+             (click)="updateDocContent(doc); selectedDoc = doc">{{doc.name}}</a>
+        </nav>
+      </div>
+
+      <div class="col-md-8 col-lg-9 col-xl-10">
+        <div>
+          <div *ngIf="selectedDoc; else blah" [innerHtml]="selectedDoc.html"></div>
+          <ng-template #blah>
+            Select a document to peruse!
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

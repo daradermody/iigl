@@ -1,0 +1,16 @@
+.nav {
+  background-color: var(--iigl-grey);
+  border-radius: 0.25rem;
+  margin-bottom: 20px;
+}
+
+.nav-pills .nav-link {
+  border-radius: inherit;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.nav-pills .active {
+  background-color: var(--iigl-green);
+}
+
