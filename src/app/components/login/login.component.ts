@@ -48,13 +48,7 @@ export class LoginComponent implements OnInit {
               this.notifier.emitMessage('Logged in');
             });
           },
-          (error: HttpErrorResponse) => {
-            if (error.status === 401) {
-              this.notifier.emitError('Username or password is invalid');
-            } else {
-              this.notifier.emitError(error.message);
-            }
-          }
+          (error: HttpErrorResponse) => this.notifier.emitError(error.message)
         );
     }
   }

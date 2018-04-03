@@ -24,7 +24,11 @@ class Auth {
 
   static login(req: Request, res: Response) {
     if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
-      res.sendStatus(401);
+      if (Object.values(this.usersToBeRegistered).find(user => user.email === req.body.email.toLowerCase())) {
+        res.sendStatus(401).json({message: 'You need to confirm your account first; check your email'});
+      } else {
+        res.sendStatus(401).json({message: 'Username or password is invalid'});
+      }
     } else {
       res.status(200).json({
         idToken: UserAuthentication.generateJsonWebToken(req.body.email),
