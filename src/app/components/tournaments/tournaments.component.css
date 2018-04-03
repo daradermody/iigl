@@ -18,6 +18,11 @@ table th:nth-child(1) {
   padding-left: 15px;
 }
 
+table td:last-child {
+  width: 1%;
+  cursor: auto;
+}
+
 tbody tr {
   cursor: pointer;
 }
@@ -36,7 +41,7 @@ table img {
 button {
   width: 75px;
   white-space: nowrap;
-  cursor: auto;
+  cursor: pointer;
   background-color: var(--iigl-green);
   color: white;
   vertical-align: middle;
@@ -46,12 +51,24 @@ button {
   border: 1px solid transparent;
 }
 
-button:disabled {
+button.disabled {
   background-color: grey;
 }
 
 .monospaced {
   font-family: monospace;
+}
+
+h4 {
+  margin-top: 3rem;
+  color: #f1f1f1;
+}
+
+.join-code-gif {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid var(--iigl-green);
+  border-radius: 5px;
 }
 
 @media only screen and (min-width: 768px) {

@@ -1,11 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ErrorHandler} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {NotificationService} from '../../services/notification.service';
 import {User} from '../../data_types/user';
-import {HttpErrorResponse} from '@angular/common/http';
-import {PasswordValidation} from './password-validation';
+import {CustomValidators} from './validators';
 
 @Component({
   selector: 'app-register',
@@ -13,32 +12,31 @@ import {PasswordValidation} from './password-validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  errorBoxShadow = '0px 0px 10px 5px #CC0000';
   form: FormGroup;
   games: any = [
     {
       name: 'League of Legends',
-      imageUri: '/assets/img/game_logos/league_of_legends.webp',
+      imageUri: '/assets/img/game_logos/league_of_legends.png',
       selected: false
     }, {
       name: 'Overwatch',
-      imageUri: '/assets/img/game_logos/overwatch.webp',
+      imageUri: '/assets/img/game_logos/overwatch.png',
       selected: false
     }, {
       name: 'Rocket League',
-      imageUri: '/assets/img/game_logos/rocket_league.webp',
+      imageUri: '/assets/img/game_logos/rocket_league.png',
       selected: false
     }, {
       name: 'Hearthstone',
-      imageUri: '/assets/img/game_logos/hearthstone.webp',
+      imageUri: '/assets/img/game_logos/hearthstone.png',
       selected: false
     }, {
       name: 'Dota 2',
-      imageUri: '/assets/img/game_logos/dota.webp',
+      imageUri: '/assets/img/game_logos/dota.png',
       selected: false
     }, {
       name: 'StarCraft II',
-      imageUri: '/assets/img/game_logos/starcraft.webp',
+      imageUri: '/assets/img/game_logos/starcraft.png',
       selected: false
     }
   ];
@@ -48,70 +46,72 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private notifier: NotificationService) {
+              private notifier: NotificationService,
+              private errorHandler: ErrorHandler) {
 
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      battlefy: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(3)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(3)]]
+      email: ['', CustomValidators.email],
+      battlefy: ['', CustomValidators.required],
+      password: ['', CustomValidators.minLength(3)],
+      confirmPassword: ['']
     }, {
-      validator: PasswordValidation.MatchPassword
+      validator: CustomValidators.fieldsMatch('confirmPassword', 'password')
     });
   }
 
-  async registerWithLoadingBar() {
-    this.processing = true;
-    try {
-      await this.register();
-    } finally {
-      this.processing = false;
-    }
-  }
-
-  async register() {
-    const val = this.form.value;
-
-    if (!this.form.valid) {
-      this.notifier.emitError('The form is not complete');
-      return;
-    }
-
-    try {
-      await this.authService.getBattlefyAccountInfo(val.battlefy).toPromise();
-      document.getElementById('battlefy').style.boxShadow = 'none';
-    } catch (err) {
-      this.notifier.emitError(`"${val.battlefy}" does not exist in Battlefy`);
-      document.getElementById('battlefy').style.boxShadow = '0px 0px 10px 5px #CC0000';
-      return;
-    }
-
-    const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
-    const user = new User(val.email, val.battlefy, val.password, selectedGames);
-
-    if (user.isValid()) {
-      this.authService.register(user)
-        .subscribe(
-          (r) => {
-            this.router.navigateByUrl(r['redirect']).then(() => {
-              this.notifier.emitMessage('Registration user has been sent');
-            });
-          },
-          (error: HttpErrorResponse) => {
-            console.dir(error);
-            if (error.status === 500) {
-              this.notifier.emitError(error.message);
-            } else {
-              this.notifier.emitError(error.error);
-            }
-          }
-        );
+  getErrors(controlName: string): string {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
+      return (<any>Object).values(control.errors).join('<br>');
+    } else {
+      return '';
     }
   }
 
   getBoxShadow(controlName) {
-    if (this.form.get(controlName).value && this.form.get(controlName).touched && this.form.get(controlName).errors) {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
       return '0px 0px 10px 5px #CC0000';
     }
+  }
+
+  register() {
+    this.processing = true;
+    this.verifyForm(this.form)
+      .then((formValues) => this.registerUser(formValues))
+      .then(() => this.notifier.emitMessage('Registration email has been sent (also check Junk)'))
+      .catch((e) => this.errorHandler.handleError(e))
+      .then(() => this.processing = false);
+
+  }
+
+  private verifyForm(form: FormGroup): Promise<any> {
+    return new Promise((resolve, reject) => {
+      (<any>Object).values(this.form.controls).forEach(control => {
+        control.markAsTouched();
+        control.markAsDirty();
+      });
+      if (!this.form.valid) {
+        throw new Error('The form still has errors');
+      }
+
+      this.authService.getBattlefyAccountInfo(this.form.value.battlefy).toPromise()
+        .then(() => {
+          document.getElementById('battlefy').style.boxShadow = 'none';
+          resolve(form.value);
+        })
+        .catch(() => {
+          this.form.get('battlefy').setErrors({UserNotFound: 'Username does not exist in Battlefy'});
+          reject('The form still has errors');
+        });
+    });
+  }
+
+  private async registerUser(formValues) {
+    const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
+    const user = new User(formValues.email, formValues.battlefy, formValues.password, selectedGames);
+
+    const res = await this.authService.register(user).toPromise();
+    this.router.navigateByUrl(res['redirect']);
   }
 }

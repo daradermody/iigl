@@ -76,7 +76,6 @@ button {
 .more-info-section {
   position: relative;
   padding: 32px 20px;
-  z-index: 100;
   background-color: var(--iigl-black);
   text-align: justify;
 }
@@ -86,15 +85,12 @@ button {
   margin-top: 6px;
 }
 
-a {
-  color: inherit;
-}
-
 .discord-plug {
   font-family: 'Russo One', sans-serif;
   text-align: center;
   text-decoration: none;
   margin-bottom: 10px;
+  color: white;
 }
 
 .discord-plug p {

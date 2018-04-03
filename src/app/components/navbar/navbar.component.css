@@ -126,11 +126,3 @@ a.nav-item {
   background-color: #000;
 }
 
-.dropdown-content {
-  display: none;
-}
-
-.dropdown-container:hover .dropdown-content {
-  display: block;
-}
-

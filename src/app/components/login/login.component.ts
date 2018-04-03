@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       if ('token' in params) {
         this.authService.confirmAccountCreationToken(params['token']).subscribe(
-          () => this.notifier.emitMessage('Registration complete! Please login'),
-          (error) => this.notifier.emitError('Error: ' + error.error.message)
+          () => this.notifier.emitMessage('Registration complete! Please login')
         );
       }
     });
@@ -38,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     const val = this.form.value;
+    val.email = val.email.toLowerCase();
 
     if (val.email && val.password) {
       this.authService.login(val.email, val.password)
@@ -46,13 +46,6 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/').then(() => {
               this.notifier.emitMessage('Logged in');
             });
-          },
-          (error: HttpErrorResponse) => {
-            if (error.status === 401) {
-              this.notifier.emitError('Username or password is invalid');
-            } else {
-              this.notifier.emitError(error.message);
-            }
           }
         );
     }

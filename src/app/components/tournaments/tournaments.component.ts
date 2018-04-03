@@ -21,8 +21,8 @@ export class TournamentsComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
         if (!this.tournaments) {
-          this.notifier.emitError('Could not get tournaments for some unknown reason. :(');
           this.tournaments = [];
+          throw new Error('Could not get tournaments for some unknown reason. :(');
         }
       }, 10000
     );
@@ -30,8 +30,8 @@ export class TournamentsComponent implements OnInit {
     this.tournamentService.getTournamenets().subscribe(
       (data) => this.tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start)),
       (error) => {
-        this.notifier.emitError('Could not get tournaments: ' + error.message);
         this.tournaments = [];
+        throw error;
       }
     );
   }
@@ -42,24 +42,24 @@ export class TournamentsComponent implements OnInit {
 
   getJoinCode(tournament: Tournament) {
     if (!this.isLoggedIn()) {
-      this.notifier.emitError('You must login to join a tournament!');
-      return;
+      throw new Error('You must login to join a tournament!');
     }
 
     this.tournamentService.getJoinCode(tournament._id).subscribe(
       (data) => {
-        tournament.joinCode = data['code'];
-        this.notifier.emitMessage('Click the code to copy to clipboard');
-      },
-      (error) => this.notifier.emitError(error.error.message)
+        tournament.joinCode = data['status'];
+        this.notifier.emitMessage('Click the status to copy to clipboard');
+      }
     );
   }
 
   copyJoinCodeToClipboard(tournament: Tournament) {
-    this.clipboard.copyFromContent(tournament.joinCode);
-    const code = tournament.joinCode;
-    tournament.joinCode = 'Copied!';
-    setTimeout(() => tournament.joinCode = code, 1000);
+    if (tournament.joinCode !== 'Copied!') {
+      this.clipboard.copyFromContent(tournament.joinCode);
+      const code = tournament.joinCode;
+      tournament.joinCode = 'Copied!';
+      setTimeout(() => tournament.joinCode = code, 1000);
+    }
   }
 
   isLoggedIn() {

@@ -7,6 +7,7 @@ import * as fs from 'fs';
 import * as morgan from 'morgan';
 import tournaments from './routes/tournaments';
 import auth from './routes/auth';
+import monitoring from './monitoring';
 
 
 class App {
@@ -18,13 +19,12 @@ class App {
     this.setupApi();
   }
 
-  private static private_key = __dirname + '/../ssl/key.pem';
-  private static public_cert = __dirname + '/../ssl/cert.pem';
+  private static private_key = 'ssl/key.pem';
+  private static public_cert = 'ssl/cert.pem';
 
   public startServer(port) {
     this.app.set('port', port);
     const server = https.createServer({
-      // TODO: Use signed keys instead of these self-generated ones
       key: fs.readFileSync(App.private_key),
       cert: fs.readFileSync(App.public_cert),
       passphrase: 'shroot',
@@ -46,6 +46,7 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({extended: false}));
     this.app.use(morgan('dev'));
+    this.app.use(monitoring);
   }
 
   private setupApi() {
