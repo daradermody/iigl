@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ErrorHandler} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {NotificationService} from '../../services/notification.service';
 import {User} from '../../data_types/user';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {CustomValidators} from './validators';
 
 @Component({
@@ -47,7 +46,8 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private notifier: NotificationService) {
+              private notifier: NotificationService,
+              private errorHandler: ErrorHandler) {
 
     this.form = this.fb.group({
       email: ['', CustomValidators.email],
@@ -59,26 +59,33 @@ export class RegisterComponent {
     });
   }
 
-  registerWithLoadingBar() {
-    this.processing = true;
-    this.register()
-      .then(() => this.processing = false)
-      .catch((e) => {
-        this.notifier.emitError(e);
-        this.processing = false;
-        throw e;
-      });
-
+  getErrors(controlName: string): string {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
+      return (<any>Object).values(control.errors).join('<br>');
+    } else {
+      return '';
+    }
   }
 
-  register(): Promise<void> {
-    return this.verifyForm(this.form)
+  getBoxShadow(controlName) {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
+      return '0px 0px 10px 5px #CC0000';
+    }
+  }
+
+  register() {
+    this.processing = true;
+    this.verifyForm(this.form)
       .then((formValues) => this.registerUser(formValues))
       .then(() => this.notifier.emitMessage('Registration email has been sent (also check Junk)'))
-      .catch((e) => this.notifier.emitError(e));
+      .catch((e) => this.errorHandler.handleError(e))
+      .then(() => this.processing = false);
+
   }
 
-  verifyForm(form: FormGroup): Promise<any> {
+  private verifyForm(form: FormGroup): Promise<any> {
     return new Promise((resolve, reject) => {
       (<any>Object).values(this.form.controls).forEach(control => {
         control.markAsTouched();
@@ -100,32 +107,11 @@ export class RegisterComponent {
     });
   }
 
-  registerUser(formValues): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
-      const user = new User(formValues.email, formValues.battlefy, formValues.password, selectedGames);
+  private async registerUser(formValues) {
+    const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
+    const user = new User(formValues.email, formValues.battlefy, formValues.password, selectedGames);
 
-      this.authService.register(user)
-        .subscribe(
-          (res: HttpResponse<any>) => this.router.navigateByUrl(res['redirect']).then(() => resolve()),
-          (error: HttpErrorResponse) => reject(error.error.message)
-        );
-    });
-  }
-
-  getErrors(controlName: string): string {
-    const control = this.form.get(controlName);
-    if (control.dirty && control.touched && control.errors) {
-      return (<any>Object).values(control.errors).join('<br>');
-    } else {
-      return '';
-    }
-  }
-
-  getBoxShadow(controlName) {
-    const control = this.form.get(controlName);
-    if (control.dirty && control.touched && control.errors) {
-      return '0px 0px 10px 5px #CC0000';
-    }
+    const res = await this.authService.register(user).toPromise();
+    this.router.navigateByUrl(res['redirect']);
   }
 }

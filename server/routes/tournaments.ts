@@ -3,6 +3,7 @@ import axios from 'axios';
 import {TournamentCodes} from '../database/storage';
 import {Request, UserAuthentication} from '../security/user-authentication';
 import * as fs from 'fs';
+import {ServerError} from '../errors/server_error';
 
 class Tournaments {
   public router = express.Router();
@@ -35,9 +36,13 @@ class Tournaments {
         res.status(201).json({code: response.data[0]['code']});
       })
       .catch((error) => {
-        // TODO: Handle server errors more professionally (monitoring, recording, etc.)
-        console.error(error.response.data);
-        res.status(error.response.status).json({message: error.response.data});
+        // TODO: Have some sort of server side error handler (monitoring, recording, etc.)
+        console.error(error.response);
+        const e = new ServerError(
+          `Error generating join code (${error.response.status})`,
+          `Error generating join code (${error.response.status}): ${error.response.data}`
+        );
+        res.status(ServerError.status).json(e);
       });
   }
 

@@ -25,7 +25,6 @@ class App {
   public startServer(port) {
     this.app.set('port', port);
     const server = https.createServer({
-      // TODO: Use signed keys instead of these self-generated ones
       key: fs.readFileSync(App.private_key),
       cert: fs.readFileSync(App.public_cert),
       passphrase: 'shroot',

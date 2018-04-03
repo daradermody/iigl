@@ -2,6 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 import * as express from 'express';
 import {Users} from '../database/storage';
+import {UnauthorizedError} from '../errors/server_error';
 
 export interface Request extends express.Request {
   userEmail: string;
@@ -13,7 +14,7 @@ export class UserAuthentication {
 
   static authenticateUserRequest(req: Request, res: express.Response, next: express.NextFunction) {
     if (!req.headers['authorization'] || !(<string>req.headers['authorization']).startsWith('Bearer')) {
-      res.status(403).json({message: 'You must login first!'});
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('You must login first!'));
       return;
     }
 
@@ -23,7 +24,7 @@ export class UserAuthentication {
       next();
     } catch (e) {
       console.log('An error occurred: ' + e);
-      res.status(403).json({message: 'You must login first!'});
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('You must login first!'));
     }
   }
 

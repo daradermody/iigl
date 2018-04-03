@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './components/app.component';
@@ -16,8 +16,9 @@ import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.compon
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
 import {TournamentService} from './services/tournament.service';
 import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {IiglErrorHandler} from './services/error-handler';
 
 
 @NgModule({
@@ -45,6 +46,10 @@ import { FooterComponent } from './components/footer/footer.component';
     AuthService,
     TournamentService,
     ClipboardService,
+    {
+      provide: ErrorHandler,
+      useClass: IiglErrorHandler
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

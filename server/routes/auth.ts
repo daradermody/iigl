@@ -5,6 +5,7 @@ import {Users} from '../database/storage';
 import {UserAuthentication} from '../security';
 import {Emailer} from '../emailing';
 import {User} from '../../src/app/data_types/user';
+import {ConflictError, NotFoundError, ServerError, UnauthorizedError} from '../errors/server_error';
 
 class Auth {
   router = Router();
@@ -24,7 +25,7 @@ class Auth {
 
   static login(req: Request, res: Response) {
     if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
-      res.sendStatus(401);
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
     } else {
       res.status(200).json({
         idToken: UserAuthentication.generateJsonWebToken(req.body.email),
@@ -37,7 +38,7 @@ class Auth {
     const user: User = req.body;
     user.email = user.email.toLowerCase();
     if (Users.userExists(user.email)) {
-      res.status(409).json({message: `Email ${user.email} already registered!`});
+      res.status(ConflictError.status).json(new ConflictError(`Email ${user.email} already registered!`));
       return;
     }
 
@@ -55,7 +56,7 @@ class Auth {
         res.status(201).json({redirect: '/'});
       })
       .catch(() => {
-        res.status(500).json({message: 'Server error sending registration email'});
+        res.status(ServerError.status).json(new ServerError('Server error sending registration email'));
       });
   }
 
@@ -64,8 +65,7 @@ class Auth {
     console.log('Looking for token:' + token);
     console.dir(Auth.usersToBeRegistered);
     if (!(token in Auth.usersToBeRegistered)) {
-      // TODO: Make error messages more consistent by using error classes
-      res.status(401).json({message: 'Token has expired'});
+      res.status(NotFoundError.status).json(new NotFoundError('Token not found or has expired'));
       return;
     }
 
