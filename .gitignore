@@ -6,6 +6,9 @@
 # Dependencies
 /node_modules
 
+# Database files
+/server/database/data_files/*
+
 # IDEs and editors
 /.idea
 

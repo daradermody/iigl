@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import {Tournament} from '../../../src/app/data_types/tournament';
 
 export class TournamentCodes {
-  private static tournamentFile = 'server/database/data_files/tournamentCodes.json';
+  private static tournamentFile = TournamentCodes.getTournamentFile();
 
   static getCode(tournamentId: string, email: string): string {
     return TournamentCodes.getCodeFromTournamentCodes(this.getTournamentCodes(), tournamentId, email);
@@ -20,6 +20,14 @@ export class TournamentCodes {
     }
     tournamentCodes[tournamentId][email] = code;
     fs.writeFileSync(TournamentCodes.tournamentFile, JSON.stringify(tournamentCodes, null, 2), 'utf-8');
+  }
+
+  private static getTournamentFile(): string {
+    const tournamentFile = 'server/database/data_files/tournamentCodes.json';
+    if (!fs.existsSync(tournamentFile)) {
+      fs.writeFileSync(tournamentFile, JSON.stringify({}));
+    }
+    return tournamentFile;
   }
 
   private static getTournamentCodes(): Array<Tournament> {

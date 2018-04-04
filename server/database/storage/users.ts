@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import {User} from '../../../src/app/data_types/user';
 
 export class Users {
-  private static usersFile = 'server/database/data_files/users.json';
+  private static usersFile = Users.getUsersFile();
 
   static addUser(user: User) {
     const users = Users.getUsers();
@@ -13,6 +13,14 @@ export class Users {
 
     users.push(user);
     fs.writeFileSync(Users.usersFile, JSON.stringify(users, null, 2), 'utf-8');
+  }
+
+  private static getUsersFile(): string {
+    const usersFile = 'server/database/data_files/users.json';
+    if (!fs.existsSync(usersFile)) {
+      fs.writeFileSync(usersFile, JSON.stringify([]));
+    }
+    return usersFile;
   }
 
   private static getUsers(): Array<User> {
@@ -27,7 +35,7 @@ export class Users {
     const user = Users.getUserFromUsers(email, this.getUsers());
     return user != null && bcrypt.compareSync(password, user.password);
   }
-
+//
   private static getUserFromUsers(email: string, users: Array<User>): User {
     for (const user of users) {
       if ('email' in user && user.email === email) {
