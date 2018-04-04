@@ -47,8 +47,8 @@ export class TournamentsComponent implements OnInit {
 
     this.tournamentService.getJoinCode(tournament._id).subscribe(
       (data) => {
-        tournament.joinCode = data['status'];
-        this.notifier.emitMessage('Click the status to copy to clipboard');
+        tournament.joinCode = data['code'];
+        this.notifier.emitMessage('Click the code to copy to clipboard');
       }
     );
   }
