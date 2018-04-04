@@ -44,6 +44,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  getBoxShadow(controlName) {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
+      return '0px 0px 10px 5px #CC0000';
+    }
+  }
+
   login() {
     (<any>Object).values(this.form.controls).forEach(control => {
       control.markAsTouched();

@@ -1,9 +1,9 @@
-import {AbstractControl} from '@angular/forms';
+import {AbstractControl, ValidatorFn} from '@angular/forms';
 import {ValidationErrors} from '@angular/forms/src/directives/validators';
 
 export class CustomValidators {
 
-  static fieldsMatch(field1Name, field2Name) {
+  static fieldsMatch(field1Name, field2Name): ValidatorFn {
     return (control: AbstractControl) => {
       const field1 = control.get(field1Name).value;
       const field2 = control.get(field2Name).value;
@@ -12,16 +12,17 @@ export class CustomValidators {
       } else {
         control.get(field1Name).setErrors(null);
       }
+      return null;
     };
   }
 
-  static minLength(length) {
+  static minLength(length): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       return (control.value.length >= length) ? null : {MinimumLength: `Need minimum of ${length} characters`};
     };
   }
 
-  static required(control: AbstractControl) {
+  static required(control: AbstractControl): null | ValidationErrors {
     return control.value.length ? null : {Required: 'Field is mandatory'};
   }
 

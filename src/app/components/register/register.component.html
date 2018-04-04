@@ -15,27 +15,22 @@
 
     <form [formGroup]="form">
       <label [innerHtml]="getErrors('email')"></label>
-      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Company Email" #email
-             name="email" autocomplete="username" formControlName="email"
-             [style.box-shadow]="getBoxShadow('email')" title="email" id="email">
+      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Company Email"
+             autocomplete="username" formControlName="email" [style.box-shadow]="getBoxShadow('email')">
 
       <label [innerHtml]="getErrors('battlefy')"></label>
-      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Battlefy Username" #battlefy
-             name="battlefy" autocomplete="username" formControlName="battlefy"
-             [style.box-shadow]="getBoxShadow('battlefy')" title="battlefy" id="battlefy">
+      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Battlefy Username" id="battlefy"
+             autocomplete="username" formControlName="battlefy" [style.box-shadow]="getBoxShadow('battlefy')">
 
       <label [innerHtml]="getErrors('password')"></label>
-      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Password" #password
-             name="password" autocomplete="current-password"
-             formControlName="password" type="password" [style.box-shadow]="getBoxShadow('password')" title="password"
-             id="password">
+      <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Password"
+             autocomplete="current-password" formControlName="password" type="password"
+             [style.box-shadow]="getBoxShadow('password')">
 
       <label [innerHtml]="getErrors('confirmPassword')"></label>
       <input class="form-control col col-sm-9 col-md-7 col-lg-5 col-xl-4" placeholder="Confirm password"
-             #confirmPassword name="confirmPassword" autocomplete="current-password"
-             formControlName="confirmPassword" type="password"
-             [style.box-shadow]="getBoxShadow('confirmPassword')"
-             title="confirmPassword" id="confirmPassword">
+             autocomplete="current-password" formControlName="confirmPassword" type="password"
+             [style.box-shadow]="getBoxShadow('confirmPassword')">
 
       <p class="mt-5 mb-0">
         You can also tell us what games you like. We'll help you find people in your company that you can team up with.
