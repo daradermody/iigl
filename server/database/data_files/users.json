@@ -4,11 +4,5 @@
     "name": "test",
     "company": "Test",
     "password": "$2a$10$FYLDz.w6qts4IuQWzzC40umfjXOdKU9WoILPlXdYP19pzkVs1ixpO"
-  },
-  {
-    "email": "dara.dermody@ericsson.com",
-    "battlefy": "test",
-    "password": "$2a$10$zXDemNgPBiK7PWn8gjvpM.QdDj6FdDW1W4DbibQ93BgUE6Y5KBdlm",
-    "games": []
   }
 ]

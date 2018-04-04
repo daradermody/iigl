@@ -15,7 +15,7 @@ class Auth {
   }
 
   // TODO: Does not work with HA solutions (i.e. clustered-mode)
-  private static usersToBeRegistered: {[token: string]: User} = {};
+  private static usersToBeRegistered: { [token: string]: User } = {};
 
   setupRoutes() {
     this.router.post('/login', Auth.login);
@@ -25,7 +25,11 @@ class Auth {
 
   static login(req: Request, res: Response) {
     if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
-      res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
+      if (Object.values(Auth.usersToBeRegistered).find(user => user.email === req.body.email.toLowerCase())) {
+        res.status(UnauthorizedError.status).json(new UnauthorizedError('You need to confirm your account first; check your email'));
+      } else {
+        res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
+      }
     } else {
       res.status(200).json({
         idToken: UserAuthentication.generateJsonWebToken(req.body.email),

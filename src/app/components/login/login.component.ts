@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {HttpErrorResponse} from '@angular/common/http';
 import {NotificationService} from '../../services/notification.service';
+import {CustomValidators} from '../register/validators';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
               private notifier: NotificationService) {
 
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', CustomValidators.email],
+      password: ['', CustomValidators.minLength(3)]
     });
   }
 
@@ -35,19 +35,30 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    const val = this.form.value;
-    val.email = val.email.toLowerCase();
-
-    if (val.email && val.password) {
-      this.authService.login(val.email, val.password)
-        .subscribe(
-          () => {
-            this.router.navigateByUrl('/').then(() => {
-              this.notifier.emitMessage('Logged in');
-            });
-          }
-        );
+  getErrors(controlName: string): string {
+    const control = this.form.get(controlName);
+    if (control.dirty && control.touched && control.errors) {
+      return (<any>Object).values(control.errors).join('<br>');
+    } else {
+      return '';
     }
+  }
+
+  login() {
+    (<any>Object).values(this.form.controls).forEach(control => {
+      control.markAsTouched();
+      control.markAsDirty();
+    });
+
+    if (!this.form.valid) {
+      throw new Error('The form still has errors');
+    }
+
+    const val = this.form.value;
+    this.authService.login(val.email.toLowerCase(), val.password)
+      .subscribe(
+        () => this.router.navigateByUrl('/')
+          .then(() => this.notifier.emitMessage('Logged in'))
+      );
   }
 }

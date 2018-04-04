@@ -3,12 +3,12 @@
     <h2 class="page-heading">Login</h2>
 
     <form [formGroup]="form">
+      <label [innerHtml]="getErrors('email')"></label>
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" formControlName="email"
-             placeholder="Company Email" required
-             autocomplete="username">
+             placeholder="Company Email" autocomplete="username">
+      <label [innerHtml]="getErrors('password')"></label>
       <input class="form-control mb-2 col col-sm-9 col-md-7 col-lg-5 col-xl-4" formControlName="password"
-             placeholder="Password" required
-             autocomplete="current-password" type="password">
+             placeholder="Password" autocomplete="current-password" type="password">
 
       <button class="btn btn-lg mt-5 col col-sm-5 col-md-4 col-lg-2" (click)="login()">Login</button>
     </form>

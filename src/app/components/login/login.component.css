@@ -2,6 +2,15 @@ input {
   width: 100%;
 }
 
+form label {
+  position: relative;
+  margin: 0;
+  padding: 0 2px;
+  background-color: red;
+  border-radius: 5px 5px 0 0;
+  z-index: 1;
+}
+
 @media screen and (min-width: 600px) {
   input {
     width: 80%;
