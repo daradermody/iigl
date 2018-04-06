@@ -29,6 +29,10 @@ export class AuthService {
     return moment(expiresAt);
   }
 
+  static emailVerified() {
+    return JSON.parse(localStorage.getItem('id_token')).emailVerified;
+  }
+
   private static setSession(authResult) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 

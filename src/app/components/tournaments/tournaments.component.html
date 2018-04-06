@@ -38,7 +38,7 @@
                   (click)="copyJoinCodeToClipboard(tournament)">{{ tournament.joinCode }}
           </button>
           <ng-template #getCode>
-            <button [class.disabled]="!isLoggedIn()" (click)="getJoinCode(tournament)">Get code</button>
+            <button [class.disabled]="!isLoggedIn() && !emailVerified()" (click)="getJoinCode(tournament)">Get code</button>
           </ng-template>
         </td>
       </tr>

@@ -24,17 +24,16 @@ class Auth {
   }
 
   static login(req: Request, res: Response) {
-    if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
-      if (Object.values(Auth.usersToBeRegistered).find(user => user.email === req.body.email.toLowerCase())) {
-        res.status(UnauthorizedError.status).json(new UnauthorizedError('You need to confirm your account first; check your email'));
-      } else {
-        res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
-      }
-    } else {
+    const user = Users.getUser(req.body.email);
+    if (user && user.passwordIsCorrect(req.body.password)) {
       res.status(200).json({
-        idToken: UserAuthentication.generateJsonWebToken(req.body.email),
+        idToken: UserAuthentication.generateJsonWebToken(user),
         expiresIn: 3600,
       });
+    } else if (Object.values(Auth.usersToBeRegistered).find(u => u.email === req.body.email.toLowerCase())) {
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('You need to confirm your account first; check your email'));
+    } else {
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
     }
   }
 

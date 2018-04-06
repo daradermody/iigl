@@ -43,6 +43,8 @@ export class TournamentsComponent implements OnInit {
   getJoinCode(tournament: Tournament) {
     if (!this.isLoggedIn()) {
       throw new Error('You must login to join a tournament!');
+    } else if (!this.emailVerified()) {
+      throw new Error('Please wait for your email to be accepted by an administrator');
     }
 
     this.tournamentService.getJoinCode(tournament._id).subscribe(
@@ -64,5 +66,9 @@ export class TournamentsComponent implements OnInit {
 
   isLoggedIn() {
     return AuthService.isLoggedIn();
+  }
+
+  emailVerified() {
+    return AuthService.emailVerified();
   }
 }
