@@ -2,7 +2,6 @@ table {
   table-layout: fixed;
   border-radius: 5px;
   background-color: var(--iigl-grey);
-  max-width: 100%;
 }
 
 table th {
@@ -20,5 +19,9 @@ table td, table th {
 @media screen and (min-width: 601px) {
   table {
     table-layout: auto;
+  }
+
+  table th {
+    width: unset !important;
   }
 }
