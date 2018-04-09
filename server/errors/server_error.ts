@@ -13,6 +13,10 @@ export function isAppError(obj: any): obj is AppError {
   return (<AppError>obj).userMessage !== undefined && (<AppError>obj).developerMessage !== undefined;
 }
 
+export class BadRequestError extends AppError {
+  static status = 400;
+}
+
 export class UnauthorizedError extends AppError {
   static status = 401;
 }

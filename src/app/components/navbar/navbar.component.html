@@ -17,6 +17,10 @@
     <i class="fas fa-envelope fa-3x"></i>
     <p>CONTACT</p>
   </a>
+  <a routerLink="admin" *ngIf="isLoggedIn() && isAdmin()" class="nav-item black-hover">
+    <i class="fas fa-cogs fa-3x"></i>
+    <p>ADMIN</p>
+  </a>
   <a routerLink="login" *ngIf="!isLoggedIn()" class="nav-item black-hover" routerLinkActive="black">
     <i class="fas fa-sign-in-alt fa-3x"></i>
     <p>LOGIN</p>
@@ -34,7 +38,7 @@
 <nav class="horizontal-navbar d-block d-sm-none">
   <a routerLink="home" (click)="showNav = false">
     <span>
-      <object routerLink="home" data="/assets/img/logo/logo.svg"></object>
+      <object data="/assets/img/logo/logo.svg"></object>
     </span>
     <span style="font-family: 'Russo One', sans-serif; font-size: 2em;">IIGL</span>
   </a>
@@ -42,29 +46,34 @@
   <button (click)="showNav = !showNav" style="vertical-align: top;">
   </button>
 
-  <div class="mobile-nav" *ngIf="showNav">
-    <a routerLink="tournaments" class="nav-item" routerLinkActive="black" (click)="showNav = false">
+  <div class="mobile-nav" *ngIf="showNav" (click)="showNav = false">
+    <a routerLink="tournaments" class="nav-item" routerLinkActive="black">
       <i data-fa-transform="rotate-90 shrink-4" class="fas fa-sitemap"></i>
       <span>TOURNAMENTS</span>
     </a>
-    <a routerLink="wallOfFame" class="nav-item" routerLinkActive="black" (click)="showNav = false">
+    <a routerLink="wallOfFame" class="nav-item" routerLinkActive="black">
       <i class="fas fa-trophy"></i>
       <span>WALL OF FAME</span>
     </a>
-    <a routerLink="contact" class="nav-item" routerLinkActive="black" (click)="showNav = false">
+    <a routerLink="contact" class="nav-item" routerLinkActive="black" >
       <i class="fas fa-envelope"></i>
       <span>CONTACT</span>
     </a>
-    <a routerLink="login" *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="black" (click)="showNav = false">
+    <a routerLink="admin" *ngIf="isLoggedIn() && isAdmin()" class="nav-item" routerLinkActive="black">
+      <i class="fas fa-cogs"></i>
+      <span>ADMIN</span>
+    </a>
+
+    <a routerLink="login" *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="black">
       <i class="fas fa-sign-in-alt"></i>
       <span>LOGIN</span>
     </a>
-    <a routerLink="register" *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="black" (click)="showNav = false">
+    <a routerLink="register" *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="black">
       <i class="fas fa-user-plus"></i>
       <span>REGISTER</span>
     </a>
 
-    <a routerLink="home" *ngIf="isLoggedIn()" (click)="showNav = false; logout()" class="nav-item">
+    <a routerLink="home" *ngIf="isLoggedIn()" (click)="logout()" class="nav-item">
       <i data-fa-transform="flip-h" class="fas fa-sign-out-alt"></i>
       <span>LOGOUT</span>
     </a>

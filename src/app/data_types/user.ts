@@ -4,6 +4,7 @@ export class User {
   password: string;
   games: string[];
   emailVerified: boolean;
+  isAdmin: boolean;
 
   constructor(email: string, battlefy: string, password: string, games: string[], emailVerified = false) {
     this.email = email.toLowerCase();
@@ -11,5 +12,6 @@ export class User {
     this.password = password;
     this.games = games;
     this.emailVerified = emailVerified;
+    this.isAdmin = false;
   }
 }

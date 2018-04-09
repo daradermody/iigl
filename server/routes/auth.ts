@@ -5,7 +5,7 @@ import {Users} from '../database/storage';
 import {UserAuthentication} from '../security';
 import {Emailer} from '../emailing';
 import {User} from '../../src/app/data_types/user';
-import {ConflictError, NotFoundError, ServerError, UnauthorizedError} from '../errors/server_error';
+import {BadRequestError, ConflictError, NotFoundError, ServerError, UnauthorizedError} from '../errors/server_error';
 import * as moment from 'moment';
 
 class Auth {
@@ -20,7 +20,9 @@ class Auth {
 
   setupRoutes() {
     this.router.post('/login', Auth.login);
+    this.router.get('/users', UserAuthentication.verifyAdmin, Auth.getUsers);
     this.router.post('/user', Auth.registerUser);
+    this.router.put('/user/:email', UserAuthentication.verifyAdmin, Auth.updateUser);
     this.router.get('/confirmRegistration', Auth.confirmAccount);
   }
 
@@ -36,6 +38,14 @@ class Auth {
     } else {
       res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
     }
+  }
+
+  static getUsers(req: Request, res: Response) {
+    const users = Users.getUsers();
+    for (const user of users) {
+      user.password = null;
+    }
+    res.status(200).json(users);
   }
 
   static registerUser(req: Request, res: Response) {
@@ -62,6 +72,22 @@ class Auth {
       .catch(() => {
         res.status(ServerError.status).json(new ServerError('Server error sending registration email'));
       });
+  }
+
+  static updateUser(req: Request, res: Response) {
+    const newUserInfo = req.body;
+    delete newUserInfo.email;
+
+    const user = Users.getUser(req.params['email']);
+    if (!user) {
+      res.status(BadRequestError.status).json(new BadRequestError('User does not exist'));
+    }
+
+    for (const key of Object.keys(newUserInfo)) {
+      user[key] = newUserInfo[key];
+    }
+    Users.updateUser(user);
+    res.sendStatus(204);
   }
 
   static confirmAccount(req: Request, res: Response) {

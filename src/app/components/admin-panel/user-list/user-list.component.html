@@ -1,0 +1,25 @@
+<ng-template style="width: 100%;" #loading>
+  <div class="text-center">
+    <i class="fas fa-cog fa-5x fa-spin"></i>
+  </div>
+</ng-template>
+
+<table class="table" *ngIf="users; else loading">
+  <thead>
+  <tr>
+    <th scope="col" style="width: 100%;">Email</th>
+    <th scope="col" style="width: 70%;">Battlefy</th>
+    <th scope="col" style="width: 70px;">Admin</th>
+    <th scope="col" style="width: 80px;">Email Verified</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{ user.email }}</td>
+    <td>{{ user.battlefy }}</td>
+    <td><input type="checkbox" [(ngModel)]="user.isAdmin" (change)="setAdmin(user.email, $event.target.checked)"></td>
+    <td><input type="checkbox" [(ngModel)]="user.emailVerified" (change)="setEmailVerified(user.email, $event.target.checked)"></td>
+  </tr>
+  </tbody>
+</table>

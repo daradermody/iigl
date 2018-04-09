@@ -16,6 +16,10 @@ export class NavbarComponent {
     return AuthService.isLoggedIn();
   }
 
+  isAdmin() {
+    return AuthService.isAdmin();
+  }
+
   logout() {
     AuthService.logout();
     this.notifier.emitMessage('Logged out');

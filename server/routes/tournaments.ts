@@ -19,7 +19,7 @@ class Tournaments {
   };
 
   setupRoutes() {
-    this.router.get('/getJoinCode/:tournamentId', UserAuthentication.authenticateUserRequest, this.getTournamentCode);
+    this.router.get('/getJoinCode/:tournamentId', UserAuthentication.verifyUser, this.getTournamentCode);
   }
 
   getTournamentCode(req: Request, res: express.Response) {

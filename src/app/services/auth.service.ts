@@ -7,6 +7,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
 import {User} from '../data_types/user';
 import 'rxjs/add/operator/map';
+import * as jwt from 'jsonwebtoken';
+import {DecodedJwt} from '../data_types/decoded-jwt';
 
 
 @Injectable()
@@ -17,6 +19,11 @@ export class AuthService {
 
   static isLoggedIn() {
     return moment().isBefore(AuthService.getExpiration());
+  }
+
+  static isAdmin() {
+    const decodedToken = <DecodedJwt>jwt.decode(localStorage.getItem('id_token'));
+    return decodedToken.isAdmin;
   }
 
   static logout() {

@@ -22,7 +22,7 @@ export class Users {
     return usersFile;
   }
 
-  private static getUsers(): Array<User> {
+  static getUsers(): Array<User> {
     return JSON.parse(<string>fs.readFileSync(Users.usersFile, 'utf-8'));
   }
 
@@ -33,12 +33,23 @@ export class Users {
   private static getUserFromUsers(email: string, users: Array<User>): User {
     for (const user of users) {
       if ('email' in user && user.email === email) {
-        return new User(user.email, user.battlefy, user.password, user.games, user.emailVerified);
+        return user;
       }
     }
   }
 
   static getUser(email): User {
     return Users.getUserFromUsers(email, Users.getUsers());
+  }
+
+  static updateUser(updatedUser: User) {
+    const users = Users.getUsers();
+    Users.getUsers().find((user, index) => {
+      if (user.email === updatedUser.email) {
+        users[index] = updatedUser;
+      }
+      return user.email === updatedUser.email;
+    });
+    fs.writeFileSync(Users.usersFile, JSON.stringify(users, null, 2), 'utf-8');
   }
 }
