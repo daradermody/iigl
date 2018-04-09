@@ -1,5 +1,3 @@
-import * as bcrypt from 'bcrypt';
-
 export class User {
   email: string;
   battlefy: string;
@@ -13,9 +11,5 @@ export class User {
     this.password = password;
     this.games = games;
     this.emailVerified = emailVerified;
-  }
-
-  passwordIsCorrect(password: string): boolean {
-    return bcrypt.compareSync(password, this.password);
   }
 }

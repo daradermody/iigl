@@ -33,7 +33,7 @@ export class Users {
   private static getUserFromUsers(email: string, users: Array<User>): User {
     for (const user of users) {
       if ('email' in user && user.email === email) {
-        return user;
+        return new User(user.email, user.battlefy, user.password, user.games, user.emailVerified);
       }
     }
   }

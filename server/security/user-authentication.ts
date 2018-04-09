@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as express from 'express';
 import {UnauthorizedError} from '../errors/server_error';
 import {User} from '../../src/app/data_types/user';
+import * as moment from 'moment';
 
 export interface Request extends express.Request {
   userEmail: string;
@@ -33,7 +34,7 @@ export class UserAuthentication {
       emailVerified: user.emailVerified
     }, this.rsa_private_key, {
       algorithm: 'RS256',
-      expiresIn: 3600,
+      expiresIn: moment.duration(2, 'weeks').asSeconds(),
       subject: user.email,
     });
   }

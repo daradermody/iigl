@@ -1,7 +1,7 @@
 <div class="w3-padding-large" id="main">
   <div class="w3-padding-64 w3-content">
     <h2 class="page-heading">Tournaments</h2>
-
+    <p>Note: If you've just registered, you may have to wait for an administrator to accept your email address.</p>
     <ng-template style="width: 100%;" #loading>
       <div class="text-center">
         <i class="fas fa-cog fa-5x fa-spin"></i>
@@ -38,7 +38,7 @@
                   (click)="copyJoinCodeToClipboard(tournament)">{{ tournament.joinCode }}
           </button>
           <ng-template #getCode>
-            <button [class.disabled]="!isLoggedIn() && !emailVerified()" (click)="getJoinCode(tournament)">Get code</button>
+            <button [class.disabled]="!isLoggedIn()" (click)="getJoinCode(tournament)">Get code</button>
           </ng-template>
         </td>
       </tr>
