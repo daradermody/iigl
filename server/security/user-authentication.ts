@@ -1,8 +1,9 @@
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 import * as express from 'express';
-import {Users} from '../database/storage';
 import {UnauthorizedError} from '../errors/server_error';
+import {User} from '../../src/app/data_types/user';
+import * as moment from 'moment';
 
 export interface Request extends express.Request {
   userEmail: string;
@@ -28,15 +29,13 @@ export class UserAuthentication {
     }
   }
 
-  static isUserValid(email: string, password: string): boolean {
-    return Users.isEmailAndPasswordValid(email, password);
-  }
-
-  static generateJsonWebToken(email: string): string {
-    return jwt.sign({}, this.rsa_private_key, {
+  static generateJsonWebToken(user: User): string {
+    return jwt.sign({
+      emailVerified: user.emailVerified
+    }, this.rsa_private_key, {
       algorithm: 'RS256',
-      expiresIn: 3600,
-      subject: email,
+      expiresIn: moment.duration(2, 'weeks').asSeconds(),
+      subject: user.email,
     });
   }
 

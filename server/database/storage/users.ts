@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as bcrypt from 'bcrypt';
 import {User} from '../../../src/app/data_types/user';
 
 export class Users {
@@ -28,19 +27,18 @@ export class Users {
   }
 
   static userExists(email: string): boolean {
-    return Users.getUserFromUsers(email, Users.getUsers()) != null;
+    return Users.getUser(email) != null;
   }
 
-  static isEmailAndPasswordValid(email: string, password: string): boolean {
-    const user = Users.getUserFromUsers(email, this.getUsers());
-    return user != null && bcrypt.compareSync(password, user.password);
-  }
-//
   private static getUserFromUsers(email: string, users: Array<User>): User {
     for (const user of users) {
       if ('email' in user && user.email === email) {
-        return user;
+        return new User(user.email, user.battlefy, user.password, user.games, user.emailVerified);
       }
     }
+  }
+
+  static getUser(email): User {
+    return Users.getUserFromUsers(email, Users.getUsers());
   }
 }

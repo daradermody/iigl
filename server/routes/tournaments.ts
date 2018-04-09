@@ -1,9 +1,9 @@
 import * as express from 'express';
 import axios from 'axios';
-import {TournamentCodes} from '../database/storage';
+import {TournamentCodes, Users} from '../database/storage';
 import {Request, UserAuthentication} from '../security/user-authentication';
 import * as fs from 'fs';
-import {ServerError} from '../errors/server_error';
+import {ServerError, UnauthorizedError} from '../errors/server_error';
 
 class Tournaments {
   public router = express.Router();
@@ -23,6 +23,11 @@ class Tournaments {
   }
 
   getTournamentCode(req: Request, res: express.Response) {
+    if (!Users.getUser(req.userEmail).emailVerified) {
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('Please wait for your email to be accepted by an administrator'));
+      return;
+    }
+
     const code = TournamentCodes.getCode(req.params['tournamentId'], req.userEmail);
     if (code) {
       res.status(201).json({code: code});

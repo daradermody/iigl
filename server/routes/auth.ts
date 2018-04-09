@@ -6,6 +6,7 @@ import {UserAuthentication} from '../security';
 import {Emailer} from '../emailing';
 import {User} from '../../src/app/data_types/user';
 import {ConflictError, NotFoundError, ServerError, UnauthorizedError} from '../errors/server_error';
+import * as moment from 'moment';
 
 class Auth {
   router = Router();
@@ -24,17 +25,16 @@ class Auth {
   }
 
   static login(req: Request, res: Response) {
-    if (!UserAuthentication.isUserValid(req.body.email.toLowerCase(), req.body.password)) {
-      if (Object.values(Auth.usersToBeRegistered).find(user => user.email === req.body.email.toLowerCase())) {
-        res.status(UnauthorizedError.status).json(new UnauthorizedError('You need to confirm your account first; check your email'));
-      } else {
-        res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
-      }
-    } else {
+    const user = Users.getUser(req.body.email);
+    if (user && bcrypt.compareSync(req.body.password, user.password)) {
       res.status(200).json({
-        idToken: UserAuthentication.generateJsonWebToken(req.body.email),
-        expiresIn: 3600,
+        idToken: UserAuthentication.generateJsonWebToken(user),
+        expiresIn: moment.duration(2, 'weeks').asSeconds(),
       });
+    } else if (Object.values(Auth.usersToBeRegistered).find(u => u.email === req.body.email.toLowerCase())) {
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('You need to confirm your account first; check your email'));
+    } else {
+      res.status(UnauthorizedError.status).json(new UnauthorizedError('Email or password is invalid'));
     }
   }
 
