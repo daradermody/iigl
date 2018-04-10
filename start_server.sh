@@ -39,7 +39,7 @@ function cygwin_run_as_administrator() {
 function start_dev_server() {
   $(npm bin)/nodemon &
   trap "kill $!" EXIT SIGINT SIGKILL  # Kill all child process if this process is stopped/ends
-  $(npm bin)/ng serve --open
+  $(npm bin)/ng serve --open --ssl
 }
 
 main

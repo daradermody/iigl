@@ -19,6 +19,9 @@ import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {IiglErrorHandler} from './services/error-handler';
+import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
+import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
+import {UserService} from './services/user.service';
 
 
 @NgModule({
@@ -32,6 +35,8 @@ import {IiglErrorHandler} from './services/error-handler';
     TournamentsComponent,
     NavbarComponent,
     FooterComponent,
+    AdminPanelComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import {IiglErrorHandler} from './services/error-handler';
     AuthService,
     TournamentService,
     ClipboardService,
+    UserService,
     {
       provide: ErrorHandler,
       useClass: IiglErrorHandler

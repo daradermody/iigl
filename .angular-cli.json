@@ -39,7 +39,9 @@
     "styleExt": "css",
     "component": {},
     "serve": {
-      "proxyConfig": "proxy.config.json"
+      "proxyConfig": "proxy.config.json",
+      "sslKey": "ssl/key.pem",
+      "sslCert": "ssl/cert.pem"
     }
   }
 }

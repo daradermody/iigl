@@ -4,12 +4,14 @@ export class User {
   password: string;
   games: string[];
   emailVerified: boolean;
+  isAdmin: boolean;
 
-  constructor(email: string, battlefy: string, password: string, games: string[], emailVerified = false) {
+  constructor(email: string, battlefy: string, password: string, games: string[]) {
     this.email = email.toLowerCase();
     this.battlefy = battlefy;
     this.password = password;
     this.games = games;
-    this.emailVerified = emailVerified;
+    this.emailVerified = false;
+    this.isAdmin = false;
   }
 }

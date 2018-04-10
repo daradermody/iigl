@@ -6,6 +6,8 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
+import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
+import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
 
 const ROUTES: Routes = [
   {
@@ -30,6 +32,19 @@ const ROUTES: Routes = [
   }, {
     path: 'tournaments',
     component: TournamentsComponent
+  }, {
+    path: 'admin',
+    component: AdminPanelComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'admin',
+        pathMatch: 'full'
+      }, {
+        path: 'userList',
+        component: UserListComponent
+      }
+    ]
   }
 ];
 
