@@ -109,6 +109,12 @@ class Auth {
     Users.addUser(user);
     delete Auth.usersToBeRegistered[token];
     res.sendStatus(204);
+
+    const templateData = {
+      url: req.protocol + '://' + req.get('host') + '/admin/userList',
+      email: user.email
+    };
+    Emailer.sendMail('irishinterfirmsgaming@gmail.com', 'email_validation_request', templateData);
   }
 }
 
