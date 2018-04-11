@@ -16,6 +16,16 @@ table td, table th {
   vertical-align: middle;
 }
 
+.green {
+  color: white;
+  background-color: var(--iigl-green);
+}
+
+.red {
+  color: white;
+  background-color: #ff000080;
+}
+
 @media screen and (min-width: 601px) {
   table {
     table-layout: auto;

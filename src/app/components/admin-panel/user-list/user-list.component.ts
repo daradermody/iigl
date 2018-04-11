@@ -24,7 +24,7 @@ export class UserListComponent implements OnInit {
     );
 
     this.userService.getUsers().subscribe(
-      (users) => this.users = users,
+      (users) => this.users = users.sort((a) => a.isAdmin ? -1 : 1),
       (error) => {
         this.users = [];
         throw error;
