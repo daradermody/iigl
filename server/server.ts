@@ -8,6 +8,7 @@ import * as morgan from 'morgan';
 import tournaments from './routes/tournaments';
 import auth from './routes/auth';
 import monitoring from './monitoring';
+import diagnostics from './routes/diagnostics';
 
 
 class App {
@@ -51,7 +52,7 @@ class App {
 
   private setupApi() {
     this.app.get('/api', (req, res) => res.status(200).send('API running'));
-    this.app.use('/api', auth, tournaments);
+    this.app.use('/api', auth, tournaments, diagnostics);
 
     this.app.use(express.static(__dirname + '/..'));
     this.app.get('*', (req, res) => {

@@ -1,0 +1,14 @@
+<ng-template *ngIf="!logs" style="width: 100%;">
+  <div class="text-center">
+    <i class="fas fa-cog fa-5x fa-spin"></i>
+  </div>
+</ng-template>
+
+<div [hidden]="!logs">
+  <p>Note: Only the last 200 lines are shown.</p>
+  <h2>Info Logs</h2>
+  <div class="log-window" [innerHtml]="logs.info | safeHtml" #info></div>
+
+  <h2>Error Logs</h2>
+  <div class="log-window" [innerHtml]="logs.error | safeHtml" #error></div>
+</div>

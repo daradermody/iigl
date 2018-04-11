@@ -8,6 +8,7 @@ import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.compon
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
+import {LogsComponent} from './components/admin-panel/logs/logs.component';
 
 const ROUTES: Routes = [
   {
@@ -43,6 +44,9 @@ const ROUTES: Routes = [
       }, {
         path: 'userList',
         component: UserListComponent
+      }, {
+        path: 'logs',
+        component: LogsComponent
       }
     ]
   }

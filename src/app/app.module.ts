@@ -22,6 +22,8 @@ import {IiglErrorHandler} from './services/error-handler';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
 import {UserService} from './services/user.service';
+import {LogsComponent, SafeHtmlPipe} from './components/admin-panel/logs/logs.component';
+import {DiagnosticsService} from './services/diagnostics.service';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import {UserService} from './services/user.service';
     FooterComponent,
     AdminPanelComponent,
     UserListComponent,
+    LogsComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import {UserService} from './services/user.service';
     TournamentService,
     ClipboardService,
     UserService,
+    DiagnosticsService,
     {
       provide: ErrorHandler,
       useClass: IiglErrorHandler
