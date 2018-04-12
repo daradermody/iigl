@@ -56,7 +56,11 @@ class App {
 
     this.app.use(express.static(__dirname + '/..'));
     this.app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../index.html'));
+      if(fs.existsSync(path.join(__dirname, '../index.html'))) {
+        res.sendFile(path.join(__dirname, '../index.html'));
+      } else {
+        res.sendFile(path.join(process.cwd(), 'server/down_for_maintainance.html'));
+      }
     });
   }
 }
