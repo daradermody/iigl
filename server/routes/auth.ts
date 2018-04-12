@@ -49,7 +49,7 @@ class Auth {
   }
 
   static registerUser(req: Request, res: Response) {
-    const user = new User(req.body.email.toLowerCase(), req.body.password, req.body.battlefy, req.body.games);
+    const user = new User(req.body.email.toLowerCase(), req.body.battlefy, req.body.password, req.body.games);
     if (Users.userExists(user.email)) {
       res.status(ConflictError.status).json(new ConflictError(`Email ${user.email} already registered!`));
       return;
