@@ -1,5 +1,6 @@
 import * as nodemailer from 'nodemailer';
 import * as fs from 'fs';
+import * as path from 'path';
 
 const Email = require('email-templates');
 
@@ -22,7 +23,12 @@ export class Emailer {
     transport: nodemailer.createTransport({
       host: 'smtp.reg365.net',
       secure: true,
-      auth: Emailer.authInfo
+      auth: Emailer.authInfo,
+      dkim: {
+        domainName: 'irishinterfirmsgaming.ie',
+        keySelector: 'default',
+        privateKey: fs.readFileSync('server/emailing/default.private', 'utf8')
+      }
     }),
     views: {
       options: {
