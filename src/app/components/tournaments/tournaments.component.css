@@ -51,6 +51,10 @@ button {
   border: 1px solid transparent;
 }
 
+button:focus {
+  outline:0;
+}
+
 button.disabled {
   background-color: grey;
 }
