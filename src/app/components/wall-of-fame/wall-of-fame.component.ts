@@ -18,12 +18,14 @@ export class WallOfFameComponent {
   curtainsOpen = false;
 
   selectGame(game: WallOfFameGame) {
-    this.selectedGame = game;
-    if (this.curtainsOpen) {
-      this.curtainsOpen = false;
-      setTimeout(() => this.setGame(game), 1000);
-    } else {
-      this.setGame(game);
+    if (this.selectedGame !== game) {
+      this.selectedGame = game;
+      if (this.curtainsOpen) {
+        this.curtainsOpen = false;
+        setTimeout(() => this.setGame(game), 1000);
+      } else {
+        this.setGame(game);
+      }
     }
   }
 
