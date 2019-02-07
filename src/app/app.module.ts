@@ -26,6 +26,11 @@ import {DiagnosticsService} from './services/diagnostics.service';
 import {JwtModule} from '@auth0/angular-jwt';
 
 
+export function tokenGetter() {
+  return localStorage.getItem('id_token');
+}
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,11 +54,7 @@ import {JwtModule} from '@auth0/angular-jwt';
     ReactiveFormsModule,
     HttpClientModule,
     ClipboardModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => localStorage.getItem('id_token')
-      }
-    })
+    JwtModule.forRoot({ config: { tokenGetter } })
   ],
   providers: [
     NotificationService,
