@@ -1,28 +1,29 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {HttpResponse} from '@angular/common/http/src/response';
 import * as moment from 'moment';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/shareReplay';
+
+
 import {User} from '../data_types/user';
-import 'rxjs/add/operator/map';
-import * as jwt from 'jsonwebtoken';
+
 import {DecodedJwt} from '../data_types/decoded-jwt';
+import {shareReplay, tap} from 'rxjs/operators';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
   }
 
   static isLoggedIn() {
     return moment().isBefore(AuthService.getExpiration());
   }
 
-  static isAdmin() {
-    const decodedToken = <DecodedJwt>jwt.decode(localStorage.getItem('id_token'));
+  isAdmin() {
+    const decodedToken = <DecodedJwt>this.jwtHelper.decodeToken(localStorage.getItem('id_token'));
     return decodedToken.isAdmin;
   }
 
@@ -58,8 +59,10 @@ export class AuthService {
       email: email,
       password: password
     })
-      .do(AuthService.setSession)
-      .shareReplay();
+      .pipe(
+        tap(AuthService.setSession),
+        shareReplay(1)
+      );
   }
 
   getBattlefyAccountInfo(username: string): Observable<Object> {

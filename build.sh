@@ -4,7 +4,7 @@ set -e  # Exit if any command fails
 cd $(dirname $0)
 
 # Build front-end
-$(npm bin)/ng build --prod --aot
+npx ng build --prod --aot
 
 # Compile server-side
-$(npm bin)/tsc --project server/tsconfig.server.json
+npx tsc --project server/tsconfig.server.json
