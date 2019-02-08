@@ -7,17 +7,27 @@
       <div class="col-md-4 col-lg-3 col-xl-2">
         <nav class="nav flex-column nav-pills">
           <a class="nav-link" *ngFor="let game of games;" [ngClass]="{'active': game == selectedGame}"
-             (click)="selectedGame = game">{{ game.name }}
+             (click)="selectGame(game)">{{ game.name }}
           </a>
         </nav>
       </div>
 
       <div class="col-md-8 col-lg-9 col-xl-10">
-        <div>
-          <img src="{{selectedGame.imageLink}}" alt="Wall of fame for game" *ngIf="selectedGame; else blah">
-          <ng-template #blah>
-            Select a game to see its wall of fame!
-          </ng-template>
+        <div id="stage" [class]="curtainsOpen ? 'curtains-open': ''">
+
+          <div class="curtain curtain-left">
+            <div id="curtain-left-logo" class="curtain"></div>
+          </div>
+
+          <div class="curtain curtain-right">
+            <div id="curtain-right-logo" class="curtain"></div>
+          </div>
+
+          <div id="balance" class="balance"></div>
+          <div class="spotlight"></div>
+          <div>
+            <img src="{{gameDisplayed.imageLink}}" alt="Wall of fame for game" *ngIf="gameDisplayed">
+          </div>
         </div>
       </div>
     </div>

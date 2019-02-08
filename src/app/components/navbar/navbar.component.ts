@@ -10,14 +10,14 @@ import {AuthService} from '../../services/auth.service';
 export class NavbarComponent {
   showNav = false;
 
-  constructor(public notifier: NotificationService) {}
+  constructor(public notifier: NotificationService, private authService: AuthService) {}
 
   isLoggedIn() {
     return AuthService.isLoggedIn();
   }
 
   isAdmin() {
-    return AuthService.isAdmin();
+    return this.authService.isAdmin();
   }
 
   logout() {

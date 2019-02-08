@@ -19,3 +19,86 @@ img {
   background-color: var(--iigl-green);
 }
 
+#stage {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  min-height: calc(100vh - 300px);
+}
+
+.curtain {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), #4d4d4d, rgba(51, 51, 51, 0.993), #4d4d4d), linear-gradient(to left, rgba(51, 51, 51, 0.997), rgba(77, 77, 77, 0.999), rgba(51, 51, 51, 0.998));
+  background-size: 67px, 53px;
+  width: 60%;
+  height: 100%;
+  margin-left: -10%;
+  transition: width 1s, transform 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.balance {
+  position: absolute;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), #4d4d4d, rgba(26, 26, 26, 0.993), #4d4d4d), linear-gradient(to left, rgba(26, 26, 26, 0.997), rgba(38, 38, 38, 0.999), rgba(26, 26, 26, 0.998));
+  background-size: 79px 79px, 61px 61px;
+  width: 100%;
+  height: 15%;
+  transition: height 1s;
+}
+
+.curtain-right {
+  right: 0;
+  margin-right: -10%;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+  transition: opacity 1s;
+  transition-timing-function: ease-in-out;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 60%), radial-gradient(circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 40%);
+}
+
+#stage.curtains-open .spotlight {
+  opacity: 0;
+}
+
+#stage.curtains-open .curtain-left {
+  width: 0;
+  transform: matrix(1, 0, -0.2, 1, 0, 0);
+}
+
+#stage.curtains-open .curtain-right {
+  width: 0;
+  transform: matrix(-1, 0, 0.2, 1, 0, 0);
+}
+
+#stage.curtains-open .balance {
+  height: 0;
+}
+
+#curtain-left-logo, #curtain-right-logo {
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  background-size: auto 50%;
+  margin: 0;
+}
+
+#curtain-left-logo {
+  background-image: url('/assets/img/logo/logo_left.png');
+  background-position: right;
+}
+
+#curtain-right-logo {
+  background-image: url('/assets/img/logo/logo_right.png');
+  background-position: left;
+  transform: scaleX(-1);
+  margin: 0;
+}

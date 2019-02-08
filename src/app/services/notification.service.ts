@@ -1,5 +1,5 @@
 import {ApplicationRef, Injectable, Injector} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 import {ErrorMessage, InfoMessage} from '../data_types/info-message';
 
 @Injectable()
