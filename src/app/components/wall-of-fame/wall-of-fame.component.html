@@ -14,11 +14,17 @@
 
       <div class="col-md-8 col-lg-9 col-xl-10">
         <div id="stage" [class]="curtainsOpen ? 'curtains-open': ''">
-          <div id="curtain-left" class="curtain"></div>
-          <div id="curtain-right" class="curtain"></div>
+
+          <div class="curtain curtain-left">
+            <div id="curtain-left-logo" class="curtain"></div>
+          </div>
+
+          <div class="curtain curtain-right">
+            <div id="curtain-right-logo" class="curtain"></div>
+          </div>
+
           <div id="balance" class="balance"></div>
           <div class="spotlight"></div>
-
           <div>
             <img src="{{gameDisplayed.imageLink}}" alt="Wall of fame for game" *ngIf="gameDisplayed">
           </div>
