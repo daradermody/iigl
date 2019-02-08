@@ -22,7 +22,7 @@ export class WallOfFameComponent {
       this.selectedGame = game;
       if (this.curtainsOpen) {
         this.curtainsOpen = false;
-        setTimeout(() => this.setGame(game), 1000);
+        setTimeout(() => this.setGame(game), 1500);
       } else {
         this.setGame(game);
       }
