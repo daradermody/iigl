@@ -6,6 +6,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
+import {LeaderboardComponent} from './components/leaderboard/leaderboard.component';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
 import {LogsComponent} from './components/admin-panel/logs/logs.component';
@@ -33,6 +34,9 @@ const ROUTES: Routes = [
   }, {
     path: 'tournaments',
     component: TournamentsComponent
+  }, {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
   }, {
     path: 'admin',
     component: AdminPanelComponent,

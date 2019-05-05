@@ -14,6 +14,8 @@ import {NotificationService} from './services/notification.service';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
 import {TournamentService} from './services/tournament.service';
+import {LeaderboardComponent} from './components/leaderboard/leaderboard.component';
+import {TeamService} from './services/team.service';
 import {ClipboardModule, ClipboardService} from 'ngx-clipboard';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -40,6 +42,7 @@ export function tokenGetter() {
     RegisterComponent,
     WallOfFameComponent,
     TournamentsComponent,
+    LeaderboardComponent,
     NavbarComponent,
     FooterComponent,
     AdminPanelComponent,
@@ -62,6 +65,7 @@ export function tokenGetter() {
     TournamentService,
     ClipboardService,
     UserService,
+    TeamService,
     DiagnosticsService,
     {
       provide: ErrorHandler,

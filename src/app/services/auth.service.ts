@@ -6,11 +6,11 @@ import * as moment from 'moment';
 
 
 import {User} from '../data_types/user';
+import {Team} from '../data_types/team';
 
 import {DecodedJwt} from '../data_types/decoded-jwt';
 import {shareReplay, tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
-
 
 @Injectable()
 export class AuthService {
@@ -44,9 +44,13 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
-  register(user: User): Observable<HttpResponse<Object>> {
+  registerUser(user: User): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>('/api/user', user);
   }
+
+/*   registerTeam(team: Team): Observable<HttpResponse<Object>> {
+    return this.http.post<HttpResponse<Object>>('/api/team', team);
+  } */
 
   confirmAccountCreationToken(token) {
     return this.http.get('/api/confirmRegistration', {

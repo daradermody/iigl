@@ -16,6 +16,8 @@ export class Users {
 
   private static getUsersFile(): string {
     const usersFile = 'server/database/data_files/users.json';
+    console.log("Reading user file")
+
     if (!fs.existsSync(usersFile)) {
       fs.writeFileSync(usersFile, JSON.stringify([]));
     }
@@ -23,6 +25,7 @@ export class Users {
   }
 
   static getUsers(): Array<User> {
+    console.log("Getting users")
     return JSON.parse(<string>fs.readFileSync(Users.usersFile, 'utf-8'));
   }
 

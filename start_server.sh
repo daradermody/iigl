@@ -37,7 +37,7 @@ function cygwin_run_as_administrator() {
 }
 
 function start_dev_server() {
-  mkdir --parent logs
+  mkdir -p logs
   touch logs/server.log logs/error.log
   npx nodemon > >(tee -a logs/server.log) 2> >(tee -a logs/error.log >&2) &
   trap "kill $!" EXIT SIGINT SIGKILL  # Kill all child process if this process is stopped/ends

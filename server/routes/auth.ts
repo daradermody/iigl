@@ -2,9 +2,11 @@ import {Request, Response, Router} from 'express';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import {Users} from '../database/storage';
+import {Teams} from '../database/storage';
 import {UserAuthentication} from '../security';
 import {Emailer} from '../emailing';
 import {User} from '../../src/app/data_types/user';
+import {Team} from '../../src/app/data_types/team';
 import {BadRequestError, ConflictError, NotFoundError, ServerError, UnauthorizedError} from '../errors/server_error';
 import * as moment from 'moment';
 
@@ -24,6 +26,9 @@ class Auth {
     this.router.post('/user', Auth.registerUser);
     this.router.put('/user/:email', UserAuthentication.verifyAdmin, Auth.updateUser);
     this.router.get('/confirmRegistration', Auth.confirmAccount);
+    this.router.get('/teams', Auth.getTeams);
+    this.router.get('/team/:name/score/:game', Auth.getGameScore);
+    this.router.get('/teams/scores', Auth.getGameScores);
   }
 
   static login(req: Request, res: Response) {
@@ -115,6 +120,21 @@ class Auth {
       email: user.email
     };
     Emailer.sendMail('irishinterfirmsgaming@gmail.com', 'email_validation_request', templateData);
+  }
+
+  static getTeams(req: Request, res: Response) {
+    const teams = Teams.getTeams();
+    res.status(200).json(teams);
+  }
+
+  static getGameScore(req: Request, res: Response) {
+    const gameScore = Teams.getGameScore(req.params.name, req.params.game);
+    res.status(200).json(gameScore);
+  }
+
+  static getGameScores(req: Request, res: Response) {
+    const gameScores = Teams.getGameScores();
+    res.status(200).json(gameScores);
   }
 }
 

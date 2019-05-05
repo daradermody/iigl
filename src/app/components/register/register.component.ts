@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {NotificationService} from '../../services/notification.service';
 import {User} from '../../data_types/user';
+import {Team} from '../../data_types/team';
 import {CustomValidators} from './validators';
 
 @Component({
@@ -111,7 +112,15 @@ export class RegisterComponent {
     const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
     const user = new User(formValues.email, formValues.battlefy, formValues.password, selectedGames);
 
-    const res = await this.authService.register(user).toPromise();
+    const res = await this.authService.registerUser(user).toPromise();
     this.router.navigateByUrl(res['redirect']);
   }
+
+/*   private async registerTeam(formValues) {
+    //const selectedGames = this.games.filter((game) => game.selected).map((game) => game.name);
+    const team = new Team(formValues.name, 0, 0, ["Game1"], false);
+
+    const res = await this.authService.registerTeam(team).toPromise();
+    this.router.navigateByUrl(res['redirect']);
+  } */
 }
