@@ -1,0 +1,58 @@
+<div class="w3-padding-large" id="main">
+    <div class="w3-padding-64 w3-content">
+      <h2 class="page-heading">Leaderboard Admin Panel</h2>
+      <p>Here's who's hot shit right now!</p>
+      <ng-template style="width: 100%;" #loading>
+        <div class="text-center">
+          <i class="fas fa-cog fa-5x fa-spin"></i>
+        </div>
+      </ng-template>
+      <td>
+          <select>
+              <!-- <option *ngFor="let game of team.games" value="{{game}}">{{game}}</option> -->
+              <option selected="selected" value="Overwatch">Overwatch</option>
+              <option selected="selected" value="League of Legends">League of Legends</option>
+          </select>
+      </td>
+
+<!--       <td *ngFor='let game of gameScores'> 
+          {{game}}
+      </td> -->
+
+<table class="table" *ngIf="teams; else loading">
+  <thead>
+  <tr>
+    <th scope="col" style="width: 100%;">Team</th>
+    <th scope="col" style="width: 100%;">Active</th>
+    <!-- <th scope="col" style="width: 70%;">Game</th> -->
+    <th scope="col" style="width: 70px;">Score</th>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <tr *ngFor="let team of teams" [ngClass]="{'green': team.isActive}" >
+      <td>
+          <img src="assets/img/company_logos/{{team.name}}.png">
+          <!-- <span class="d-none d-md-inline">{{ team.name }}</span> -->
+    </td>
+    <td><input type="checkbox" [(ngModel)]="team.isActive" (change)="setActive(team.isActive, $event.target.checked)"></td>
+
+    <td *ngIf='gameScores'> 
+        0
+    </td>
+
+  <td>
+    <button class="monospaced" (click)="updateTeamScore(1)">  +  </button>
+<!--     <ng-template #getCode>
+      <button [class.disabled]="!isAdmin()" (click)="getJoinCode(tournament)">Get code</button>
+    </ng-template> -->
+  </td>
+  <td>
+      <button class="monospaced" (click)="updateTeamScore(-1)">  -  </button>
+<!--       <ng-template #getCode>
+        <button [class.disabled]="!isAdmin()" (click)="getJoinCode(tournament)">Get code</button>
+      </ng-template> -->
+    </td>
+ </tr>
+  </tbody>
+</table>
