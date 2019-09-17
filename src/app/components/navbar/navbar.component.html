@@ -17,6 +17,10 @@
     <i class="fas fa-envelope fa-3x"></i>
     <p>CONTACT</p>
   </a>
+  <a routerLink="studentAdvice" class="nav-item black-hover" routerLinkActive="black">
+    <i class="fas fa-graduation-cap fa-3x"></i>
+    <p>STUDENT ADVICE</p>
+  </a>
   <a routerLink="admin" *ngIf="isLoggedIn() && isAdmin()" class="nav-item black-hover">
     <i class="fas fa-cogs fa-3x"></i>
     <p>ADMIN</p>
@@ -59,6 +63,10 @@
       <i class="fas fa-envelope"></i>
       <span>CONTACT</span>
     </a>
+	<a routerLink="studentAdvice" class="nav-item" routerLinkActive="black">
+	  <i class="fas fa-graduation-cap"></i>
+    <span>STUDENT ADVICE</span>
+	</a>
     <a routerLink="admin" *ngIf="isLoggedIn() && isAdmin()" class="nav-item" routerLinkActive="black">
       <i class="fas fa-cogs"></i>
       <span>ADMIN</span>
