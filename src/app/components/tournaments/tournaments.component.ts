@@ -3,7 +3,7 @@ import {TournamentService} from '../../services/tournament.service';
 import {NotificationService} from '../../services/notification.service';
 import {Tournament} from '../../data_types/tournament';
 import {ClipboardService} from 'ngx-clipboard';
-import {AuthService} from '../../services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tournaments',
@@ -11,7 +11,8 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./tournaments.component.css']
 })
 export class TournamentsComponent implements OnInit {
-  tournaments: Array<Tournament>;
+  upcomingTournaments: Array<Tournament>;
+  pastTournaments: Array<Tournament>;
 
   constructor(private notifier: NotificationService,
               private tournamentService: TournamentService,
@@ -20,49 +21,24 @@ export class TournamentsComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-        if (!this.tournaments) {
-          this.tournaments = [];
+        if (!this.upcomingTournaments) {
+          this.upcomingTournaments = [];
           throw new Error('Could not get tournaments for some unknown reason. :(');
         }
       }, 10000
     );
 
     this.tournamentService.getTournamenets().subscribe(
-      (data) => this.tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start)),
+      (data) => {
+        const tournaments = Tournament.fromBattlefyResponse(data).sort((a, b) => +(a.start > b.start));
+        this.upcomingTournaments = tournaments.filter(tournament => tournament.start.isAfter(moment().subtract(1, 'week')));
+        this.pastTournaments = tournaments.filter(tournament => tournament.start.isBefore(moment().subtract(1, 'week')));
+      },
       (error) => {
-        this.tournaments = [];
+        this.upcomingTournaments = [];
+        this.pastTournaments = [];
         throw error;
       }
     );
-  }
-
-  open(url) {
-    window.open(url, '_blank');
-  }
-
-  getJoinCode(tournament: Tournament) {
-    if (!this.isLoggedIn()) {
-      throw new Error('You must login to join a tournament!');
-    }
-
-    this.tournamentService.getJoinCode(tournament._id).subscribe(
-      (data) => {
-        tournament.joinCode = data['code'];
-        this.notifier.emitMessage('Click the code to copy to clipboard');
-      }
-    );
-  }
-
-  copyJoinCodeToClipboard(tournament: Tournament) {
-    if (tournament.joinCode !== 'Copied!') {
-      this.clipboard.copyFromContent(tournament.joinCode);
-      const code = tournament.joinCode;
-      tournament.joinCode = 'Copied!';
-      setTimeout(() => tournament.joinCode = code, 1000);
-    }
-  }
-
-  isLoggedIn() {
-    return AuthService.isLoggedIn();
   }
 }

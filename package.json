@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "build": "ng build",
+    "build": "./build.sh",
+    "start": "./start_server.sh",
     "test": "eslint . && ./list_unused_css_classes.sh && stylelint '**/*.css' '**/*.html' && ng lint"
   },
   "main": "server/index.ts",
@@ -37,7 +38,7 @@
     "@types/jwt-decode": "^2.2.1",
     "ansi-to-html": "^0.6.4",
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.4",
+    "bcrypt": "3.0.4",
     "body-parser": "latest",
     "core-js": "^2.5.3",
     "email-templates": "^5.0.3",

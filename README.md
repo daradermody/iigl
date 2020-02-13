@@ -19,7 +19,7 @@ Clone the repo and run `npm install`.
 
 ## Start a server
 
-Run the handy little bash script `start_server.sh` and the website should open. Add the `--prod` flag to start the server after building and packing the application for speedier surfing of the site.
+Use `npm start` to start the development server and `npm start -- --prod` to start the server after building and packing the application for speedier surfing of the site.
 
 ## Contact
 

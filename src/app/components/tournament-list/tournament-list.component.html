@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Game</th>
+    <th scope="col">Name</th>
+    <th scope="col">Date</th>
+    <th scope="col" class="d-none d-lg-table-cell">Type</th>
+    <th scope="col" class="d-none d-lg-table-cell">Participants</th>
+    <th scope="col" *ngIf="areOpenToEntry">Codes</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngIf="!tournaments.length">
+    <td style="width: 100%; text-align: center;" colspan="6">{{ emptyMessage || "No tournaments" }}</td>
+  </tr>
+
+  <tr *ngFor="let tournament of tournaments">
+    <td (click)="open(tournament.url)">
+      <img src="{{tournament.game.iconUrl}}" [alt]="tournament.game.name">
+      <span class="d-none d-md-inline">{{ tournament.game.name }}</span>
+    </td>
+    <td (click)="open(tournament.url)">{{ tournament.name }}</td>
+    <td (click)="open(tournament.url)">
+      <span class="d-none d-lg-inline">{{ tournament.start.format('Do MMMM YYYY') }}</span>
+      <span class="d-inline d-lg-none">{{ tournament.start.format('Do MMM \'YY') }}</span>
+    </td>
+    <td class="d-none d-lg-table-cell" (click)="open(tournament.url)">{{ tournament.type }}</td>
+    <td class="d-none d-lg-table-cell" (click)="open(tournament.url)">{{ tournament.teamsCount }}</td>
+    <td *ngIf="areOpenToEntry">
+      <button class="monospaced" *ngIf="tournament.joinCode; else getCode"
+              (click)="copyJoinCodeToClipboard(tournament)">{{ tournament.joinCode }}
+      </button>
+      <ng-template #getCode>
+        <button [class.disabled]="!isLoggedIn()" (click)="getJoinCode(tournament)">Get code</button>
+      </ng-template>
+    </td>
+  </tr>
+  </tbody>
+</table>

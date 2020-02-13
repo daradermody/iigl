@@ -8,48 +8,20 @@
       </div>
     </ng-template>
 
-    <table class="table" *ngIf="tournaments; else loading">
-      <thead>
-      <tr>
-        <th scope="col">Game</th>
-        <th scope="col">Name</th>
-        <th scope="col">Date</th>
-        <th scope="col" class="d-none d-lg-table-cell">Type</th>
-        <th scope="col" class="d-none d-lg-table-cell">Participants</th>
-        <th scope="col">Codes</th>
-      </tr>
-      </thead>
+    <div *ngIf="upcomingTournaments && pastTournaments; else loading">
+      <app-tournament-list [tournaments]="upcomingTournaments" emptyMessage="No upcoming tournaments yet!"></app-tournament-list>
 
-      <tbody>
-      <tr *ngFor="let tournament of tournaments">
-        <td (click)="open(tournament.url)">
-          <img src="{{tournament.game.iconUrl}}">
-          <span class="d-none d-md-inline">{{ tournament.game.name }}</span>
-        </td>
-        <td (click)="open(tournament.url)">{{ tournament.name }}</td>
-        <td (click)="open(tournament.url)">
-          <span class="d-none d-lg-inline">{{ tournament.start.format('Do MMMM') }}</span>
-          <span class="d-inline d-lg-none">{{ tournament.start.format('Do MMM') }}</span>
-        </td>
-        <td class="d-none d-lg-table-cell" (click)="open(tournament.url)">{{ tournament.type }}</td>
-        <td class="d-none d-lg-table-cell" (click)="open(tournament.url)">{{ tournament.teamsCount }}</td>
-        <td>
-          <button class="monospaced" *ngIf="tournament.joinCode; else getCode"
-                  (click)="copyJoinCodeToClipboard(tournament)">{{ tournament.joinCode }}
-          </button>
-          <ng-template #getCode>
-            <button [class.disabled]="!isLoggedIn()" (click)="getJoinCode(tournament)">Get code</button>
-          </ng-template>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      <div *ngIf="pastTournaments.length">
+        <h4>Past Tournaments</h4>
+        <app-tournament-list [tournaments]="pastTournaments" [areOpenToEntry]="false"></app-tournament-list>
+      </div>
 
-    <h4>How Join Codes Work</h4>
-    <p>
-      We use <i>join codes</i> so only IIGL members can enter tournaments. Get a join code above and input it on the
-      Battlefy page for the tournament you want to join.
-    </p>
-    <img class="join-code-gif" src="assets/img/join_codes.gif" alt="How to use join codes">
+      <h4>How Join Codes Work</h4>
+      <p>
+        We use <i>join codes</i> so only IIGL members can enter tournaments. Get a join code above and input it on the
+        Battlefy page for the tournament you want to join.
+      </p>
+      <img class="join-code-gif" src="assets/img/join_codes.gif" alt="How to use join codes">
+    </div>
   </div>
 </div>

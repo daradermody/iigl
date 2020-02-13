@@ -25,6 +25,7 @@ import {UserService} from './services/user.service';
 import {LogsComponent, SafeHtmlPipe} from './components/admin-panel/logs/logs.component';
 import {DiagnosticsService} from './services/diagnostics.service';
 import {JwtModule} from '@auth0/angular-jwt';
+import { TournamentListComponent } from './components/tournament-list/tournament-list.component';
 
 
 export function tokenGetter() {
@@ -47,7 +48,8 @@ export function tokenGetter() {
     AdminPanelComponent,
     UserListComponent,
     LogsComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    TournamentListComponent
   ],
   imports: [
     BrowserModule,
