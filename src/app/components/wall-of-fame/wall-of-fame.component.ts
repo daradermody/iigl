@@ -9,7 +9,7 @@ import {WallOfFameGame} from '../../data_types/wall-of-fame-game';
 export class WallOfFameComponent {
   games = [
     new WallOfFameGame('Rocket League', '/assets/img/wall_of_fame/rocket_league_placeholder.jpg'),
-    new WallOfFameGame('League of Legends', '/assets/img/wall_of_fame/lol_placeholder.jpg')
+    new WallOfFameGame('League of Legends', '/assets/img/wall_of_fame/lol_placeholder.jpg'),
     new WallOfFameGame('Smash Ultimate', '/assets/img/wall_of_fame/smash_ultimate.png')
   ];
 
