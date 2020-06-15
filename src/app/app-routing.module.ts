@@ -7,6 +7,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {WallOfFameComponent} from './components/wall-of-fame/wall-of-fame.component';
 import {TournamentsComponent} from './components/tournaments/tournaments.component';
+import {EventsComponent} from './components/events/events.component';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 import {UserListComponent} from './components/admin-panel/user-list/user-list.component';
 import {LogsComponent} from './components/admin-panel/logs/logs.component';
@@ -37,6 +38,9 @@ const ROUTES: Routes = [
   }, {
     path: 'tournaments',
     component: TournamentsComponent
+  }, {
+    path: 'events',
+    component: EventsComponent
   }, {
     path: 'admin',
     component: AdminPanelComponent,

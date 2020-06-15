@@ -6,6 +6,7 @@ import {AppComponent} from './components/app.component';
 import {HomeComponent} from './components/home/home.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {StudentAdviceComponent} from './components/student-advice/student-advice.component';
+import {EventsComponent} from './components/events/events.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './components/login/login.component';
@@ -39,6 +40,7 @@ export function tokenGetter() {
     HomeComponent,
     ContactComponent,
     StudentAdviceComponent,
+	EventsComponent,
     LoginComponent,
     RegisterComponent,
     WallOfFameComponent,

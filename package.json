@@ -48,6 +48,7 @@
     "moment": "^2.21.0",
     "morgan": "^1.9.0",
     "mustache": "^3.0.1",
+    "ng": "0.0.0",
     "ngx-clipboard": "^11.1.9",
     "node": "^11.9.0",
     "nodemailer": "^5.1.1",
