@@ -37,7 +37,7 @@
     "@auth0/angular-jwt": "^2.1.0",
     "@types/jwt-decode": "^2.2.1",
     "ansi-to-html": "^0.6.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt": "3.0.4",
     "body-parser": "latest",
     "core-js": "^2.5.3",
