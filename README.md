@@ -23,4 +23,4 @@ Use `npm start` to start the development server and `npm start -- --prod` to sta
 
 ## Contact
 
-Email [me](mailto:daradermody@gmail.com) or [Jay](mailto:jaybopper@hotmail.com) for any information.
+Email [me](mailto:daradermody@gmail.com) for any information.
